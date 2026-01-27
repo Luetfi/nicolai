@@ -1,0 +1,170 @@
+import { Hero, Services, CallToAction } from '../components/home';
+import { ArrowRight, CheckCircle, Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export function Home() {
+  const features = [
+    'Erfahrene & geduldige Fahrlehrer',
+    'Moderne Fahrzeuge',
+    'Flexible Unterrichtszeiten',
+    'Hohe Bestehensquote',
+    'Zwei Standorte in Ludwigsburg',
+    'Faire Preise',
+  ];
+
+  return (
+    <>
+      <Hero />
+      <Services />
+
+      {/* About Section */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-background to-transparent" />
+        <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-gradient-to-tl from-primary/10 to-transparent rounded-full blur-3xl" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left column - Text */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/5 mb-6">
+                <Star className="w-4 h-4 text-accent" />
+                <span className="text-secondary font-medium text-sm">Über 25 Jahre Erfahrung</span>
+              </div>
+
+              <h2 className="display-lg text-secondary mb-6">
+                DEINE FAHRSCHULE IN{' '}
+                <span className="gradient-text">LUDWIGSBURG</span>
+              </h2>
+
+              <div className="space-y-4 text-gray-600 text-lg mb-8">
+                <p>
+                  Seit über 25 Jahren bilden wir Fahrschüler erfolgreich aus.
+                  Mit zwei Standorten in Eglosheim und Grünbühl sind wir immer in deiner Nähe.
+                </p>
+                <p>
+                  Unser erfahrenes Team aus qualifizierten Fahrlehrern begleitet dich
+                  auf deinem Weg zum Führerschein - kompetent, geduldig und mit viel Engagement.
+                </p>
+              </div>
+
+              {/* Feature list */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+                {features.map((feature, index) => (
+                  <div
+                    key={feature}
+                    className="flex items-center gap-3"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-secondary" />
+                    </div>
+                    <span className="text-secondary font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                to="/fahrschule"
+                className="inline-flex items-center gap-3 btn-accent text-white px-8 py-4 rounded-xl font-bold text-lg group"
+              >
+                Unser Team kennenlernen
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            {/* Right column - Visual */}
+            <div className="relative">
+              {/* Main visual */}
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-accent/10 to-primary/20 rounded-3xl blur-2xl" />
+
+                {/* Card stack */}
+                <div className="relative">
+                  {/* Background card */}
+                  <div className="absolute top-8 left-8 right-0 bottom-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl" />
+
+                  {/* Main card */}
+                  <div className="relative bg-gradient-to-br from-secondary to-secondary-light rounded-3xl p-10 shadow-2xl">
+                    {/* Logo */}
+                    <div className="flex justify-center mb-8">
+                      <div className="relative">
+                        <div className="w-28 h-28 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center shadow-xl shadow-primary/30 animate-pulse-glow">
+                          <span className="font-display text-5xl text-secondary">FN</span>
+                        </div>
+                        <div className="absolute -inset-2 bg-gradient-to-br from-primary to-accent rounded-2xl opacity-30 blur-xl" />
+                      </div>
+                    </div>
+
+                    {/* Text */}
+                    <div className="text-center">
+                      <h3 className="font-display text-3xl text-white mb-2">
+                        FAHRSCHULE NICOLAI
+                      </h3>
+                      <p className="text-primary font-medium tracking-wide">
+                        Dein Weg zum Führerschein
+                      </p>
+                    </div>
+
+                    {/* Stats row */}
+                    <div className="mt-8 pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
+                      <div>
+                        <div className="font-display text-2xl text-primary">25+</div>
+                        <div className="text-gray-500 text-xs">Jahre</div>
+                      </div>
+                      <div>
+                        <div className="font-display text-2xl text-primary">1000+</div>
+                        <div className="text-gray-500 text-xs">Schüler</div>
+                      </div>
+                      <div>
+                        <div className="font-display text-2xl text-primary">98%</div>
+                        <div className="text-gray-500 text-xs">Erfolg</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating elements */}
+              <div className="absolute -top-4 -right-4 bg-white rounded-2xl px-6 py-4 shadow-xl animate-float">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-secondary font-semibold">Anmeldung offen</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial hint */}
+      <section className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 rounded-3xl p-12 text-center relative overflow-hidden">
+            {/* Decorative circles */}
+            <div className="absolute top-4 left-4 w-20 h-20 border-2 border-primary/20 rounded-full" />
+            <div className="absolute bottom-4 right-4 w-32 h-32 border-2 border-accent/20 rounded-full" />
+
+            <div className="relative">
+              <div className="flex justify-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-6 h-6 text-primary fill-primary" />
+                ))}
+              </div>
+              <blockquote className="text-2xl md:text-3xl font-medium text-secondary max-w-3xl mx-auto mb-6">
+                "Super Fahrschule! Die Fahrlehrer sind geduldig und erklären alles verständlich.
+                Habe meinen Führerschein beim ersten Versuch geschafft!"
+              </blockquote>
+              <cite className="text-gray-600 not-italic">
+                - Zufriedener Fahrschüler
+              </cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CallToAction />
+    </>
+  );
+}
