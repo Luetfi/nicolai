@@ -3,36 +3,40 @@ export interface TeamMember {
   name: string;
   role: string;
   description: string;
+  phone?: string;
   image?: string;
 }
 
 export const teamMembers: TeamMember[] = [
   {
-    id: 'ronald',
-    name: 'Ronald Nicolai',
-    role: 'Inhaber & Fahrlehrer',
-    description: 'Gründer und Inhaber der Fahrschule Nicolai. Mit jahrelanger Erfahrung und Leidenschaft für die Fahrausbildung.',
-    image: '/images/team/ronald.jpg',
+    id: 'roland',
+    name: 'Roland Nicolai',
+    role: 'Fahrlehrer aller Klassen',
+    description: 'Seit 1984 in der Fahrausbildung tätig. Moderator ASF.',
+    image: '/images/team/roland.jpg',
   },
   {
-    id: 'nina',
-    name: 'Nina Pfannenstiel',
-    role: 'Fahrlehrerin',
-    description: 'Erfahrene Fahrlehrerin mit besonderem Fokus auf eine entspannte und strukturierte Ausbildung.',
-    image: '/images/team/nina.jpg',
+    id: 'ralf',
+    name: 'Ralf Nicolai',
+    role: 'Fahrlehrer der Klassen A und B/BE',
+    description: 'Seit 1981 in der Fahrausbildung tätig. Moderator ASF und FES, Ausbildungsfahrlehrer.',
+    phone: '0170 / 21 38 547',
+    image: '/images/team/ralf.jpg',
+  },
+  {
+    id: 'maja',
+    name: 'Maja Milovanovic',
+    role: 'Fahrlehrerin der Klassen A, B/BE und C/CE',
+    description: 'Seit 1999 in der Fahrausbildung tätig. Moderatorin ASF und FES, Ausbildungsfahrlehrerin.',
+    phone: '0175 / 8642673',
+    image: '/images/team/maja.jpg',
   },
   {
     id: 'alexander',
-    name: 'Alexander Krüger',
-    role: 'Fahrlehrer',
-    description: 'Kompetenter Fahrlehrer für PKW und Motorrad mit viel Geduld und Einfühlungsvermögen.',
+    name: 'Alexander Nicolai',
+    role: 'Fahrlehrer der Klassen B/BE',
+    description: '',
+    phone: '0170 / 4925140',
     image: '/images/team/alexander.jpg',
-  },
-  {
-    id: 'stefanie',
-    name: 'Stefanie Müller',
-    role: 'Fahrlehrerin',
-    description: 'Engagierte Fahrlehrerin, die Wert auf eine sichere und praxisnahe Ausbildung legt.',
-    image: '/images/team/stefanie.jpg',
   },
 ];

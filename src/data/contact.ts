@@ -31,7 +31,7 @@ export const locations: Location[] = [
 ];
 
 export const generalInfo = {
-  email: 'info@fahrschule-nicolai.de',
+  email: 'fahrschule-ralf-nicolai@web.de',
   companyName: 'Fahrschule Nicolai',
   slogan: 'Dein Weg zum Führerschein!',
 };

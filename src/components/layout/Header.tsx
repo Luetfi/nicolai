@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Phone, ChevronRight } from 'lucide-react';
 
 const navLinks = [
-  { path: '/', label: 'Home' },
+  { path: '/', label: 'Startseite' },
   { path: '/leistungen', label: 'Leistungen' },
   { path: '/fahrschule', label: 'Fahrschule' },
   { path: '/theorieunterricht', label: 'Theorie' },
@@ -45,20 +45,16 @@ export function Header() {
       <div className="h-1 bg-gradient-to-r from-primary via-accent to-primary" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-28 md:h-32">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center group" aria-label="Fahrschule Nicolai - Startseite">
             <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-primary/30">
-                <span className="font-display text-secondary font-bold text-2xl tracking-wider">FN</span>
-              </div>
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary to-accent rounded-xl opacity-0 group-hover:opacity-30 blur transition-opacity duration-300" />
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-display text-2xl tracking-wide">
-                <span className="text-white">FAHRSCHULE</span>
-                <span className="text-primary ml-2">NICOLAI</span>
-              </div>
+              <img
+                src="/images/logo.png"
+                alt="Fahrschule Nicolai"
+                className="h-24 md:h-28 w-auto transform group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute -inset-1 bg-gradient-to-br from-primary to-accent rounded-xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300" />
             </div>
           </Link>
 
@@ -124,7 +120,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       <div
-        className={`lg:hidden fixed inset-0 top-[84px] bg-secondary/98 backdrop-blur-xl transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 top-[116px] md:top-[132px] bg-secondary/98 backdrop-blur-xl transition-all duration-500 ${
           mobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
