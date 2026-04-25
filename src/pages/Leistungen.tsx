@@ -31,7 +31,7 @@ export function Leistungen() {
       </section>
 
       {/* PKW Section */}
-      <section className="py-24 bg-background relative">
+      <section className="py-24 bg-secondary relative">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-500/5 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -40,8 +40,8 @@ export function Leistungen() {
               <Car className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h2 className="display-md text-secondary">PKW-FÜHRERSCHEINE</h2>
-              <p className="text-gray-600">Dein Einstieg in die Mobilität</p>
+              <h2 className="display-md text-white">PKW-FÜHRERSCHEINE</h2>
+              <p className="text-gray-300">Dein Einstieg in die Mobilität</p>
             </div>
           </div>
 
@@ -54,28 +54,28 @@ export function Leistungen() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 h-full card-hover border border-gray-100">
+                <div className="relative bg-secondary-light rounded-3xl p-8 shadow-xl shadow-black/40 h-full card-hover border border-white/10">
                   <div className="flex items-start justify-between mb-6">
                     <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
                       <span className="font-display text-4xl text-white">{license.name}</span>
                     </div>
-                    <span className="px-4 py-2 bg-blue-50 text-blue-600 text-sm font-semibold rounded-full">
+                    <span className="px-4 py-2 bg-blue-500/15 text-blue-300 text-sm font-semibold rounded-full">
                       ab {license.minAge} Jahren
                     </span>
                   </div>
 
-                  <h3 className="font-display text-2xl text-secondary mb-2">{license.title}</h3>
-                  <p className="text-gray-600 mb-6">{license.description}</p>
+                  <h3 className="font-display text-2xl text-white mb-2">{license.title}</h3>
+                  <p className="text-gray-300 mb-6">{license.description}</p>
 
                   <div>
-                    <h4 className="font-semibold text-secondary mb-3 text-sm uppercase tracking-wide">
+                    <h4 className="font-semibold text-white mb-3 text-sm uppercase tracking-wide">
                       Voraussetzungen
                     </h4>
                     <ul className="space-y-2">
                       {license.requirements.map((req, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-600 text-sm">{req}</span>
+                          <span className="text-gray-300 text-sm">{req}</span>
                         </li>
                       ))}
                     </ul>
@@ -88,7 +88,7 @@ export function Leistungen() {
       </section>
 
       {/* Motorrad Section */}
-      <section className="py-24 bg-white relative">
+      <section className="py-24 bg-secondary-light relative">
         <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-accent/5 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -97,8 +97,8 @@ export function Leistungen() {
               <Bike className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h2 className="display-md text-secondary">MOTORRAD-FÜHRERSCHEINE</h2>
-              <p className="text-gray-600">Freiheit auf zwei Rädern</p>
+              <h2 className="display-md text-white">MOTORRAD-FÜHRERSCHEINE</h2>
+              <p className="text-gray-300">Freiheit auf zwei Rädern</p>
             </div>
           </div>
 
@@ -111,24 +111,24 @@ export function Leistungen() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-orange-600/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-white rounded-3xl p-6 shadow-xl shadow-gray-200/50 h-full card-hover border border-gray-100">
+                <div className="relative bg-secondary rounded-3xl p-6 shadow-xl shadow-black/40 h-full card-hover border border-white/10">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-16 h-16 bg-gradient-to-br from-accent to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
                       <span className="font-display text-3xl text-white">{license.name}</span>
                     </div>
-                    <span className="px-3 py-1.5 bg-orange-50 text-accent text-xs font-semibold rounded-full">
+                    <span className="px-3 py-1.5 bg-accent/15 text-accent text-xs font-semibold rounded-full">
                       ab {license.minAge}
                     </span>
                   </div>
 
-                  <h3 className="font-display text-xl text-secondary mb-2">{license.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{license.description}</p>
+                  <h3 className="font-display text-xl text-white mb-2">{license.title}</h3>
+                  <p className="text-gray-300 text-sm mb-4">{license.description}</p>
 
                   <ul className="space-y-1.5">
                     {license.requirements.slice(0, 2).map((req, i) => (
                       <li key={i} className="flex items-start gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-600 text-xs">{req}</span>
+                        <span className="text-gray-300 text-xs">{req}</span>
                       </li>
                     ))}
                   </ul>
@@ -140,15 +140,15 @@ export function Leistungen() {
       </section>
 
       {/* Special Services */}
-      <section className="py-24 bg-background relative">
+      <section className="py-24 bg-secondary relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 mb-12">
             <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20">
               <AlertTriangle className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h2 className="display-md text-secondary">ZUSATZANGEBOTE</h2>
-              <p className="text-gray-600">Seminare und Spezialtraining</p>
+              <h2 className="display-md text-white">ZUSATZANGEBOTE</h2>
+              <p className="text-gray-300">Seminare und Spezialtraining</p>
             </div>
           </div>
 
@@ -161,15 +161,15 @@ export function Leistungen() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-white rounded-3xl p-10 shadow-xl shadow-gray-200/50 h-full card-hover border border-gray-100">
-                  <h3 className="font-display text-3xl text-secondary mb-4">{service.title}</h3>
-                  <p className="text-gray-600 text-lg mb-6">{service.description}</p>
+                <div className="relative bg-secondary-light rounded-3xl p-10 shadow-xl shadow-black/40 h-full card-hover border border-white/10">
+                  <h3 className="font-display text-3xl text-white mb-4">{service.title}</h3>
+                  <p className="text-gray-300 text-lg mb-6">{service.description}</p>
 
                   <ul className="space-y-3">
                     {service.details.map((detail, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{detail}</span>
+                        <span className="text-gray-200">{detail}</span>
                       </li>
                     ))}
                   </ul>

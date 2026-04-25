@@ -42,13 +42,13 @@ export function Theorieunterricht() {
       </section>
 
       {/* Schedule */}
-      <section className="py-24 bg-background relative">
+      <section className="py-24 bg-secondary relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="display-lg text-secondary mb-4">
+            <h2 className="display-lg text-white mb-4">
               UNSERE <span className="gradient-text">UNTERRICHTSZEITEN</span>
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
               Flexibel an beiden Standorten - wähle den Termin, der am besten zu dir passt
             </p>
           </div>
@@ -62,27 +62,27 @@ export function Theorieunterricht() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-white rounded-3xl p-10 shadow-xl shadow-gray-200/50 h-full card-hover border border-gray-100 text-center">
+                <div className="relative bg-secondary-light rounded-3xl p-10 shadow-xl shadow-black/40 h-full card-hover border border-white/10 text-center">
                   <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20">
                     <MapPin className="w-10 h-10 text-secondary" />
                   </div>
 
-                  <h3 className="font-display text-3xl text-secondary mb-4">{location.name}</h3>
+                  <h3 className="font-display text-3xl text-white mb-4">{location.name}</h3>
 
-                  <div className="flex items-center justify-center gap-2 text-gray-600 mb-6">
+                  <div className="flex items-center justify-center gap-2 text-gray-300 mb-6">
                     <MapPin className="w-5 h-5 text-accent" />
                     <span>{location.address}, {location.city}</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6">
+                  <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border border-white/5">
                     <div className="flex items-center justify-center gap-2 mb-3">
                       <Clock className="w-5 h-5 text-accent" />
-                      <span className="font-semibold text-secondary">Unterrichtstage</span>
+                      <span className="font-semibold text-white">Unterrichtstage</span>
                     </div>
                     <p className="font-display text-4xl text-accent mb-2">
                       {location.lessonDays.join(' & ')}
                     </p>
-                    <p className="text-xl text-secondary">
+                    <p className="text-xl text-white">
                       {location.lessonTime}
                     </p>
                   </div>
@@ -91,7 +91,7 @@ export function Theorieunterricht() {
             ))}
           </div>
 
-          <p className="text-center text-gray-600 mt-8 text-lg">
+          <p className="text-center text-gray-300 mt-8 text-lg">
             Der Theorieunterricht findet regelmäßig an beiden Standorten statt.
             Du kannst flexibel zwischen den Standorten wechseln.
           </p>
@@ -99,7 +99,7 @@ export function Theorieunterricht() {
       </section>
 
       {/* Topics */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section className="py-24 bg-secondary-light relative overflow-hidden">
         <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-primary/5 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -107,32 +107,32 @@ export function Theorieunterricht() {
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
               <BookOpen className="w-8 h-8 text-white" />
             </div>
-            <h2 className="display-md text-secondary">THEMEN IM GRUNDSTOFF</h2>
+            <h2 className="display-md text-white">THEMEN IM GRUNDSTOFF</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
             {theoryTopics.map((topic, index) => (
               <div
                 key={topic}
-                className="group flex items-center gap-4 bg-gradient-to-r from-gray-50 to-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-primary/20 card-hover"
+                className="group flex items-center gap-4 bg-gradient-to-r from-secondary to-secondary-light rounded-2xl p-5 shadow-sm shadow-black/30 hover:shadow-md hover:shadow-black/40 transition-all border border-white/10 hover:border-primary/30 card-hover"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <span className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center text-secondary font-display text-lg flex-shrink-0 shadow-md">
                   {index + 1}
                 </span>
-                <span className="text-secondary font-medium">{topic}</span>
+                <span className="text-white font-medium">{topic}</span>
               </div>
             ))}
           </div>
 
-          <p className="text-center text-gray-600 mt-10 text-lg">
+          <p className="text-center text-gray-300 mt-10 text-lg">
             Zusätzlich gibt es klassenspezifische Themen für PKW, Motorrad und Anhänger.
           </p>
         </div>
       </section>
 
       {/* Online Learning */}
-      <section className="py-24 bg-background relative">
+      <section className="py-24 bg-secondary relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -140,10 +140,10 @@ export function Theorieunterricht() {
                 <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg">
                   <Monitor className="w-7 h-7 text-white" />
                 </div>
-                <h2 className="display-md text-secondary">ONLINE LERNEN</h2>
+                <h2 className="display-md text-white">ONLINE LERNEN</h2>
               </div>
 
-              <div className="space-y-4 text-gray-600 text-lg mb-8">
+              <div className="space-y-4 text-gray-300 text-lg mb-8">
                 <p>
                   Ergänzend zum Präsenzunterricht bieten wir dir moderne Online-Lernmaterialien,
                   mit denen du flexibel und effektiv für die Theorieprüfung lernen kannst.
@@ -165,7 +165,7 @@ export function Theorieunterricht() {
                     <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center shadow-md">
                       <CheckCircle className="w-5 h-5 text-white" />
                     </div>
-                    <span className="text-secondary font-medium text-lg">{feature}</span>
+                    <span className="text-white font-medium text-lg">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -220,7 +220,7 @@ export function Theorieunterricht() {
           </p>
           <Link
             to="/kontakt"
-            className="inline-flex items-center gap-3 bg-white text-accent px-10 py-5 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-colors group"
+            className="inline-flex items-center gap-3 bg-secondary-light text-accent px-10 py-5 rounded-2xl font-bold text-lg hover:bg-secondary transition-colors group"
           >
             Jetzt anmelden
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

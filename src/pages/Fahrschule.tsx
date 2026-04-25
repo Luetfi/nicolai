@@ -1,4 +1,4 @@
-import { Users, Award, Heart, Target, Sparkles } from 'lucide-react';
+import { Users, Award, Heart, Target, Sparkles, Phone } from 'lucide-react';
 import { teamMembers } from '../data/team';
 
 export function Fahrschule() {
@@ -53,16 +53,16 @@ export function Fahrschule() {
       </section>
 
       {/* About */}
-      <section className="py-24 bg-background relative">
+      <section className="py-24 bg-secondary relative">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="display-lg text-secondary mb-6">
+              <h2 className="display-lg text-white mb-6">
                 DEINE FAHRSCHULE IN <span className="gradient-text">LUDWIGSBURG</span>
               </h2>
-              <div className="space-y-4 text-gray-600 text-lg">
+              <div className="space-y-4 text-gray-300 text-lg">
                 <p>
                   Die Fahrschule Nicolai ist seit über 25 Jahren dein zuverlässiger Partner
                   für die Führerscheinausbildung in Ludwigsburg und Umgebung.
@@ -89,12 +89,12 @@ export function Fahrschule() {
                 >
                   <div className={`absolute -inset-1 bg-gradient-to-r ${value.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
 
-                  <div className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow h-full border border-gray-100">
+                  <div className="relative bg-secondary-light rounded-2xl p-6 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-black/50 transition-shadow h-full border border-white/10">
                     <div className={`w-12 h-12 bg-gradient-to-br ${value.gradient} rounded-xl flex items-center justify-center mb-4 shadow-lg`}>
                       <value.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-display text-xl text-secondary mb-2">{value.title}</h3>
-                    <p className="text-gray-600 text-sm">{value.description}</p>
+                    <h3 className="font-display text-xl text-white mb-2">{value.title}</h3>
+                    <p className="text-gray-300 text-sm">{value.description}</p>
                   </div>
                 </div>
               ))}
@@ -104,15 +104,15 @@ export function Fahrschule() {
       </section>
 
       {/* Team */}
-      <section className="py-24 bg-white relative">
+      <section className="py-24 bg-secondary-light relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/5 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 mb-6">
               <Users className="w-4 h-4 text-accent" />
-              <span className="text-secondary font-medium text-sm">Das Team</span>
+              <span className="text-white font-medium text-sm">Das Team</span>
             </div>
-            <h2 className="display-lg text-secondary mb-4">UNSER TEAM</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            <h2 className="display-lg text-white mb-4">UNSER TEAM</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
               Lerne die Menschen kennen, die dich auf deinem Weg zum Führerschein begleiten
             </p>
           </div>
@@ -121,29 +121,48 @@ export function Fahrschule() {
             {teamMembers.map((member, index) => (
               <div
                 key={member.id}
-                className="group relative"
+                className="group relative h-full"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl shadow-gray-200/50 card-hover border border-gray-100">
-                  {/* Image placeholder */}
-                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <div className="w-24 h-24 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mb-3">
-                        <Users className="w-12 h-12 text-gray-400" />
+                <div className="relative bg-secondary rounded-3xl overflow-hidden shadow-xl shadow-black/40 card-hover border border-white/10 h-full flex flex-col">
+                  {/* Image */}
+                  <div className="aspect-square bg-gradient-to-br from-secondary-light to-secondary relative overflow-hidden flex-shrink-0">
+                    {member.image ? (
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <div className="w-24 h-24 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mb-3">
+                          <Users className="w-12 h-12 text-gray-400" />
+                        </div>
+                        <span className="text-gray-500 text-sm">Foto folgt</span>
                       </div>
-                      <span className="text-gray-500 text-sm">Foto folgt</span>
-                    </div>
+                    )}
                     {/* Overlay gradient on hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
                   {/* Info */}
-                  <div className="p-6">
-                    <h3 className="font-display text-xl text-secondary mb-1">{member.name}</h3>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h3 className="font-display text-xl text-white mb-1">{member.name}</h3>
                     <p className="text-accent font-medium text-sm mb-3">{member.role}</p>
-                    <p className="text-gray-600 text-sm">{member.description}</p>
+                    {member.description && (
+                      <p className="text-gray-300 text-sm mb-3">{member.description}</p>
+                    )}
+                    {member.phone && (
+                      <a
+                        href={`tel:${member.phone.replace(/\s/g, '')}`}
+                        className="inline-flex items-center gap-2 text-white text-sm font-medium hover:text-primary transition-colors mt-auto pt-2"
+                      >
+                        <Phone className="w-4 h-4 text-primary" />
+                        <span>{member.phone}</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

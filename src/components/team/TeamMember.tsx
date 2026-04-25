@@ -7,9 +7,9 @@ interface TeamMemberProps {
 
 export function TeamMember({ member }: TeamMemberProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+    <div className="bg-secondary-light rounded-2xl shadow-lg shadow-black/40 overflow-hidden hover:shadow-xl hover:shadow-black/50 transition-shadow">
       {/* Image */}
-      <div className="aspect-square bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+      <div className="aspect-square bg-gradient-to-br from-secondary to-secondary-light flex items-center justify-center">
         {member.image ? (
           <img
             src={member.image}
@@ -29,9 +29,9 @@ export function TeamMember({ member }: TeamMemberProps) {
 
       {/* Info */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-secondary mb-1">{member.name}</h3>
+        <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
         <p className="text-accent font-medium mb-3">{member.role}</p>
-        <p className="text-gray-600 text-sm">{member.description}</p>
+        <p className="text-gray-300 text-sm">{member.description}</p>
       </div>
     </div>
   );

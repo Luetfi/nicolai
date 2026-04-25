@@ -9,10 +9,10 @@
   --color-accent: #FF6B00;
   --color-accent-dark: #E55F00;
   --color-accent-light: #FF8533;
-  --color-background: #FAFAFA;
-  --color-background-dark: #F0F0F0;
-  --color-surface: #FFFFFF;
-  --color-surface-dark: #F5F5F5;
+  --color-background: #0D0D0D;
+  --color-background-dark: #080808;
+  --color-surface: #1A1A1A;
+  --color-surface-dark: #141414;
 
   --font-family-display: 'Bebas Neue', Impact, sans-serif;
   --font-family-sans: 'DM Sans', system-ui, sans-serif;
@@ -197,8 +197,8 @@ body {
 .card-hover:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 209, 0, 0.2);
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 209, 0, 0.25);
 }
 
 /* Button styles */

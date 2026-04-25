@@ -26,7 +26,7 @@ export function Button({
 
   const variants = {
     primary: 'bg-primary text-secondary hover:bg-primary-dark',
-    secondary: 'bg-secondary text-white hover:bg-gray-800',
+    secondary: 'bg-secondary text-white hover:bg-secondary-light',
     accent: 'bg-accent text-white hover:bg-accent-dark',
   };
 

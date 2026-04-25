@@ -10,7 +10,7 @@ export function Card({ children, className = '', hover = true }: CardProps) {
   return (
     <div
       className={`
-        bg-white rounded-2xl shadow-lg p-6
+        bg-secondary-light rounded-2xl shadow-lg shadow-black/40 p-6
         ${hover ? 'hover:shadow-xl hover:-translate-y-1 transition-all duration-300' : ''}
         ${className}
       `}
@@ -40,7 +40,7 @@ interface CardTitleProps {
 
 export function CardTitle({ children, className = '' }: CardTitleProps) {
   return (
-    <h3 className={`text-xl font-bold text-secondary ${className}`}>
+    <h3 className={`text-xl font-bold text-white ${className}`}>
       {children}
     </h3>
   );
@@ -53,7 +53,7 @@ interface CardContentProps {
 
 export function CardContent({ children, className = '' }: CardContentProps) {
   return (
-    <div className={`text-gray-600 ${className}`}>
+    <div className={`text-gray-300 ${className}`}>
       {children}
     </div>
   );

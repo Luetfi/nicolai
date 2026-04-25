@@ -45,7 +45,7 @@ const serviceCategories = [
 
 export function Services() {
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-24 bg-secondary relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-accent/5 to-transparent rounded-full blur-3xl" />
@@ -57,10 +57,10 @@ export function Services() {
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary font-medium text-sm">Unser Angebot</span>
           </div>
-          <h2 className="display-lg text-secondary mb-4">
+          <h2 className="display-lg text-white mb-4">
             WÄHLE DEINE <span className="gradient-text">KLASSE</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
             Egal ob Auto, Motorrad oder Zusatzausbildung -
             wir haben das passende Angebot für dich.
           </p>
@@ -78,7 +78,7 @@ export function Services() {
               <div className={`absolute -inset-1 bg-gradient-to-r ${category.gradient} rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
 
               {/* Card */}
-              <div className="relative bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 h-full card-hover border border-gray-100">
+              <div className="relative bg-secondary-light rounded-3xl p-8 shadow-xl shadow-black/40 h-full card-hover border border-white/10">
                 {/* Icon */}
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${category.gradient} mb-6 shadow-lg`}>
                   <category.icon className="w-8 h-8 text-white" />
@@ -86,16 +86,16 @@ export function Services() {
 
                 {/* Title */}
                 <div className="mb-4">
-                  <h3 className="font-display text-3xl text-secondary">
+                  <h3 className="font-display text-3xl text-white">
                     {category.title}
                   </h3>
-                  <span className="text-gray-500 text-sm tracking-wide">
+                  <span className="text-gray-400 text-sm tracking-wide">
                     {category.subtitle}
                   </span>
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-300 mb-6">
                   {category.description}
                 </p>
 
@@ -109,7 +109,7 @@ export function Services() {
                       <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center shadow-md`}>
                         <span className="font-display text-xl text-white">{cls.name}</span>
                       </div>
-                      <span className="text-secondary font-medium">{cls.desc}</span>
+                      <span className="text-white font-medium">{cls.desc}</span>
                     </div>
                   ))}
                 </div>

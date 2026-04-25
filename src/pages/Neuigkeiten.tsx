@@ -45,21 +45,21 @@ const categoryConfig = {
     icon: Bell,
     label: 'Neuigkeit',
     gradient: 'from-blue-500 to-cyan-500',
-    bgColor: 'bg-blue-50',
-    textColor: 'text-blue-600',
+    bgColor: 'bg-blue-500/15',
+    textColor: 'text-blue-300',
   },
   course: {
     icon: BookOpen,
     label: 'Kurs',
     gradient: 'from-green-500 to-emerald-500',
-    bgColor: 'bg-green-50',
-    textColor: 'text-green-600',
+    bgColor: 'bg-green-500/15',
+    textColor: 'text-green-300',
   },
   info: {
     icon: Info,
     label: 'Information',
     gradient: 'from-accent to-orange-500',
-    bgColor: 'bg-orange-50',
+    bgColor: 'bg-accent/15',
     textColor: 'text-accent',
   },
 };
@@ -98,7 +98,7 @@ export function Neuigkeiten() {
       </section>
 
       {/* News List */}
-      <section className="py-24 bg-background relative">
+      <section className="py-24 bg-secondary relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             {newsItems.map((item, index) => {
@@ -113,20 +113,20 @@ export function Neuigkeiten() {
                 >
                   <div className={`absolute -inset-1 bg-gradient-to-r ${config.gradient} rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500`} />
 
-                  <div className="relative bg-white rounded-3xl p-8 shadow-lg shadow-gray-200/50 hover:shadow-xl transition-all border border-gray-100 border-l-4 border-l-transparent hover:border-l-primary">
+                  <div className="relative bg-secondary-light rounded-3xl p-8 shadow-lg shadow-black/40 hover:shadow-xl hover:shadow-black/50 transition-all border border-white/10 border-l-4 border-l-transparent hover:border-l-primary">
                     <div className="flex flex-wrap items-center gap-4 mb-4">
                       <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${config.bgColor} ${config.textColor} text-sm font-semibold`}>
                         <Icon className="w-4 h-4" />
                         {config.label}
                       </span>
-                      <span className="flex items-center gap-2 text-gray-500 text-sm">
+                      <span className="flex items-center gap-2 text-gray-400 text-sm">
                         <Calendar className="w-4 h-4" />
                         {formatDate(item.date)}
                       </span>
                     </div>
 
-                    <h3 className="font-display text-2xl text-secondary mb-3">{item.title}</h3>
-                    <p className="text-gray-600 text-lg">{item.summary}</p>
+                    <h3 className="font-display text-2xl text-white mb-3">{item.title}</h3>
+                    <p className="text-gray-300 text-lg">{item.summary}</p>
                   </div>
                 </div>
               );
@@ -137,14 +137,14 @@ export function Neuigkeiten() {
           <div className="mt-16 relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-xl" />
 
-            <div className="relative bg-white rounded-3xl p-10 shadow-xl text-center border border-gray-100">
+            <div className="relative bg-secondary-light rounded-3xl p-10 shadow-xl shadow-black/40 text-center border border-white/10">
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                 <Bell className="w-8 h-8 text-secondary" />
               </div>
-              <h3 className="font-display text-2xl text-secondary mb-3">
+              <h3 className="font-display text-2xl text-white mb-3">
                 IMMER AUF DEM LAUFENDEN
               </h3>
-              <p className="text-gray-600 text-lg mb-6 max-w-lg mx-auto">
+              <p className="text-gray-300 text-lg mb-6 max-w-lg mx-auto">
                 Hier findest du regelmäßig aktuelle Informationen zu Kursen, Seminaren und
                 wichtigen Änderungen in der Fahrschule.
               </p>

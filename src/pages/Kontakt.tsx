@@ -50,10 +50,10 @@ export function Kontakt() {
       </section>
 
       {/* Locations */}
-      <section className="py-24 bg-background relative">
+      <section className="py-24 bg-secondary relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="display-lg text-secondary mb-4">
+            <h2 className="display-lg text-white mb-4">
               UNSERE <span className="gradient-text">STANDORTE</span>
             </h2>
           </div>
@@ -67,8 +67,8 @@ export function Kontakt() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-white rounded-3xl p-10 shadow-xl shadow-gray-200/50 h-full card-hover border border-gray-100">
-                  <h3 className="font-display text-3xl text-secondary mb-8">{location.name}</h3>
+                <div className="relative bg-secondary-light rounded-3xl p-10 shadow-xl shadow-black/40 h-full card-hover border border-white/10">
+                  <h3 className="font-display text-3xl text-white mb-8">{location.name}</h3>
 
                   <div className="space-y-6">
                     <div className="flex items-start gap-4">
@@ -76,9 +76,9 @@ export function Kontakt() {
                         <MapPin className="w-6 h-6 text-accent" />
                       </div>
                       <div>
-                        <p className="font-semibold text-secondary">Adresse</p>
-                        <p className="text-gray-600">{location.address}</p>
-                        <p className="text-gray-600">{location.city}</p>
+                        <p className="font-semibold text-white">Adresse</p>
+                        <p className="text-gray-300">{location.address}</p>
+                        <p className="text-gray-300">{location.city}</p>
                       </div>
                     </div>
 
@@ -87,7 +87,7 @@ export function Kontakt() {
                         <Phone className="w-6 h-6 text-accent" />
                       </div>
                       <div>
-                        <p className="font-semibold text-secondary">Telefon</p>
+                        <p className="font-semibold text-white">Telefon</p>
                         <a
                           href={`tel:${location.phone.replace(/\s/g, '')}`}
                           className="text-accent text-xl font-bold hover:text-accent-dark transition-colors"
@@ -102,14 +102,14 @@ export function Kontakt() {
                         <Clock className="w-6 h-6 text-accent" />
                       </div>
                       <div>
-                        <p className="font-semibold text-secondary">Theorieunterricht</p>
-                        <p className="text-gray-600">{location.lessonDays.join(' & ')}</p>
-                        <p className="text-gray-600">{location.lessonTime}</p>
+                        <p className="font-semibold text-white">Theorieunterricht</p>
+                        <p className="text-gray-300">{location.lessonDays.join(' & ')}</p>
+                        <p className="text-gray-300">{location.lessonTime}</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-gray-100">
+                  <div className="mt-8 pt-6 border-t border-white/10">
                     <a
                       href={`https://maps.google.com/?q=${encodeURIComponent(`${location.address}, ${location.city}`)}`}
                       target="_blank"
@@ -129,13 +129,13 @@ export function Kontakt() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section className="py-24 bg-secondary-light relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-12">
-            <h2 className="display-lg text-secondary mb-4">SCHREIB UNS</h2>
-            <p className="text-gray-600 text-lg">
+            <h2 className="display-lg text-white mb-4">SCHREIB UNS</h2>
+            <p className="text-gray-300 text-lg">
               Fülle das Formular aus und wir melden uns bei dir.
             </p>
           </div>
@@ -143,11 +143,11 @@ export function Kontakt() {
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 rounded-3xl blur-2xl" />
 
-            <div className="relative bg-white rounded-3xl p-10 shadow-2xl border border-gray-100">
+            <div className="relative bg-secondary rounded-3xl p-10 shadow-2xl shadow-black/50 border border-white/10">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-secondary mb-2">
+                    <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
                       Name *
                     </label>
                     <input
@@ -157,12 +157,12 @@ export function Kontakt() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-0 outline-none transition-all bg-gray-50 focus:bg-white"
+                      className="w-full px-5 py-4 rounded-xl border-2 border-white/10 focus:border-primary focus:ring-0 outline-none transition-all bg-secondary-light focus:bg-secondary text-white placeholder:text-gray-500"
                       placeholder="Dein Name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-secondary mb-2">
+                    <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
                       E-Mail *
                     </label>
                     <input
@@ -172,7 +172,7 @@ export function Kontakt() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-0 outline-none transition-all bg-gray-50 focus:bg-white"
+                      className="w-full px-5 py-4 rounded-xl border-2 border-white/10 focus:border-primary focus:ring-0 outline-none transition-all bg-secondary-light focus:bg-secondary text-white placeholder:text-gray-500"
                       placeholder="deine@email.de"
                     />
                   </div>
@@ -180,7 +180,7 @@ export function Kontakt() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-secondary mb-2">
+                    <label htmlFor="phone" className="block text-sm font-semibold text-white mb-2">
                       Telefon
                     </label>
                     <input
@@ -189,12 +189,12 @@ export function Kontakt() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-0 outline-none transition-all bg-gray-50 focus:bg-white"
+                      className="w-full px-5 py-4 rounded-xl border-2 border-white/10 focus:border-primary focus:ring-0 outline-none transition-all bg-secondary-light focus:bg-secondary text-white placeholder:text-gray-500"
                       placeholder="0171 1234567"
                     />
                   </div>
                   <div>
-                    <label htmlFor="licenseClass" className="block text-sm font-semibold text-secondary mb-2">
+                    <label htmlFor="licenseClass" className="block text-sm font-semibold text-white mb-2">
                       Gewünschte Führerscheinklasse
                     </label>
                     <select
@@ -202,7 +202,7 @@ export function Kontakt() {
                       name="licenseClass"
                       value={formData.licenseClass}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-0 outline-none transition-all bg-gray-50 focus:bg-white appearance-none cursor-pointer"
+                      className="w-full px-5 py-4 rounded-xl border-2 border-white/10 focus:border-primary focus:ring-0 outline-none transition-all bg-secondary-light focus:bg-secondary text-white appearance-none cursor-pointer"
                     >
                       <option value="">Bitte wählen</option>
                       <option value="B">Klasse B (PKW)</option>
@@ -219,7 +219,7 @@ export function Kontakt() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-secondary mb-2">
+                  <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
                     Nachricht *
                   </label>
                   <textarea
@@ -229,7 +229,7 @@ export function Kontakt() {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-0 outline-none transition-all bg-gray-50 focus:bg-white resize-none"
+                    className="w-full px-5 py-4 rounded-xl border-2 border-white/10 focus:border-primary focus:ring-0 outline-none transition-all bg-secondary-light focus:bg-secondary text-white placeholder:text-gray-500 resize-none"
                     placeholder="Deine Nachricht an uns..."
                   />
                 </div>
@@ -250,13 +250,13 @@ export function Kontakt() {
 
           {/* Direct Contact */}
           <div className="mt-12 text-center">
-            <p className="text-gray-600 mb-6 text-lg">
+            <p className="text-gray-300 mb-6 text-lg">
               Oder kontaktiere uns direkt:
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a
                 href={`mailto:${generalInfo.email}`}
-                className="inline-flex items-center gap-3 text-secondary font-semibold hover:text-accent transition-colors group"
+                className="inline-flex items-center gap-3 text-white font-semibold hover:text-accent transition-colors group"
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Mail className="w-6 h-6 text-accent" />
@@ -265,7 +265,7 @@ export function Kontakt() {
               </a>
               <a
                 href="tel:017138580010"
-                className="inline-flex items-center gap-3 text-secondary font-semibold hover:text-accent transition-colors group"
+                className="inline-flex items-center gap-3 text-white font-semibold hover:text-accent transition-colors group"
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Phone className="w-6 h-6 text-accent" />
