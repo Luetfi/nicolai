@@ -100,16 +100,46 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Mitgliedschaft */}
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <h3 className="font-display text-sm text-primary tracking-wider mb-1">
+                OFFIZIELLES MITGLIED
+              </h3>
+              <p className="text-gray-400 text-sm max-w-md">
+                Geprüfte Qualität und kontinuierliche Weiterbildung durch unseren Fachverband.
+              </p>
+            </div>
+            <a
+              href="https://www.flvbw.de/home/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block flex-shrink-0"
+              aria-label="Fahrlehrerverband Baden-Württemberg (öffnet in neuem Tab)"
+            >
+              <div className="bg-white rounded-xl p-2 shadow-lg shadow-black/40 group-hover:shadow-red-500/30 group-hover:scale-105 transition-all duration-300">
+                <img
+                  src="/images/fahrlehrerverband-bw.png"
+                  alt="Mitglied im Fahrlehrerverband Baden-Württemberg"
+                  className="h-16 md:h-20 w-auto"
+                  loading="lazy"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
             &copy; {currentYear} {generalInfo.companyName}. Alle Rechte vorbehalten.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link to="/kontakt" className="text-gray-500 hover:text-primary transition-colors">
+            <Link to="/impressum" className="text-gray-500 hover:text-primary transition-colors">
               Impressum
             </Link>
-            <Link to="/kontakt" className="text-gray-500 hover:text-primary transition-colors">
+            <Link to="/datenschutz" className="text-gray-500 hover:text-primary transition-colors">
               Datenschutz
             </Link>
           </div>

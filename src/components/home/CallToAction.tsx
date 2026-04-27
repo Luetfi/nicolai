@@ -47,7 +47,7 @@ export function CallToAction() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
             <Link
-              to="/kontakt"
+              to="/kontakt#anmeldung"
               className="group btn-primary text-secondary px-10 py-5 rounded-2xl font-bold text-lg inline-flex items-center justify-center gap-3"
             >
               Jetzt Anmelden

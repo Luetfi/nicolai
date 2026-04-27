@@ -1,5 +1,7 @@
-import { Calendar, ArrowRight, Sparkles, Bell, BookOpen, Info } from 'lucide-react';
+import { Calendar, ArrowRight, Bell, BookOpen, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { PageHero, UpcomingCourseCard } from '../components/common';
+import { nextAsfCourse } from '../data/services';
 
 interface NewsItem {
   id: string;
@@ -76,29 +78,21 @@ function formatDate(dateString: string): string {
 export function Neuigkeiten() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 diagonal-stripes opacity-30" />
+      <PageHero
+        crumb="News"
+        title={<span className="gradient-text">NEUIGKEITEN</span>}
+        subtitle="Aktuelle Meldungen und Informationen aus der Fahrschule Nicolai"
+      />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-primary font-medium text-sm">Aktuelles</span>
-            </div>
-            <h1 className="display-xl text-white mb-6">
-              <span className="gradient-text">NEUIGKEITEN</span>
-            </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Aktuelle Meldungen und Informationen aus der Fahrschule Nicolai
-            </p>
-          </div>
+      {/* Featured: Upcoming ASF Course */}
+      <section className="py-16 bg-secondary relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <UpcomingCourseCard course={nextAsfCourse} />
         </div>
       </section>
 
       {/* News List */}
-      <section className="py-24 bg-secondary relative">
+      <section className="pt-8 pb-24 bg-secondary relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             {newsItems.map((item, index) => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, ChevronRight } from 'lucide-react';
+import { Phone, ChevronRight, ClipboardCheck } from 'lucide-react';
 
 const navLinks = [
   { path: '/', label: 'Startseite' },
@@ -45,17 +45,14 @@ export function Header() {
       <div className="h-1 bg-gradient-to-r from-primary via-accent to-primary" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-28 md:h-32">
+        <div className={`flex justify-between items-center transition-all duration-300 ${scrolled ? 'h-24 md:h-28' : 'h-36 md:h-44'}`}>
           {/* Logo */}
           <Link to="/" className="flex items-center group" aria-label="Fahrschule Nicolai - Startseite">
-            <div className="relative">
-              <img
-                src="/images/logo.png"
-                alt="Fahrschule Nicolai"
-                className="h-24 md:h-28 w-auto transform group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary to-accent rounded-xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300" />
-            </div>
+            <img
+              src="/images/logo.png"
+              alt="Fahrschule Nicolai"
+              className={`w-auto transform group-hover:scale-105 transition-all duration-300 ${scrolled ? 'h-20 md:h-24' : 'h-32 md:h-40'}`}
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -81,15 +78,46 @@ export function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* Verbandsmitgliedschaft Badge */}
           <a
-            href="tel:017138580010"
-            className="hidden md:flex items-center gap-2 btn-accent text-white px-5 py-2.5 rounded-xl font-semibold text-sm group"
+            href="https://www.flvbw.de/home/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden xl:flex items-center group"
+            aria-label="Mitglied im Fahrlehrerverband Baden-Württemberg (öffnet in neuem Tab)"
+            title="Mitglied im Fahrlehrerverband Baden-Württemberg"
           >
-            <Phone className="w-4 h-4 group-hover:animate-pulse" />
-            <span>Jetzt anrufen</span>
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="bg-white rounded-lg p-1.5 shadow-md shadow-black/30 group-hover:shadow-red-500/30 group-hover:scale-105 transition-all duration-300">
+              <img
+                src="/images/fahrlehrerverband-bw.png"
+                alt="Mitglied im Fahrlehrerverband Baden-Württemberg"
+                className="h-9 w-auto"
+              />
+            </div>
           </a>
+
+          {/* CTA Group */}
+          <div className="hidden md:flex items-center gap-2">
+            {/* Anrufen — ghost / secondary */}
+            <a
+              href="tel:017138580010"
+              className="flex items-center gap-2 px-3 xl:px-4 py-2.5 rounded-xl border border-white/15 hover:border-primary/50 text-white hover:text-primary font-semibold text-sm transition-all duration-300 group"
+              aria-label="Jetzt anrufen"
+              title="Jetzt anrufen"
+            >
+              <Phone className="w-4 h-4 group-hover:animate-pulse" />
+              <span className="hidden xl:inline">Anrufen</span>
+            </a>
+            {/* Anmelden — primary CTA */}
+            <Link
+              to="/kontakt#anmeldung"
+              className="flex items-center gap-2 btn-primary text-secondary px-5 py-2.5 rounded-xl font-bold text-sm group"
+            >
+              <ClipboardCheck className="w-4 h-4" />
+              <span>Anmelden</span>
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -120,7 +148,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       <div
-        className={`lg:hidden fixed inset-0 top-[116px] md:top-[132px] bg-secondary/98 backdrop-blur-xl transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 ${scrolled ? 'top-[100px] md:top-[116px]' : 'top-[148px] md:top-[180px]'} bg-secondary/98 backdrop-blur-xl transition-all duration-500 ${
           mobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
@@ -149,7 +177,14 @@ export function Header() {
             ))}
           </div>
 
-          <div className="mt-8 px-6">
+          <div className="mt-8 px-6 space-y-3">
+            <Link
+              to="/kontakt#anmeldung"
+              className="flex items-center justify-center gap-3 btn-primary text-secondary px-8 py-4 rounded-2xl font-bold text-lg w-full"
+            >
+              <ClipboardCheck className="w-5 h-5" />
+              Jetzt anmelden
+            </Link>
             <a
               href="tel:017138580010"
               className="flex items-center justify-center gap-3 btn-accent text-white px-8 py-4 rounded-2xl font-bold text-lg w-full"

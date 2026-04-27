@@ -1,5 +1,6 @@
-import { Car, Bike, AlertTriangle, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { Car, Bike, AlertTriangle, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { PageHero } from '../components/common';
 import { licenseClasses, specialServices } from '../data/services';
 
 export function Leistungen() {
@@ -8,30 +9,14 @@ export function Leistungen() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 diagonal-stripes opacity-30" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-primary font-medium text-sm">Alle Führerscheinklassen</span>
-            </div>
-            <h1 className="display-xl text-white mb-6">
-              UNSERE <span className="gradient-text">LEISTUNGEN</span>
-            </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Von PKW bis Motorrad - wir bieten dir die komplette Führerscheinausbildung
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        crumb="Leistungen"
+        title={<>UNSERE <span className="gradient-text">LEISTUNGEN</span></>}
+        subtitle="Von PKW bis Motorrad - wir bieten dir die komplette Führerscheinausbildung"
+      />
 
       {/* PKW Section */}
-      <section className="py-24 bg-secondary relative">
+      <section id="pkw" className="py-24 bg-secondary relative scroll-mt-24">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-500/5 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -54,7 +39,7 @@ export function Leistungen() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-secondary-light rounded-3xl p-8 shadow-xl shadow-black/40 h-full card-hover border border-white/10">
+                <div className="relative bg-secondary-light rounded-3xl p-8 shadow-xl shadow-black/40 h-full card-hover border border-white/10 flex flex-col">
                   <div className="flex items-start justify-between mb-6">
                     <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
                       <span className="font-display text-4xl text-white">{license.name}</span>
@@ -67,7 +52,7 @@ export function Leistungen() {
                   <h3 className="font-display text-2xl text-white mb-2">{license.title}</h3>
                   <p className="text-gray-300 mb-6">{license.description}</p>
 
-                  <div>
+                  <div className="mb-6">
                     <h4 className="font-semibold text-white mb-3 text-sm uppercase tracking-wide">
                       Voraussetzungen
                     </h4>
@@ -80,6 +65,14 @@ export function Leistungen() {
                       ))}
                     </ul>
                   </div>
+
+                  <Link
+                    to={`/kontakt?klasse=${license.name}#anmeldung`}
+                    className="mt-auto inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-5 py-3 rounded-xl font-bold transition-all group/btn"
+                  >
+                    Jetzt anmelden
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </div>
             ))}
@@ -88,7 +81,7 @@ export function Leistungen() {
       </section>
 
       {/* Motorrad Section */}
-      <section className="py-24 bg-secondary-light relative">
+      <section id="motorrad" className="py-24 bg-secondary relative scroll-mt-24">
         <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-accent/5 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -111,7 +104,7 @@ export function Leistungen() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-orange-600/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-secondary rounded-3xl p-6 shadow-xl shadow-black/40 h-full card-hover border border-white/10">
+                <div className="relative bg-secondary-light rounded-3xl p-6 shadow-xl shadow-black/40 h-full card-hover border border-white/10 flex flex-col">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-16 h-16 bg-gradient-to-br from-accent to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
                       <span className="font-display text-3xl text-white">{license.name}</span>
@@ -124,7 +117,7 @@ export function Leistungen() {
                   <h3 className="font-display text-xl text-white mb-2">{license.title}</h3>
                   <p className="text-gray-300 text-sm mb-4">{license.description}</p>
 
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-1.5 mb-5">
                     {license.requirements.slice(0, 2).map((req, i) => (
                       <li key={i} className="flex items-start gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -132,6 +125,14 @@ export function Leistungen() {
                       </li>
                     ))}
                   </ul>
+
+                  <Link
+                    to={`/kontakt?klasse=${license.name}#anmeldung`}
+                    className="mt-auto inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-accent to-orange-600 hover:from-accent-dark hover:to-orange-700 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition-all group/btn"
+                  >
+                    Jetzt anmelden
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </div>
             ))}

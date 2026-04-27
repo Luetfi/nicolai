@@ -1,5 +1,6 @@
-import { Clock, MapPin, BookOpen, Monitor, CheckCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { Clock, MapPin, BookOpen, Monitor, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { PageHero } from '../components/common';
 import { locations } from '../data/contact';
 
 export function Theorieunterricht() {
@@ -20,26 +21,11 @@ export function Theorieunterricht() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 diagonal-stripes opacity-30" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-primary font-medium text-sm">Theorie lernen</span>
-            </div>
-            <h1 className="display-xl text-white mb-6">
-              <span className="gradient-text">THEORIE</span>UNTERRICHT
-            </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Die theoretische Grundlage für sicheres Fahren
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        crumb="Theorie"
+        title={<><span className="gradient-text">THEORIE</span>UNTERRICHT</>}
+        subtitle="Die theoretische Grundlage für sicheres Fahren"
+      />
 
       {/* Schedule */}
       <section className="py-24 bg-secondary relative">
@@ -99,7 +85,7 @@ export function Theorieunterricht() {
       </section>
 
       {/* Topics */}
-      <section className="py-24 bg-secondary-light relative overflow-hidden">
+      <section className="py-24 bg-secondary relative overflow-hidden">
         <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-primary/5 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -114,7 +100,7 @@ export function Theorieunterricht() {
             {theoryTopics.map((topic, index) => (
               <div
                 key={topic}
-                className="group flex items-center gap-4 bg-gradient-to-r from-secondary to-secondary-light rounded-2xl p-5 shadow-sm shadow-black/30 hover:shadow-md hover:shadow-black/40 transition-all border border-white/10 hover:border-primary/30 card-hover"
+                className="group flex items-center gap-4 bg-gradient-to-r from-secondary-light to-secondary-light/50 rounded-2xl p-5 shadow-sm shadow-black/30 hover:shadow-md hover:shadow-black/40 transition-all border border-white/10 hover:border-primary/30 card-hover"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <span className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center text-secondary font-display text-lg flex-shrink-0 shadow-md">
@@ -219,7 +205,7 @@ export function Theorieunterricht() {
             Melde dich an und starte deine Fahrausbildung!
           </p>
           <Link
-            to="/kontakt"
+            to="/kontakt#anmeldung"
             className="inline-flex items-center gap-3 bg-secondary-light text-accent px-10 py-5 rounded-2xl font-bold text-lg hover:bg-secondary transition-colors group"
           >
             Jetzt anmelden

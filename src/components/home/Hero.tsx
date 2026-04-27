@@ -51,7 +51,6 @@ export function Hero() {
 
         {/* Decorative circles */}
         <div className="absolute top-1/4 right-1/4 w-4 h-4 bg-primary rounded-full animate-pulse-glow" />
-        <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-accent rounded-full opacity-60" />
       </div>
 
       {/* Content */}
@@ -59,13 +58,8 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left column - Text */}
           <div>
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-fade-in">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-primary font-medium text-sm tracking-wide">
-                Jetzt Anmelden & Durchstarten
-              </span>
-            </div>
+            {/* Spacer (replaces former badge — keeps original hero height) */}
+            <div aria-hidden="true" className="h-9 mb-8" />
 
             {/* Headline */}
             <h1 className="display-xl text-white mb-6 animate-slide-in-left">
@@ -84,7 +78,7 @@ export function Hero() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 animate-slide-in-left animation-delay-300">
               <Link
-                to="/kontakt"
+                to="/kontakt#anmeldung"
                 className="group btn-primary text-secondary px-8 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-3"
               >
                 Jetzt Anmelden
@@ -111,20 +105,31 @@ export function Hero() {
               <div className="relative glass-dark rounded-3xl p-8 border border-white/10">
                 {/* License classes preview */}
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  {['B', 'A', 'BE', 'A2'].map((cls, i) => (
-                    <div
-                      key={cls}
-                      className="group relative overflow-hidden bg-white/5 rounded-2xl p-6 text-center hover:bg-white/10 transition-all cursor-pointer"
+                  {[
+                    { code: 'B', label: 'PKW', image: '/images/hero/pkw.jpg', to: '/leistungen#pkw' },
+                    { code: 'A', label: 'Motorrad', image: '/images/hero/motorrad.jpg', to: '/leistungen#motorrad' },
+                  ].map((cls, i) => (
+                    <Link
+                      key={cls.code}
+                      to={cls.to}
+                      className="group relative overflow-hidden rounded-2xl aspect-[4/5] block border border-white/10 hover:border-primary/30 transition-all"
                       style={{ animationDelay: `${400 + i * 100}ms` }}
                     >
-                      <div className="font-display text-5xl text-primary mb-2 group-hover:scale-110 transition-transform">
-                        {cls}
+                      <div
+                        className="absolute inset-0 bg-cover bg-center scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
+                        style={{ backgroundImage: `url(${cls.image})` }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/40 to-secondary/10" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 p-6 flex flex-col justify-end items-center text-center">
+                        <div className="font-display text-6xl text-primary mb-1 group-hover:scale-110 transition-transform">
+                          {cls.code}
+                        </div>
+                        <div className="text-gray-200 text-sm tracking-wide uppercase">
+                          {cls.label}
+                        </div>
                       </div>
-                      <div className="text-gray-400 text-sm">
-                        {cls === 'B' ? 'PKW' : cls === 'A' ? 'Motorrad' : cls === 'BE' ? 'Anhänger' : 'Leichtkraft'}
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
+                    </Link>
                   ))}
                 </div>
 

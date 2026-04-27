@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout';
-import { Home, Leistungen, Fahrschule, Theorieunterricht, Neuigkeiten, Kontakt } from './pages';
+import { Home, Leistungen, Fahrschule, Theorieunterricht, Neuigkeiten, Kontakt, Impressum, Datenschutz } from './pages';
 
 function App() {
   return (
@@ -13,6 +13,8 @@ function App() {
           <Route path="/theorieunterricht" element={<Theorieunterricht />} />
           <Route path="/neuigkeiten" element={<Neuigkeiten />} />
           <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
         </Routes>
       </Layout>
     </BrowserRouter>

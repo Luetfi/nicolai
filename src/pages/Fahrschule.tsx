@@ -1,4 +1,5 @@
-import { Users, Award, Heart, Target, Sparkles, Phone } from 'lucide-react';
+import { Users, Award, Heart, Target, Phone, ShieldCheck, GraduationCap, BadgeCheck } from 'lucide-react';
+import { PageHero } from '../components/common';
 import { teamMembers } from '../data/team';
 
 export function Fahrschule() {
@@ -31,26 +32,11 @@ export function Fahrschule() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 diagonal-stripes opacity-30" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-primary font-medium text-sm">Lerne uns kennen</span>
-            </div>
-            <h1 className="display-xl text-white mb-6">
-              ÜBER <span className="gradient-text">UNS</span>
-            </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Lerne unser Team kennen und erfahre mehr über die Fahrschule Nicolai
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        crumb="Fahrschule"
+        title={<>ÜBER <span className="gradient-text">UNS</span></>}
+        subtitle="Lerne unser Team kennen und erfahre mehr über die Fahrschule Nicolai"
+      />
 
       {/* About */}
       <section className="py-24 bg-secondary relative">
@@ -103,8 +89,67 @@ export function Fahrschule() {
         </div>
       </section>
 
+      {/* Verbandsmitgliedschaft */}
+      <section className="py-24 bg-secondary relative overflow-hidden border-y border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 mb-6">
+              <ShieldCheck className="w-4 h-4 text-primary" />
+              <span className="text-primary font-medium text-sm">Verbandsmitgliedschaft</span>
+            </div>
+            <h2 className="display-lg text-white mb-4">
+              ZERTIFIZIERTE <span className="gradient-text">QUALITÄT</span>
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+              Wir sind offizielles Mitglied im Fahrlehrerverband Baden-Württemberg —
+              und damit Teil eines Netzwerks, das sich höchsten Ausbildungsstandards verpflichtet.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <a
+              href="https://www.flvbw.de/home/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block"
+              aria-label="Fahrlehrerverband Baden-Württemberg (öffnet in neuem Tab)"
+            >
+              <div className="absolute -inset-2 bg-gradient-to-r from-red-500/20 to-primary/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500" />
+              <div className="relative bg-white rounded-2xl p-6 shadow-2xl shadow-black/50 border border-white/10 group-hover:scale-[1.02] transition-transform duration-300">
+                <img
+                  src="/images/fahrlehrerverband-bw.png"
+                  alt="Mitglied im Fahrlehrerverband Baden-Württemberg"
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            </a>
+
+            <div className="space-y-6">
+              {[
+                { icon: ShieldCheck, title: 'Geprüfte Ausbildung', desc: 'Verbandlich anerkannte Standards in Theorie und Praxis.' },
+                { icon: GraduationCap, title: 'Ständige Weiterbildung', desc: 'Regelmäßige Schulungen unserer Fahrlehrer.' },
+                { icon: BadgeCheck, title: 'Aktuelle Standards', desc: 'Immer auf dem neuesten Stand der StVO.' },
+              ].map((item) => (
+                <div key={item.title} className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-xl text-white mb-1">{item.title}</h3>
+                    <p className="text-gray-300 text-sm">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Team */}
-      <section className="py-24 bg-secondary-light relative">
+      <section id="team" className="py-24 bg-secondary relative scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 mb-6">
@@ -126,7 +171,7 @@ export function Fahrschule() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-secondary rounded-3xl overflow-hidden shadow-xl shadow-black/40 card-hover border border-white/10 h-full flex flex-col">
+                <div className="relative bg-secondary-light rounded-3xl overflow-hidden shadow-xl shadow-black/40 card-hover border border-white/10 h-full flex flex-col">
                   {/* Image */}
                   <div className="aspect-square bg-gradient-to-br from-secondary-light to-secondary relative overflow-hidden flex-shrink-0">
                     {member.image ? (

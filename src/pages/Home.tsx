@@ -1,6 +1,8 @@
 import { Hero, Services, CallToAction } from '../components/home';
 import { ArrowRight, CheckCircle, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { UpcomingCourseCard } from '../components/common';
+import { nextAsfCourse } from '../data/services';
 
 export function Home() {
   const features = [
@@ -15,12 +17,38 @@ export function Home() {
   return (
     <>
       <Hero />
+
+      {/* Aktuelles - Nächster Kurs */}
+      <section className="py-16 bg-secondary relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-10">
+            <h2 className="display-md text-white mb-3">
+              <span className="gradient-text">AKTUELLES</span>
+            </h2>
+            <p className="text-gray-400 text-lg">
+              Der nächste Aufbauseminar-Kurs auf einen Blick
+            </p>
+          </div>
+          <UpcomingCourseCard course={nextAsfCourse} />
+          <div className="text-center mt-8">
+            <Link
+              to="/neuigkeiten"
+              className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-4 transition-all"
+            >
+              Alle Neuigkeiten ansehen
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Services />
 
       {/* About Section */}
-      <section className="py-24 bg-secondary-light relative overflow-hidden">
+      <section className="py-24 bg-secondary relative overflow-hidden">
         {/* Background decoration */}
-        <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-secondary to-transparent" />
+        <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-accent/5 to-transparent" />
         <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-gradient-to-tl from-primary/10 to-transparent rounded-full blur-3xl" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -65,8 +93,8 @@ export function Home() {
               </div>
 
               <Link
-                to="/fahrschule"
-                className="inline-flex items-center gap-3 btn-accent text-white px-8 py-4 rounded-xl font-bold text-lg group"
+                to="/fahrschule#team"
+                className="inline-flex items-center gap-3 btn-primary text-secondary px-8 py-4 rounded-xl font-bold text-lg group"
               >
                 Unser Team kennenlernen
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
