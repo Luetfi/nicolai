@@ -26,14 +26,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="inline-flex items-center mb-6 group" aria-label="Fahrschule Nicolai - Startseite">
+            <Link to="/" className="inline-flex items-center group" aria-label="Fahrschule Nicolai - Startseite">
               <img
                 src="/images/logo.png"
                 alt="Fahrschule Nicolai"
                 className="h-32 w-auto group-hover:scale-105 transition-transform"
               />
             </Link>
-            <p className="text-gray-400 mb-6">
+            <p className="text-gray-400 mb-6 -mt-6">
               {generalInfo.slogan}
             </p>
             <p className="text-gray-500 text-sm">

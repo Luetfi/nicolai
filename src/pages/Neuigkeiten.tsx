@@ -1,7 +1,6 @@
 import { Calendar, ArrowRight, Bell, BookOpen, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PageHero, UpcomingCourseCard } from '../components/common';
-import { nextAsfCourse } from '../data/services';
+import { PageHero } from '../components/common';
 
 interface NewsItem {
   id: string;
@@ -84,15 +83,8 @@ export function Neuigkeiten() {
         subtitle="Aktuelle Meldungen und Informationen aus der Fahrschule Nicolai"
       />
 
-      {/* Featured: Upcoming ASF Course */}
-      <section className="py-16 bg-secondary relative">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <UpcomingCourseCard course={nextAsfCourse} />
-        </div>
-      </section>
-
       {/* News List */}
-      <section className="pt-8 pb-24 bg-secondary relative">
+      <section className="py-24 bg-secondary relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             {newsItems.map((item, index) => {
@@ -144,7 +136,7 @@ export function Neuigkeiten() {
               </p>
               <Link
                 to="/kontakt"
-                className="inline-flex items-center gap-3 btn-accent text-white px-8 py-4 rounded-xl font-bold text-lg group"
+                className="inline-flex items-center gap-3 btn-primary text-secondary px-8 py-4 rounded-xl font-bold text-lg group"
               >
                 Bei Fragen kontaktiere uns
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

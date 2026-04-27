@@ -78,24 +78,6 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Verbandsmitgliedschaft Badge */}
-          <a
-            href="https://www.flvbw.de/home/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden xl:flex items-center group"
-            aria-label="Mitglied im Fahrlehrerverband Baden-Württemberg (öffnet in neuem Tab)"
-            title="Mitglied im Fahrlehrerverband Baden-Württemberg"
-          >
-            <div className="bg-white rounded-lg p-1.5 shadow-md shadow-black/30 group-hover:shadow-red-500/30 group-hover:scale-105 transition-all duration-300">
-              <img
-                src="/images/fahrlehrerverband-bw.png"
-                alt="Mitglied im Fahrlehrerverband Baden-Württemberg"
-                className="h-9 w-auto"
-              />
-            </div>
-          </a>
-
           {/* CTA Group */}
           <div className="hidden md:flex items-center gap-2">
             {/* Anrufen — ghost / secondary */}

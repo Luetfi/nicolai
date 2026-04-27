@@ -7,7 +7,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Auf WhatsApp schreiben"
-      className="fixed bottom-6 right-6 z-50 group"
+      className="fixed bottom-24 right-6 lg:bottom-6 z-50 group"
     >
       <span className="absolute inset-0 rounded-full bg-green-500/40 blur-xl group-hover:bg-green-500/60 transition-colors" />
       <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-20" />

@@ -196,17 +196,17 @@ export function Theorieunterricht() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-accent to-orange-600 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-primary to-primary-dark relative overflow-hidden">
         <div className="absolute inset-0 diagonal-stripes opacity-20" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <h2 className="display-md text-white mb-4">BEREIT FÜR DEN THEORIEUNTERRICHT?</h2>
-          <p className="text-white/90 text-xl mb-8 max-w-xl mx-auto">
+          <h2 className="display-md text-secondary mb-4">BEREIT FÜR DEN THEORIEUNTERRICHT?</h2>
+          <p className="text-secondary/90 text-xl mb-8 max-w-xl mx-auto">
             Melde dich an und starte deine Fahrausbildung!
           </p>
           <Link
             to="/kontakt#anmeldung"
-            className="inline-flex items-center gap-3 bg-secondary-light text-accent px-10 py-5 rounded-2xl font-bold text-lg hover:bg-secondary transition-colors group"
+            className="inline-flex items-center gap-3 bg-secondary-light text-primary px-10 py-5 rounded-2xl font-bold text-lg hover:bg-secondary transition-colors group"
           >
             Jetzt anmelden
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

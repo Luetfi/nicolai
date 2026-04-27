@@ -2,6 +2,7 @@ import { useEffect, type ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { FloatingActions } from './FloatingActions';
 import { WhatsAppButton } from '../common';
 
 interface LayoutProps {
@@ -35,6 +36,7 @@ export function Layout({ children }: LayoutProps) {
       </main>
       <Footer />
       <WhatsAppButton />
+      <FloatingActions />
     </div>
   );
 }

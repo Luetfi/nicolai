@@ -89,65 +89,6 @@ export function Fahrschule() {
         </div>
       </section>
 
-      {/* Verbandsmitgliedschaft */}
-      <section className="py-24 bg-secondary relative overflow-hidden border-y border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 mb-6">
-              <ShieldCheck className="w-4 h-4 text-primary" />
-              <span className="text-primary font-medium text-sm">Verbandsmitgliedschaft</span>
-            </div>
-            <h2 className="display-lg text-white mb-4">
-              ZERTIFIZIERTE <span className="gradient-text">QUALITÄT</span>
-            </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-              Wir sind offizielles Mitglied im Fahrlehrerverband Baden-Württemberg —
-              und damit Teil eines Netzwerks, das sich höchsten Ausbildungsstandards verpflichtet.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <a
-              href="https://www.flvbw.de/home/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block"
-              aria-label="Fahrlehrerverband Baden-Württemberg (öffnet in neuem Tab)"
-            >
-              <div className="absolute -inset-2 bg-gradient-to-r from-red-500/20 to-primary/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500" />
-              <div className="relative bg-white rounded-2xl p-6 shadow-2xl shadow-black/50 border border-white/10 group-hover:scale-[1.02] transition-transform duration-300">
-                <img
-                  src="/images/fahrlehrerverband-bw.png"
-                  alt="Mitglied im Fahrlehrerverband Baden-Württemberg"
-                  className="w-full h-auto"
-                  loading="lazy"
-                />
-              </div>
-            </a>
-
-            <div className="space-y-6">
-              {[
-                { icon: ShieldCheck, title: 'Geprüfte Ausbildung', desc: 'Verbandlich anerkannte Standards in Theorie und Praxis.' },
-                { icon: GraduationCap, title: 'Ständige Weiterbildung', desc: 'Regelmäßige Schulungen unserer Fahrlehrer.' },
-                { icon: BadgeCheck, title: 'Aktuelle Standards', desc: 'Immer auf dem neuesten Stand der StVO.' },
-              ].map((item) => (
-                <div key={item.title} className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl text-white mb-1">{item.title}</h3>
-                    <p className="text-gray-300 text-sm">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Team */}
       <section id="team" className="py-24 bg-secondary relative scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -216,33 +157,65 @@ export function Fahrschule() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-24 bg-secondary relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 diagonal-stripes opacity-20" />
+      {/* Verbandsmitgliedschaft */}
+      <section className="py-24 bg-secondary relative overflow-hidden border-y border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: '25+', label: 'Jahre Erfahrung' },
-              { number: '1000+', label: 'Erfolgreiche Schüler' },
-              { number: '2', label: 'Standorte' },
-              { number: '4', label: 'Erfahrene Fahrlehrer' },
-            ].map((stat, index) => (
-              <div
-                key={stat.label}
-                className="text-center"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="font-display text-6xl md:text-7xl text-primary mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-400 text-lg">{stat.label}</div>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 mb-6">
+              <ShieldCheck className="w-4 h-4 text-primary" />
+              <span className="text-primary font-medium text-sm">Verbandsmitgliedschaft</span>
+            </div>
+            <h2 className="display-lg text-white mb-4">
+              ZERTIFIZIERTE <span className="gradient-text">QUALITÄT</span>
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+              Wir sind offizielles Mitglied im Fahrlehrerverband Baden-Württemberg —
+              und damit Teil eines Netzwerks, das sich höchsten Ausbildungsstandards verpflichtet.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <a
+              href="https://www.flvbw.de/home/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block"
+              aria-label="Fahrlehrerverband Baden-Württemberg (öffnet in neuem Tab)"
+            >
+              <div className="absolute -inset-2 bg-gradient-to-r from-red-500/20 to-primary/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500" />
+              <div className="relative bg-white rounded-2xl p-6 shadow-2xl shadow-black/50 border border-white/10 group-hover:scale-[1.02] transition-transform duration-300">
+                <img
+                  src="/images/fahrlehrerverband-bw.png"
+                  alt="Mitglied im Fahrlehrerverband Baden-Württemberg"
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
               </div>
-            ))}
+            </a>
+
+            <div className="space-y-6">
+              {[
+                { icon: ShieldCheck, title: 'Geprüfte Ausbildung', desc: 'Verbandlich anerkannte Standards in Theorie und Praxis.' },
+                { icon: GraduationCap, title: 'Ständige Weiterbildung', desc: 'Regelmäßige Schulungen unserer Fahrlehrer.' },
+                { icon: BadgeCheck, title: 'Aktuelle Standards', desc: 'Immer auf dem neuesten Stand der StVO.' },
+              ].map((item) => (
+                <div key={item.title} className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-xl text-white mb-1">{item.title}</h3>
+                    <p className="text-gray-300 text-sm">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
     </>
   );
 }

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Play, Zap, Shield, Users, Trophy } from 'lucide-react';
+import { ArrowRight, Play, MapPin, CheckCircle2, Users, Trophy } from 'lucide-react';
 
 export function Hero() {
   const stats = [
     { icon: Trophy, number: '25+', label: 'Jahre Erfahrung' },
     { icon: Users, number: '1000+', label: 'Erfolgreiche Schüler' },
-    { icon: Shield, number: '98%', label: 'Bestehensquote' },
-    { icon: Zap, number: '2', label: 'Standorte' },
+    { icon: CheckCircle2, number: '98%', label: 'Bestehensquote' },
+    { icon: MapPin, number: '2', label: 'Standorte' },
   ];
 
   return (
@@ -144,19 +144,6 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Floating badge */}
-            <div className="absolute -top-6 -right-6 glass rounded-2xl px-6 py-4 animate-float animation-delay-200">
-              <div className="text-primary font-display text-3xl">98%</div>
-              <div className="text-gray-400 text-sm">Bestehensquote</div>
-            </div>
-
-            {/* Floating badge 2 */}
-            <div className="absolute -bottom-4 -left-8 glass rounded-2xl px-6 py-4 animate-float animation-delay-500">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-white font-medium">Kurse verfügbar</span>
-              </div>
-            </div>
           </div>
         </div>
 
