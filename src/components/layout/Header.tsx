@@ -142,10 +142,10 @@ export function Header() {
 
       {/* Mobile Navigation */}
       <div
-        className={`lg:hidden fixed inset-0 ${scrolled ? 'top-[100px] md:top-[116px]' : 'top-[148px] md:top-[180px]'} bg-secondary transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 ${scrolled ? 'top-[100px] md:top-[116px]' : 'top-[148px] md:top-[180px]'} bg-secondary ${
           mobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
+            ? 'visible pointer-events-auto'
+            : 'invisible pointer-events-none'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 py-8">
