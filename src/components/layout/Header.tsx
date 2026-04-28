@@ -148,14 +148,14 @@ export function Header() {
             : 'invisible pointer-events-none'
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-4 py-8">
-          <div className="flex flex-col gap-2">
+        <nav className="max-w-7xl mx-auto px-4 py-4 pb-28 h-full overflow-y-auto">
+          <div className="flex flex-col gap-1">
             {navLinks.map((link, index) => (
               <Link
                 key={link.path}
                 to={link.path}
                 className={`
-                  flex items-center justify-between px-6 py-4 rounded-2xl font-display text-2xl tracking-wide
+                  flex items-center justify-between px-5 py-2.5 rounded-xl font-display text-lg tracking-wide
                   transition-all duration-300
                   ${mobileMenuOpen ? 'animate-slide-in-left' : ''}
                   ${isActive(link.path)
@@ -166,30 +166,27 @@ export function Header() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {link.label}
-                <ChevronRight className={`w-6 h-6 ${isActive(link.path) ? 'text-primary' : 'text-gray-500'}`} />
+                <ChevronRight className={`w-5 h-5 ${isActive(link.path) ? 'text-primary' : 'text-gray-500'}`} />
               </Link>
             ))}
           </div>
 
-          <div className="mt-8 px-6 space-y-3">
+          <div className="mt-4 px-5 space-y-2">
             <Link
               to="/kontakt#anmeldung"
-              className="flex items-center justify-center gap-3 btn-primary text-secondary px-8 py-4 rounded-2xl font-bold text-lg w-full"
+              className="flex items-center justify-center gap-2 btn-primary text-secondary px-6 py-3 rounded-xl font-bold text-base w-full"
             >
-              <ClipboardCheck className="w-5 h-5" />
+              <ClipboardCheck className="w-4 h-4" />
               Jetzt anmelden
             </Link>
             <a
               href="tel:017138580010"
-              className="flex items-center justify-center gap-3 btn-accent text-white px-8 py-4 rounded-2xl font-bold text-lg w-full"
+              className="flex items-center justify-center gap-2 btn-accent text-white px-6 py-3 rounded-xl font-bold text-base w-full"
             >
-              <Phone className="w-5 h-5" />
+              <Phone className="w-4 h-4" />
               0171 / 38 58 010
             </a>
           </div>
-
-          {/* Decorative element */}
-          <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-32 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-3xl" />
         </nav>
       </div>
     </header>
