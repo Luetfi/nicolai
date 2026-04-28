@@ -49,9 +49,9 @@ export function Hero() {
         <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-40 left-10 w-96 h-96 bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-3xl animate-float animation-delay-300" />
 
-        {/* Decorative circles */}
-        <div className="absolute top-1/4 right-1/4 w-4 h-4 bg-primary rounded-full animate-pulse-glow" />
-      </div>
+       {/* Decorative circles */}
+        <div className="hidden md:block absolute top-1/4 right-1/4 w-4 h-4 bg-primary rounded-full animate-pulse-glow" />
+      </div> 
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20">
