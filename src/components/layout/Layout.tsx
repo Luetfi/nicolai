@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { FloatingActions } from './FloatingActions';
-import { WhatsAppButton } from '../common';
 
 interface LayoutProps {
   children: ReactNode;
@@ -35,7 +34,6 @@ export function Layout({ children }: LayoutProps) {
         {children}
       </main>
       <Footer />
-      <WhatsAppButton />
       <FloatingActions />
     </div>
   );

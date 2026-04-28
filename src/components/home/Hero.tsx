@@ -54,12 +54,12 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left column - Text */}
-          <div>
+          <div className="text-center lg:text-left">
             {/* Spacer (replaces former badge — keeps original hero height) */}
-            <div aria-hidden="true" className="h-9 mb-8" />
+            <div aria-hidden="true" className="h-4 mb-4 lg:h-9 lg:mb-8" />
 
             {/* Headline */}
             <h1 className="display-xl text-white mb-6 animate-slide-in-left">
@@ -69,14 +69,14 @@ export function Hero() {
             </h1>
 
             {/* Subheadline */}
-            <p className="text-xl text-gray-400 max-w-lg mb-10 animate-slide-in-left animation-delay-200">
+            <p className="text-xl text-gray-400 max-w-lg mx-auto lg:mx-0 mb-10 animate-slide-in-left animation-delay-200">
               Professionelle Fahrausbildung in Ludwigsburg.
               Modern, freundlich und mit über 25 Jahren Erfahrung
               begleiten wir dich sicher ans Ziel.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 animate-slide-in-left animation-delay-300">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 animate-slide-in-left animation-delay-300">
               <Link
                 to="/kontakt#anmeldung"
                 className="group btn-primary text-secondary px-8 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-3"
@@ -95,7 +95,7 @@ export function Hero() {
           </div>
 
           {/* Right column - Visual */}
-          <div className="relative hidden lg:block">
+          <div className="relative">
             {/* Main card */}
             <div className="relative animate-scale-in">
               {/* Glow effect */}

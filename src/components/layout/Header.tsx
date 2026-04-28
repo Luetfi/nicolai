@@ -28,6 +28,16 @@ export function Header() {
     setMobileMenuOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [mobileMenuOpen]);
+
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
@@ -36,7 +46,9 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        mobileMenuOpen
+          ? 'bg-secondary'
+          : scrolled
           ? 'bg-secondary/95 backdrop-blur-xl shadow-2xl shadow-black/20'
           : 'bg-transparent'
       }`}
@@ -130,7 +142,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       <div
-        className={`lg:hidden fixed inset-0 ${scrolled ? 'top-[100px] md:top-[116px]' : 'top-[148px] md:top-[180px]'} bg-secondary/98 backdrop-blur-xl transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 ${scrolled ? 'top-[100px] md:top-[116px]' : 'top-[148px] md:top-[180px]'} bg-secondary transition-all duration-500 ${
           mobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
