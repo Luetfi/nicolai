@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Clock, Mail, ArrowUpRight } from 'lucide-react';
+import { MapPin, Phone, Clock, Mail, ArrowUpRight, Cookie } from 'lucide-react';
 import { locations, generalInfo } from '../../data/contact';
+import { useConsent } from '../../hooks/useConsent';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { openSettings } = useConsent();
 
   const quickLinks = [
     { path: '/', label: 'Startseite' },
@@ -135,13 +137,21 @@ export function Footer() {
           <p className="text-gray-500 text-sm">
             &copy; {currentYear} {generalInfo.companyName}. Alle Rechte vorbehalten.
           </p>
-          <div className="flex items-center gap-6 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
             <Link to="/impressum" className="text-gray-500 hover:text-primary transition-colors">
               Impressum
             </Link>
             <Link to="/datenschutz" className="text-gray-500 hover:text-primary transition-colors">
               Datenschutz
             </Link>
+            <button
+              type="button"
+              onClick={openSettings}
+              className="inline-flex items-center gap-1.5 text-gray-500 hover:text-primary transition-colors"
+            >
+              <Cookie className="w-3.5 h-3.5" />
+              Cookie-Einstellungen
+            </button>
           </div>
         </div>
       </div>

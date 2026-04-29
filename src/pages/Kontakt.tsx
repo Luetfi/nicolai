@@ -1,5 +1,6 @@
 import { Phone, Mail, Clock, MapPin, Send, ArrowRight, MessageSquare, ClipboardCheck } from 'lucide-react';
 import { PageHero } from '../components/common';
+import { MapsConsent } from '../components/cookie';
 import { locations, generalInfo } from '../data/contact';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -429,71 +430,75 @@ export function Kontakt() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {locations.map((location, index) => (
-              <div
-                key={location.id}
-                className="group relative"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
+            {locations.map((location, index) => {
+              const mapQuery = location.mapQuery ?? `${location.address}, ${location.city}`;
+              return (
+                <div
+                  key={location.id}
+                  className="group relative"
+                  style={{ animationDelay: `${index * 150}ms` }}
+                >
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
-                <div className="relative bg-secondary-light rounded-3xl p-10 shadow-xl shadow-black/40 h-full card-hover border border-white/10">
-                  <h3 className="font-display text-3xl text-white mb-8">{location.name}</h3>
+                  <div className="relative bg-secondary-light rounded-3xl shadow-xl shadow-black/40 h-full card-hover border border-white/10 overflow-hidden flex flex-col">
+                    <div className="p-10">
+                      <h3 className="font-display text-3xl text-white mb-8">{location.name}</h3>
 
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-6 h-6 text-accent" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white">Adresse</p>
-                        <p className="text-gray-300">{location.address}</p>
-                        <p className="text-gray-300">{location.city}</p>
+                      <div className="space-y-6">
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <MapPin className="w-6 h-6 text-accent" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-white">Adresse</p>
+                            <p className="text-gray-300">{location.address}</p>
+                            <p className="text-gray-300">{location.city}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <Phone className="w-6 h-6 text-accent" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-white">Telefon</p>
+                            <a
+                              href={`tel:${location.phone.replace(/\s/g, '')}`}
+                              className="text-accent text-xl font-bold hover:text-accent-dark transition-colors"
+                            >
+                              {location.phone}
+                            </a>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <Clock className="w-6 h-6 text-accent" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-white">Theorieunterricht</p>
+                            <p className="text-gray-300">{location.lessonDays.join(' & ')}</p>
+                            <p className="text-gray-300">{location.lessonTime}</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-6 h-6 text-accent" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white">Telefon</p>
-                        <a
-                          href={`tel:${location.phone.replace(/\s/g, '')}`}
-                          className="text-accent text-xl font-bold hover:text-accent-dark transition-colors"
-                        >
-                          {location.phone}
-                        </a>
+                    {/* Map embed — sits flush to the bottom of the card as a visual anchor */}
+                    <div className="relative mt-auto border-t border-white/10">
+                      <div className="relative aspect-[4/3] md:aspect-[16/10] bg-secondary overflow-hidden">
+                        <MapsConsent
+                          query={mapQuery}
+                          locationName={location.name}
+                          address={location.address}
+                          city={location.city}
+                        />
                       </div>
                     </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Clock className="w-6 h-6 text-accent" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white">Theorieunterricht</p>
-                        <p className="text-gray-300">{location.lessonDays.join(' & ')}</p>
-                        <p className="text-gray-300">{location.lessonTime}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-8 pt-6 border-t border-white/10">
-                    <a
-                      href={`https://maps.google.com/?q=${encodeURIComponent(`${location.address}, ${location.city}`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-accent font-semibold hover:gap-4 transition-all"
-                    >
-                      <MapPin className="w-5 h-5" />
-                      In Google Maps öffnen
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

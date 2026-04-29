@@ -6,7 +6,7 @@ export interface Location {
   phone: string;
   lessonDays: string[];
   lessonTime: string;
-  mapUrl?: string;
+  mapQuery?: string;
 }
 
 export const locations: Location[] = [
@@ -27,6 +27,7 @@ export const locations: Location[] = [
     phone: '0171 / 38 64 631',
     lessonDays: ['Dienstag', 'Donnerstag'],
     lessonTime: '18:30 - 20:00 Uhr',
+    mapQuery: 'Neckarweihinger Straße 21, Ludwigsburg, Deutschland',
   },
 ];
 
