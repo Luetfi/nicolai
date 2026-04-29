@@ -1,0 +1,59 @@
+{
+  "_updated": "2026-04-29T00:00:00Z",
+  "items": [
+    {
+      "id": "1",
+      "date": "2026-05-04",
+      "startTime": "18:30",
+      "endTime": "20:00",
+      "locationId": "eglosheim",
+      "topic": "Modul 1 — Risikofaktor Mensch",
+      "notes": ""
+    },
+    {
+      "id": "2",
+      "date": "2026-05-05",
+      "startTime": "18:30",
+      "endTime": "20:00",
+      "locationId": "gruenbuehl",
+      "topic": "Modul 2 — Rechtliche Rahmenbedingungen",
+      "notes": ""
+    },
+    {
+      "id": "3",
+      "date": "2026-05-07",
+      "startTime": "18:30",
+      "endTime": "20:00",
+      "locationId": "eglosheim",
+      "topic": "Modul 3 — Verkehrszeichen und Verkehrseinrichtungen",
+      "notes": ""
+    },
+    {
+      "id": "4",
+      "date": "2026-05-11",
+      "startTime": "18:30",
+      "endTime": "20:00",
+      "locationId": "eglosheim",
+      "topic": "Modul 4 — Straßenverkehrssystem",
+      "notes": "Klassenspezifisch PKW im Anschluss"
+    },
+    {
+      "id": "5",
+      "date": "2026-05-12",
+      "startTime": "18:30",
+      "endTime": "20:00",
+      "locationId": "gruenbuehl",
+      "topic": "Modul 5 — Vorfahrt und Verkehrsregelungen",
+      "notes": ""
+    },
+    {
+      "id": "6",
+      "date": "2026-05-14",
+      "startTime": "18:30",
+      "endTime": "20:00",
+      "locationId": "eglosheim",
+      "topic": "Modul 6 — Verkehrsverhalten bei Fahrmanövern",
+      "notes": ""
+    }
+  ]
+}

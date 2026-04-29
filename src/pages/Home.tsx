@@ -2,9 +2,12 @@ import { Hero, Services, CallToAction } from '../components/home';
 import { ArrowRight, CheckCircle, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { UpcomingCourseCard } from '../components/common';
-import { nextAsfCourse } from '../data/services';
+import { useJsonData } from '../hooks/useJsonData';
+import type { UpcomingCourse } from '../data/services';
 
 export function Home() {
+  const { data: nextAsfCourse } = useJsonData<UpcomingCourse>('/data/asf-course.json');
+
   const features = [
     'Erfahrene & geduldige Fahrlehrer',
     'Moderne Fahrzeuge',
@@ -30,7 +33,19 @@ export function Home() {
               Der nächste Aufbauseminar-Kurs auf einen Blick
             </p>
           </div>
-          <UpcomingCourseCard course={nextAsfCourse} />
+          {nextAsfCourse ? (
+            <UpcomingCourseCard course={nextAsfCourse} />
+          ) : (
+            <div className="relative bg-gradient-to-br from-secondary-light to-secondary rounded-3xl p-8 sm:p-10 border border-primary/20 shadow-2xl shadow-black/50 animate-pulse">
+              <div className="h-6 w-40 bg-white/10 rounded-full mb-6" />
+              <div className="h-10 w-64 bg-white/10 rounded mb-4" />
+              <div className="h-6 w-72 bg-white/10 rounded mb-8" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="h-24 bg-white/5 rounded-2xl" />
+                <div className="h-24 bg-white/5 rounded-2xl" />
+              </div>
+            </div>
+          )}
           <div className="text-center mt-8">
             <Link
               to="/neuigkeiten"

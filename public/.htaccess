@@ -1,0 +1,69 @@
+# =============================================================
+# Fahrschule Nicolai · Strato Webspace · Apache config
+# =============================================================
+
+Options -Indexes -MultiViews
+AddDefaultCharset UTF-8
+
+# -------------------------------------------------------------
+# HTTPS erzwingen (Strato + Let's Encrypt vorausgesetzt)
+# -------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Erzwinge HTTPS (Strato setzt HTTPS=on, alternativ X-Forwarded-Proto)
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # SPA-Fallback: alles, was keine Datei/Verzeichnis ist und nicht in
+    # /admin, /data, /images, /assets liegt, geht an index.html (React Router)
+    RewriteCond %{REQUEST_URI} !^/admin(/|$)
+    RewriteCond %{REQUEST_URI} !^/data(/|$)
+    RewriteCond %{REQUEST_URI} !^/images(/|$)
+    RewriteCond %{REQUEST_URI} !^/assets(/|$)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ /index.html [L]
+</IfModule>
+
+# -------------------------------------------------------------
+# Cache-Steuerung
+# -------------------------------------------------------------
+<IfModule mod_headers.c>
+    # JSON-Daten dürfen nicht gecached werden (Admin-Änderungen sofort sichtbar)
+    <FilesMatch "\.json$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+
+    # Sicherheits-Header global
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# -------------------------------------------------------------
+# Statische Assets aggressiv cachen (Vite-Hashing schützt vor Stale-Bugs)
+# -------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+</IfModule>
+
+# -------------------------------------------------------------
+# Kompression
+# -------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>

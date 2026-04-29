@@ -1,9 +1,45 @@
-import { Clock, MapPin, BookOpen, Monitor, CheckCircle, ArrowRight } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Clock, MapPin, BookOpen, Monitor, CheckCircle, ArrowRight, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/common';
 import { locations } from '../data/contact';
+import { useJsonData } from '../hooks/useJsonData';
+import type { TheoryScheduleFile } from '../data/theory';
+
+const WEEKDAYS_DE = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA'];
+const MONTHS_SHORT_DE = ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'];
+const MONTHS_LONG_DE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+const DEFAULT_VISIBLE = 8;
+
+function parseLocalDate(yyyymmdd: string): Date {
+  const [y, m, d] = yyyymmdd.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
 
 export function Theorieunterricht() {
+  const { data: scheduleData } = useJsonData<TheoryScheduleFile>('/data/theory-schedule.json');
+  const [showAll, setShowAll] = useState(false);
+
+  const locationsById = useMemo(
+    () => Object.fromEntries(locations.map((l) => [l.id, l])),
+    []
+  );
+
+  const upcoming = useMemo(() => {
+    if (!scheduleData?.items) return [];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return [...scheduleData.items]
+      .filter((l) => parseLocalDate(l.date).getTime() >= today.getTime())
+      .sort((a, b) => {
+        const cmp = a.date.localeCompare(b.date);
+        if (cmp !== 0) return cmp;
+        return a.startTime.localeCompare(b.startTime);
+      });
+  }, [scheduleData]);
+
+  const visibleLessons = showAll ? upcoming : upcoming.slice(0, DEFAULT_VISIBLE);
+
   const theoryTopics = [
     'Risikofaktor Mensch',
     'Rechtliche Rahmenbedingungen',
@@ -81,6 +117,187 @@ export function Theorieunterricht() {
             Der Theorieunterricht findet regelmäßig an beiden Standorten statt.
             Du kannst flexibel zwischen den Standorten wechseln.
           </p>
+        </div>
+      </section>
+
+      {/* Upcoming Termine — Starting-Grid Schedule */}
+      <section className="py-24 bg-secondary relative overflow-hidden border-t border-white/5">
+        {/* Subtle atmospheric gradient + speed lines */}
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-primary/[0.04] to-transparent pointer-events-none" />
+        <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.06] blur-3xl pointer-events-none" />
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 mb-6">
+              <Calendar className="w-4 h-4 text-primary" />
+              <span className="text-white font-medium text-sm">Stundenplan</span>
+            </div>
+            <h2 className="display-lg text-white mb-4">
+              NÄCHSTE <span className="gradient-text">TERMINE</span>
+            </h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+              Konkrete Theorieunterrichts-Termine an beiden Standorten — Datum, Uhrzeit und Thema auf einen Blick.
+            </p>
+          </div>
+
+          {/* Loading skeleton */}
+          {!scheduleData && (
+            <div className="space-y-3">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={`skeleton-${i}`}
+                  className="bg-secondary-light rounded-2xl p-5 sm:p-6 border border-white/10 animate-pulse"
+                >
+                  <div className="grid grid-cols-[88px_1fr] sm:grid-cols-[88px_1fr_auto] gap-5 items-center">
+                    <div className="h-20 bg-white/5 rounded-xl" />
+                    <div className="space-y-2">
+                      <div className="h-6 w-2/3 bg-white/10 rounded" />
+                      <div className="h-4 w-1/2 bg-white/5 rounded" />
+                    </div>
+                    <div className="hidden sm:block h-9 w-36 bg-white/5 rounded-full" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Empty state */}
+          {scheduleData && upcoming.length === 0 && (
+            <div className="relative max-w-2xl mx-auto">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-xl" />
+              <div className="relative bg-secondary-light rounded-3xl p-10 text-center border border-white/10">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <Calendar className="w-8 h-8 text-secondary" />
+                </div>
+                <h3 className="font-display text-2xl text-white mb-3">
+                  AKTUELL KEINE TERMINE GEPLANT
+                </h3>
+                <p className="text-gray-300 text-lg mb-6 max-w-md mx-auto">
+                  Schau gerne bald wieder vorbei — oder sprich uns direkt an, wir nennen dir den nächsten Termin persönlich.
+                </p>
+                <Link
+                  to="/kontakt"
+                  className="inline-flex items-center gap-3 btn-primary text-secondary px-8 py-4 rounded-xl font-bold text-lg group"
+                >
+                  Kontakt aufnehmen
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {/* Lesson rows */}
+          {scheduleData && upcoming.length > 0 && (
+            <>
+              <div className="space-y-3">
+                {visibleLessons.map((lesson, index) => {
+                  const lessonDate = parseLocalDate(lesson.date);
+                  const month = lessonDate.getMonth();
+                  const year = lessonDate.getFullYear();
+                  const prev = index > 0 ? parseLocalDate(visibleLessons[index - 1].date) : null;
+                  const showMonthDivider =
+                    !prev || prev.getMonth() !== month || prev.getFullYear() !== year;
+                  const location = locationsById[lesson.locationId];
+                  const isGruenbuehl = lesson.locationId === 'gruenbuehl';
+                  const accentBand = isGruenbuehl
+                    ? 'from-accent to-accent-dark'
+                    : 'from-primary to-primary-dark';
+                  const chipStyle = isGruenbuehl
+                    ? 'bg-accent/15 text-accent border-accent/30'
+                    : 'bg-primary/15 text-primary border-primary/30';
+
+                  return (
+                    <div key={lesson.id}>
+                      {showMonthDivider && (
+                        <div className="flex items-center gap-4 pt-6 pb-3">
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/15 to-white/5" />
+                          <span className="font-display text-xl tracking-[0.25em] text-gray-400">
+                            {MONTHS_LONG_DE[month]} {year}
+                          </span>
+                          <div className="h-px flex-1 bg-gradient-to-l from-transparent via-white/15 to-white/5" />
+                        </div>
+                      )}
+
+                      <div
+                        className="group relative"
+                        style={{ animationDelay: `${index * 60}ms` }}
+                      >
+                        <div className="absolute -inset-1 bg-gradient-to-r from-primary/15 via-accent/10 to-primary/15 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
+
+                        <div className="relative bg-secondary-light rounded-2xl border border-white/10 group-hover:border-primary/30 shadow-lg shadow-black/40 transition-all duration-300 overflow-hidden group-hover:-translate-y-0.5">
+                          {/* Left vertical accent bar — appears on hover */}
+                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary to-accent scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-300" />
+
+                          <div className="grid grid-cols-[88px_1fr] sm:grid-cols-[88px_1fr_auto] gap-x-5 gap-y-3 p-5 sm:p-6 items-center">
+                            {/* Calendar leaf */}
+                            <div className="relative bg-secondary rounded-xl overflow-hidden border border-white/10 text-center w-[88px]">
+                              <div className={`h-1.5 bg-gradient-to-r ${accentBand}`} />
+                              <div className="px-3 py-2.5">
+                                <div className="text-[10px] font-bold text-gray-400 tracking-[0.2em] mb-0.5">
+                                  {WEEKDAYS_DE[lessonDate.getDay()]}
+                                </div>
+                                <div className="font-display text-4xl text-white leading-none tabular-nums">
+                                  {String(lessonDate.getDate()).padStart(2, '0')}
+                                </div>
+                                <div className="text-[10px] font-bold text-gray-400 tracking-[0.2em] mt-1.5">
+                                  {MONTHS_SHORT_DE[month]}
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Topic + notes */}
+                            <div className="min-w-0">
+                              <h3 className="font-display text-xl sm:text-2xl text-white leading-tight tracking-wide group-hover:text-primary transition-colors">
+                                {lesson.topic || 'Theorieunterricht'}
+                              </h3>
+                              {lesson.notes && (
+                                <p className="text-gray-400 text-sm mt-1.5 leading-snug">
+                                  {lesson.notes}
+                                </p>
+                              )}
+                            </div>
+
+                            {/* Time + location */}
+                            <div className="col-span-2 sm:col-span-1 flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-3 mt-1 sm:mt-0 border-t sm:border-t-0 border-white/5 pt-3 sm:pt-0">
+                              <div className="flex items-center gap-2 text-white font-semibold text-base sm:text-lg whitespace-nowrap">
+                                <Clock className="w-4 h-4 text-primary flex-shrink-0" />
+                                <span className="tabular-nums">
+                                  {lesson.startTime} – {lesson.endTime}
+                                </span>
+                              </div>
+                              {location && (
+                                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${chipStyle}`}>
+                                  <MapPin className="w-3.5 h-3.5" />
+                                  {location.name.replace('Standort ', '')}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {!showAll && upcoming.length > DEFAULT_VISIBLE && (
+                <div className="text-center mt-10">
+                  <button
+                    type="button"
+                    onClick={() => setShowAll(true)}
+                    className="inline-flex items-center gap-3 bg-secondary-light hover:bg-secondary border border-white/10 hover:border-primary/30 text-white px-8 py-3.5 rounded-xl font-semibold text-base transition-all"
+                  >
+                    Alle {upcoming.length} Termine anzeigen
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
+
+              <p className="text-center text-gray-400 text-sm mt-12 max-w-xl mx-auto">
+                Standortübergreifend — du kannst flexibel zwischen Eglosheim und Grünbühl wechseln.
+              </p>
+            </>
+          )}
         </div>
       </section>
 

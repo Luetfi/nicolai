@@ -1,45 +1,8 @@
 import { Calendar, ArrowRight, Bell, BookOpen, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/common';
-
-interface NewsItem {
-  id: string;
-  title: string;
-  date: string;
-  summary: string;
-  category: 'news' | 'course' | 'info';
-}
-
-const newsItems: NewsItem[] = [
-  {
-    id: '1',
-    title: 'Neue Theoriezeiten ab sofort',
-    date: '2024-01-15',
-    summary: 'Ab sofort bieten wir zusätzliche Theorieunterrichtszeiten an beiden Standorten an. Montag, Dienstag und Donnerstag von 18:30 - 20:00 Uhr.',
-    category: 'news',
-  },
-  {
-    id: '2',
-    title: 'Motorrad-Saison startet',
-    date: '2024-03-01',
-    summary: 'Die Motorradsaison beginnt! Jetzt ist der perfekte Zeitpunkt, um mit deiner Motorrad-Ausbildung zu starten. Wir haben freie Plätze in allen Motorradklassen.',
-    category: 'course',
-  },
-  {
-    id: '3',
-    title: 'Ferienkurse in den Sommerferien',
-    date: '2024-06-15',
-    summary: 'Auch in diesem Jahr bieten wir wieder Intensivkurse in den Sommerferien an. Schnell und effektiv zum Führerschein - ideal für Schüler und Studenten.',
-    category: 'course',
-  },
-  {
-    id: '4',
-    title: 'Führerschein mit 17 (BF17)',
-    date: '2024-02-01',
-    summary: 'Begleitetes Fahren ab 17 Jahren - eine tolle Möglichkeit, früh Fahrerfahrung zu sammeln. Informiere dich bei uns über die Voraussetzungen.',
-    category: 'info',
-  },
-];
+import { useJsonData } from '../hooks/useJsonData';
+import type { NewsFile } from '../data/news';
 
 const categoryConfig = {
   news: {
@@ -75,10 +38,13 @@ function formatDate(dateString: string): string {
 }
 
 export function Neuigkeiten() {
+  const { data: newsData } = useJsonData<NewsFile>('/data/news.json');
+  const newsItems = newsData?.items ?? [];
+
   return (
     <>
       <PageHero
-        crumb="News"
+        crumb="Neuigkeiten"
         title={<span className="gradient-text">NEUIGKEITEN</span>}
         subtitle="Aktuelle Meldungen und Informationen aus der Fahrschule Nicolai"
       />
@@ -87,6 +53,17 @@ export function Neuigkeiten() {
       <section className="py-24 bg-secondary relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
+            {!newsData && [0, 1, 2].map((i) => (
+              <div key={`skeleton-${i}`} className="relative bg-secondary-light rounded-3xl p-8 border border-white/10 animate-pulse">
+                <div className="flex flex-wrap items-center gap-4 mb-4">
+                  <div className="h-8 w-28 bg-white/10 rounded-full" />
+                  <div className="h-4 w-32 bg-white/10 rounded" />
+                </div>
+                <div className="h-7 w-2/3 bg-white/10 rounded mb-3" />
+                <div className="h-5 w-full bg-white/10 rounded mb-2" />
+                <div className="h-5 w-5/6 bg-white/10 rounded" />
+              </div>
+            ))}
             {newsItems.map((item, index) => {
               const config = categoryConfig[item.category];
               const Icon = config.icon;

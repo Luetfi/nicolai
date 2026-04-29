@@ -1,8 +1,12 @@
 import { Users, Award, Heart, Target, Phone, ShieldCheck, GraduationCap, BadgeCheck } from 'lucide-react';
 import { PageHero } from '../components/common';
-import { teamMembers } from '../data/team';
+import { useJsonData } from '../hooks/useJsonData';
+import type { TeamFile } from '../data/team';
 
 export function Fahrschule() {
+  const { data: teamData } = useJsonData<TeamFile>('/data/team.json');
+  const teamMembers = teamData?.members ?? [];
+
   const values = [
     {
       icon: Heart,
@@ -104,6 +108,16 @@ export function Fahrschule() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {!teamData && [0, 1, 2, 3].map((i) => (
+              <div key={`skeleton-${i}`} className="relative bg-secondary-light rounded-3xl overflow-hidden border border-white/10 h-full flex flex-col animate-pulse">
+                <div className="aspect-square bg-white/5" />
+                <div className="p-6 space-y-3">
+                  <div className="h-5 w-32 bg-white/10 rounded" />
+                  <div className="h-4 w-48 bg-white/10 rounded" />
+                  <div className="h-4 w-40 bg-white/10 rounded" />
+                </div>
+              </div>
+            ))}
             {teamMembers.map((member, index) => (
               <div
                 key={member.id}

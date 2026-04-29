@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Strato deploy credentials — NEVER commit
+.env
+
+# Admin-Panel Production-Konfiguration (enthält Passwort-Hash + APP_SECRET)
+/admin/includes/config.php
+
+# Lokale Login-Versuche (von Rate-Limiting beim lokalen Testen)
+/admin/data/.login-attempts.json
+
+# JSON-Backups vom Admin-Panel
+/data/.backups/
+

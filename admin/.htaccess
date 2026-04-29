@@ -1,0 +1,12 @@
+# Admin-Bereich Schutz
+Options -Indexes
+
+# UTF-8 für PHP-Output
+AddDefaultCharset UTF-8
+
+# Sicherheits-Header (falls Apache mod_headers aktiv)
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set Referrer-Policy "same-origin"
+</IfModule>

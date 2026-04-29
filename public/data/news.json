@@ -1,0 +1,33 @@
+{
+  "_updated": "2026-04-29T00:00:00Z",
+  "items": [
+    {
+      "id": "1",
+      "title": "Neue Theoriezeiten ab sofort",
+      "date": "2024-01-15",
+      "summary": "Ab sofort bieten wir zusätzliche Theorieunterrichtszeiten an beiden Standorten an. Montag, Dienstag und Donnerstag von 18:30 - 20:00 Uhr.",
+      "category": "news"
+    },
+    {
+      "id": "2",
+      "title": "Motorrad-Saison startet",
+      "date": "2024-03-01",
+      "summary": "Die Motorradsaison beginnt! Jetzt ist der perfekte Zeitpunkt, um mit deiner Motorrad-Ausbildung zu starten. Wir haben freie Plätze in allen Motorradklassen.",
+      "category": "course"
+    },
+    {
+      "id": "3",
+      "title": "Ferienkurse in den Sommerferien",
+      "date": "2024-06-15",
+      "summary": "Auch in diesem Jahr bieten wir wieder Intensivkurse in den Sommerferien an. Schnell und effektiv zum Führerschein - ideal für Schüler und Studenten.",
+      "category": "course"
+    },
+    {
+      "id": "4",
+      "title": "Führerschein mit 17 (BF17)",
+      "date": "2024-02-01",
+      "summary": "Begleitetes Fahren ab 17 Jahren - eine tolle Möglichkeit, früh Fahrerfahrung zu sammeln. Informiere dich bei uns über die Voraussetzungen.",
+      "category": "info"
+    }
+  ]
+}

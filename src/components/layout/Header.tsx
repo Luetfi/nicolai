@@ -7,7 +7,7 @@ const navLinks = [
   { path: '/leistungen', label: 'Leistungen' },
   { path: '/fahrschule', label: 'Fahrschule' },
   { path: '/theorieunterricht', label: 'Theorie' },
-  { path: '/neuigkeiten', label: 'News' },
+  { path: '/neuigkeiten', label: 'Neuigkeiten' },
   { path: '/kontakt', label: 'Kontakt' },
 ];
 

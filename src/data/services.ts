@@ -133,18 +133,8 @@ export interface UpcomingCourse {
   spotsAvailable: boolean;
   contactPhone: string;
   contactEmail: string;
+  _updated?: string;
 }
-
-export const nextAsfCourse: UpcomingCourse = {
-  id: 'asf-next',
-  title: 'Aufbauseminar',
-  type: 'ASF-Kurs',
-  startDate: '2026-05-15',
-  price: '330,- Euro',
-  spotsAvailable: true,
-  contactPhone: '0170 2138547',
-  contactEmail: 'fahrschule-ralf-nicolai@web.de',
-};
 
 export const specialServices: SpecialService[] = [
   {
