@@ -41,18 +41,18 @@ export function Theorieunterricht() {
   const visibleLessons = showAll ? upcoming : upcoming.slice(0, DEFAULT_VISIBLE);
 
   const theoryTopics = [
-    'Risikofaktor Mensch',
+    'Persönliche Voraussetzungen / Risikofaktor Mensch',
     'Rechtliche Rahmenbedingungen',
-    'Verkehrszeichen und Verkehrseinrichtungen',
-    'Straßenverkehrssystem',
-    'Vorfahrt und Verkehrsregelungen',
-    'Verkehrsverhalten bei Fahrmanövern',
-    'Ruhender Verkehr',
-    'Verhalten in besonderen Situationen',
+    'Grundregel / Verkehrszeichen und Verkehrseinrichtungen',
+    'Straßenverkehrssystem und seine Nutzungen, Bahnübergänge',
+    'Vorfahrt / Vorrang',
+    'Verkehrsregelungen',
+    'Geschwindigkeit / Abstand und umweltschonende Fahrweise',
+    'Andere Teilnehmer im Straßenverkehr',
+    'Verkehrsverhalten bei Fahrmanövern, Verkehrsbeobachtung',
+    'Ruhender Verkehr / Absichern / Abschleppen',
+    'Besondere Situationen / Verstöße gegen Vorschrift',
     'Lebenslanges Lernen',
-    'Technische Bedingungen',
-    'Fahren mit Solokraftfahrzeugen',
-    'Personen- und Güterbeförderung',
   ];
 
   return (
@@ -107,6 +107,11 @@ export function Theorieunterricht() {
                     <p className="text-xl text-white">
                       {location.lessonTime}
                     </p>
+                    {location.infoTime && (
+                      <p className="text-sm text-gray-300 mt-2">
+                        {location.infoTime}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

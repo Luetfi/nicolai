@@ -6,6 +6,7 @@ export interface Location {
   phone: string;
   lessonDays: string[];
   lessonTime: string;
+  infoTime?: string;
   mapQuery?: string;
 }
 
@@ -13,21 +14,23 @@ export const locations: Location[] = [
   {
     id: 'eglosheim',
     name: 'Standort Eglosheim',
-    address: 'Monreposstraße 4',
+    address: 'Monreposstraße 2',
     city: '71634 Ludwigsburg-Eglosheim',
-    phone: '0171 / 38 58 010',
+    phone: '0170 / 21 38 547',
     lessonDays: ['Montag', 'Donnerstag'],
-    lessonTime: '18:30 - 20:00 Uhr',
+    lessonTime: '19:00 – 20:30 Uhr',
+    infoTime: 'Auskunft und Anmeldung: 18:00 – 19:00 Uhr',
   },
   {
     id: 'gruenbuehl',
     name: 'Standort Grünbühl',
-    address: 'Neckarweihinger Str. 21',
-    city: 'Ludwigsburg-Grünbühl',
+    address: 'Netzestraße 31',
+    city: '71638 Ludwigsburg-Grünbühl',
     phone: '0171 / 38 64 631',
     lessonDays: ['Dienstag', 'Donnerstag'],
-    lessonTime: '18:30 - 20:00 Uhr',
-    mapQuery: 'Neckarweihinger Straße 21, Ludwigsburg, Deutschland',
+    lessonTime: '19:00 – 20:30 Uhr',
+    infoTime: 'Auskunft und Anmeldung: 18:00 – 19:00 Uhr',
+    mapQuery: 'Netzestraße 31, 71638 Ludwigsburg, Deutschland',
   },
 ];
 

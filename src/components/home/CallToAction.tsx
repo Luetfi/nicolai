@@ -54,11 +54,11 @@ export function CallToAction() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
-              href="tel:017138580010"
+              href="tel:01702138547"
               className="group glass text-white px-10 py-5 rounded-2xl font-semibold text-lg inline-flex items-center justify-center gap-3 hover:bg-white/10 transition-all"
             >
               <Phone className="w-5 h-5 group-hover:animate-pulse" />
-              0171 / 38 58 010
+              0170 / 21 38 547
             </a>
           </div>
         </div>
@@ -68,17 +68,19 @@ export function CallToAction() {
           {[
             {
               name: 'Eglosheim',
-              address: 'Monreposstraße 4',
+              address: 'Monreposstraße 2',
               city: '71634 Ludwigsburg',
               days: 'Mo & Do',
-              time: '18:30 - 20:00',
+              time: '19:00 – 20:30',
+              info: 'Auskunft & Anmeldung: 18:00 – 19:00',
             },
             {
               name: 'Grünbühl',
-              address: 'Neckarweihinger Str. 21',
-              city: 'Ludwigsburg',
+              address: 'Netzestraße 31',
+              city: '71638 Ludwigsburg',
               days: 'Di & Do',
-              time: '18:30 - 20:00',
+              time: '19:00 – 20:30',
+              info: 'Auskunft & Anmeldung: 18:00 – 19:00',
             },
           ].map((location, index) => (
             <div
@@ -110,6 +112,7 @@ export function CallToAction() {
                         <span className="text-gray-300">{location.time}</span>
                       </div>
                     </div>
+                    <p className="text-gray-400 text-sm mt-3">{location.info}</p>
                   </div>
                 </div>
               </div>

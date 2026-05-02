@@ -3,9 +3,9 @@ import { ArrowRight, Play, MapPin, CheckCircle2, Users, Trophy } from 'lucide-re
 
 export function Hero() {
   const stats = [
-    { icon: Trophy, number: '25+', label: 'Jahre Erfahrung' },
-    { icon: Users, number: '1000+', label: 'Erfolgreiche Schüler' },
-    { icon: CheckCircle2, number: '98%', label: 'Bestehensquote' },
+    { icon: Trophy, number: '55+', label: 'Jahre Erfahrung' },
+    { icon: Users, number: '6000+', label: 'Erfolgreiche Schüler' },
+    { icon: CheckCircle2, number: '😊', label: 'Bestehensquote' },
     { icon: MapPin, number: '2', label: 'Standorte' },
   ];
 
@@ -71,7 +71,7 @@ export function Hero() {
             {/* Subheadline */}
             <p className="text-xl text-gray-400 max-w-lg mx-auto lg:mx-0 mb-10 animate-slide-in-left animation-delay-200">
               Professionelle Fahrausbildung in Ludwigsburg.
-              Modern, freundlich und mit über 25 Jahren Erfahrung
+              Modern, freundlich und mit über 55 Jahren Erfahrung
               begleiten wir dich sicher ans Ziel.
             </p>
 
@@ -138,7 +138,7 @@ export function Hero() {
                   to="/leistungen"
                   className="flex items-center justify-center gap-2 text-primary font-medium hover:gap-4 transition-all"
                 >
-                  Alle 7 Führerscheinklassen
+                  Alle 8 Führerscheinklassen
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

@@ -54,7 +54,7 @@ export function Fahrschule() {
               </h2>
               <div className="space-y-4 text-gray-300 text-lg">
                 <p>
-                  Die Fahrschule Nicolai ist seit über 25 Jahren dein zuverlässiger Partner
+                  Die Fahrschule Nicolai ist seit über 55 Jahren dein zuverlässiger Partner
                   für die Führerscheinausbildung in Ludwigsburg und Umgebung.
                 </p>
                 <p>

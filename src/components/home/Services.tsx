@@ -9,6 +9,7 @@ const serviceCategories = [
     description: 'Vom klassischen Autoführerschein bis zum Anhänger - wir machen dich mobil.',
     classes: [
       { name: 'B', desc: 'PKW bis 3,5t' },
+      { name: 'B196', desc: 'Erweiterung' },
       { name: 'BE', desc: 'Mit Anhänger' },
       { name: 'B96', desc: 'Erweiterung' },
     ],

@@ -315,6 +315,7 @@ export function Kontakt() {
                         <select id="regLicenseClass" name="licenseClass" required value={regData.licenseClass} onChange={handleRegChange} className={selectClass}>
                           <option value="">Bitte wählen</option>
                           <option value="B">Klasse B (PKW)</option>
+                          <option value="B196">B196 - Erweiterung</option>
                           <option value="BE">Klasse BE (PKW + Anhänger)</option>
                           <option value="B96">Klasse B96</option>
                           <option value="A">Klasse A (Motorrad)</option>
@@ -407,13 +408,13 @@ export function Kontakt() {
                 {generalInfo.email}
               </a>
               <a
-                href="tel:017138580010"
+                href="tel:01702138547"
                 className="inline-flex items-center gap-3 text-white font-semibold hover:text-accent transition-colors group"
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Phone className="w-6 h-6 text-accent" />
                 </div>
-                0171 / 38 58 010
+                0170 / 21 38 547
               </a>
             </div>
           </div>
@@ -479,6 +480,9 @@ export function Kontakt() {
                             <p className="font-semibold text-white">Theorieunterricht</p>
                             <p className="text-gray-300">{location.lessonDays.join(' & ')}</p>
                             <p className="text-gray-300">{location.lessonTime}</p>
+                            {location.infoTime && (
+                              <p className="text-gray-400 text-sm mt-1">{location.infoTime}</p>
+                            )}
                           </div>
                         </div>
                       </div>

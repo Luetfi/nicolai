@@ -36,6 +36,9 @@ export function ContactInfo({ location }: ContactInfoProps) {
             Theorieunterricht: {location.lessonDays.join(' & ')}
           </p>
           <p className="text-gray-700">{location.lessonTime}</p>
+          {location.infoTime && (
+            <p className="text-gray-700 text-sm mt-1">{location.infoTime}</p>
+          )}
         </div>
       </div>
     </div>

@@ -72,7 +72,7 @@ export function Home() {
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 mb-6">
                 <Star className="w-4 h-4 text-accent" />
-                <span className="text-white font-medium text-sm">Über 25 Jahre Erfahrung</span>
+                <span className="text-white font-medium text-sm">Über 55 Jahre Erfahrung</span>
               </div>
 
               <h2 className="display-lg text-white mb-6">
@@ -82,7 +82,7 @@ export function Home() {
 
               <div className="space-y-4 text-gray-300 text-lg mb-8">
                 <p>
-                  Seit über 25 Jahren bilden wir Fahrschüler erfolgreich aus.
+                  Seit über 55 Jahren bilden wir Fahrschüler erfolgreich aus.
                   Mit zwei Standorten in Eglosheim und Grünbühl sind wir immer in deiner Nähe.
                 </p>
                 <p>
@@ -152,15 +152,15 @@ export function Home() {
                     {/* Stats row */}
                     <div className="mt-8 pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
                       <div>
-                        <div className="font-display text-2xl text-primary">25+</div>
+                        <div className="font-display text-2xl text-primary">55+</div>
                         <div className="text-gray-500 text-xs">Jahre</div>
                       </div>
                       <div>
-                        <div className="font-display text-2xl text-primary">1000+</div>
+                        <div className="font-display text-2xl text-primary">6000+</div>
                         <div className="text-gray-500 text-xs">Schüler</div>
                       </div>
                       <div>
-                        <div className="font-display text-2xl text-primary">98%</div>
+                        <div className="font-display text-2xl text-primary">😊</div>
                         <div className="text-gray-500 text-xs">Erfolg</div>
                       </div>
                     </div>

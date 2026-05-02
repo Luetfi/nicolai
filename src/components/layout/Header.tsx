@@ -94,7 +94,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-2">
             {/* Anrufen — ghost / secondary */}
             <a
-              href="tel:017138580010"
+              href="tel:01702138547"
               className="flex items-center gap-2 px-3 xl:px-4 py-2.5 rounded-xl border border-white/15 hover:border-primary/50 text-white hover:text-primary font-semibold text-sm transition-all duration-300 group"
               aria-label="Jetzt anrufen"
               title="Jetzt anrufen"
@@ -180,11 +180,11 @@ export function Header() {
               Jetzt anmelden
             </Link>
             <a
-              href="tel:017138580010"
+              href="tel:01702138547"
               className="flex items-center justify-center gap-2 btn-accent text-white px-6 py-3 rounded-xl font-bold text-base w-full"
             >
               <Phone className="w-4 h-4" />
-              0171 / 38 58 010
+              0170 / 21 38 547
             </a>
           </div>
         </nav>
