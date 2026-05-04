@@ -55,6 +55,18 @@ export function Theorieunterricht() {
     'Lebenslanges Lernen',
   ];
 
+  const zusatzPkwTopics = [
+    'Technische Bedingungen, umweltbewusster Umgang mit Kraftfahrzeugen',
+    'Fahren mit Solokraftfahrzeugen und Zügen, Personen- und Güterbeförderung',
+  ];
+
+  const zusatzMotorradTopics = [
+    'Fahrer/Beifahrer, Fahrzeug, Persönliche Voraussetzungen',
+    'Fahrtechnik und Fahrphysik',
+    'Besondere Schwierigkeiten und Gefahren beim Motorradfahren',
+    'Besonderes Verhalten beim Motorradfahren',
+  ];
+
   return (
     <>
       <PageHero
@@ -63,70 +75,8 @@ export function Theorieunterricht() {
         subtitle="Die theoretische Grundlage für sicheres Fahren"
       />
 
-      {/* Schedule */}
-      <section className="py-24 bg-secondary relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="display-lg text-white mb-4">
-              UNSERE <span className="gradient-text">UNTERRICHTSZEITEN</span>
-            </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Flexibel an beiden Standorten - wähle den Termin, der am besten zu dir passt
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {locations.map((location, index) => (
-              <div
-                key={location.id}
-                className="group relative"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
-
-                <div className="relative bg-secondary-light rounded-3xl p-10 shadow-xl shadow-black/40 h-full card-hover border border-white/10 text-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20">
-                    <MapPin className="w-10 h-10 text-secondary" />
-                  </div>
-
-                  <h3 className="font-display text-3xl text-white mb-4">{location.name}</h3>
-
-                  <div className="flex items-center justify-center gap-2 text-gray-300 mb-6">
-                    <MapPin className="w-5 h-5 text-accent" />
-                    <span>{location.address}, {location.city}</span>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border border-white/5">
-                    <div className="flex items-center justify-center gap-2 mb-3">
-                      <Clock className="w-5 h-5 text-accent" />
-                      <span className="font-semibold text-white">Unterrichtstage</span>
-                    </div>
-                    <p className="font-display text-4xl text-accent mb-2">
-                      {location.lessonDays.join(' & ')}
-                    </p>
-                    <p className="text-xl text-white">
-                      {location.lessonTime}
-                    </p>
-                    {location.infoTime && (
-                      <p className="text-sm text-gray-300 mt-2">
-                        {location.infoTime}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-center text-gray-300 mt-8 text-lg">
-            Der Theorieunterricht findet regelmäßig an beiden Standorten statt.
-            Du kannst flexibel zwischen den Standorten wechseln.
-          </p>
-        </div>
-      </section>
-
       {/* Upcoming Termine — Starting-Grid Schedule */}
-      <section className="py-24 bg-secondary relative overflow-hidden border-t border-white/5">
+      <section className="py-24 bg-secondary relative overflow-hidden">
         {/* Subtle atmospheric gradient + speed lines */}
         <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-primary/[0.04] to-transparent pointer-events-none" />
         <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.06] blur-3xl pointer-events-none" />
@@ -306,6 +256,68 @@ export function Theorieunterricht() {
         </div>
       </section>
 
+      {/* Schedule */}
+      <section className="py-24 bg-secondary relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="display-lg text-white mb-4">
+              UNSERE <span className="gradient-text">UNTERRICHTSZEITEN</span>
+            </h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+              Flexibel an beiden Standorten - wähle den Termin, der am besten zu dir passt
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {locations.map((location, index) => (
+              <div
+                key={location.id}
+                className="group relative"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
+
+                <div className="relative bg-secondary-light rounded-3xl p-10 shadow-xl shadow-black/40 h-full card-hover border border-white/10 text-center">
+                  <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20">
+                    <MapPin className="w-10 h-10 text-secondary" />
+                  </div>
+
+                  <h3 className="font-display text-3xl text-white mb-4">{location.name}</h3>
+
+                  <div className="flex items-center justify-center gap-2 text-gray-300 mb-6">
+                    <MapPin className="w-5 h-5 text-accent" />
+                    <span>{location.address}, {location.city}</span>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border border-white/5">
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                      <Clock className="w-5 h-5 text-accent" />
+                      <span className="font-semibold text-white">Unterrichtstage</span>
+                    </div>
+                    <p className="font-display text-4xl text-accent mb-2">
+                      {location.lessonDays.join(' & ')}
+                    </p>
+                    <p className="text-xl text-white">
+                      {location.lessonTime}
+                    </p>
+                    {location.infoTime && (
+                      <p className="text-sm text-gray-300 mt-2">
+                        {location.infoTime}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-gray-300 mt-8 text-lg">
+            Der Theorieunterricht findet regelmäßig an beiden Standorten statt.
+            Du kannst flexibel zwischen den Standorten wechseln.
+          </p>
+        </div>
+      </section>
+
       {/* Topics */}
       <section className="py-24 bg-secondary relative overflow-hidden">
         <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-primary/5 to-transparent" />
@@ -333,9 +345,56 @@ export function Theorieunterricht() {
             ))}
           </div>
 
-          <p className="text-center text-gray-300 mt-10 text-lg">
-            Zusätzlich gibt es klassenspezifische Themen für PKW, Motorrad und Anhänger.
-          </p>
+          {/* Zusatzstoff PKW */}
+          <div className="mt-24">
+            <div className="flex items-center justify-center gap-4 mb-12">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <BookOpen className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="display-md text-white">THEMEN IM ZUSATZSTOFF PKW</h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {zusatzPkwTopics.map((topic, index) => (
+                <div
+                  key={topic}
+                  className="group flex items-center gap-4 bg-gradient-to-r from-secondary-light to-secondary-light/50 rounded-2xl p-5 shadow-sm shadow-black/30 hover:shadow-md hover:shadow-black/40 transition-all border border-white/10 hover:border-blue-500/40 card-hover"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <span className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-white font-display text-lg flex-shrink-0 shadow-md">
+                    {index + 1}
+                  </span>
+                  <span className="text-white font-medium">{topic}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Zusatzstoff Motorrad */}
+          <div className="mt-24">
+            <div className="flex items-center justify-center gap-4 mb-12">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shadow-accent/20">
+                <BookOpen className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="display-md text-white">THEMEN IM ZUSATZSTOFF MOTORRAD</h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {zusatzMotorradTopics.map((topic, index) => (
+                <div
+                  key={topic}
+                  className="group flex items-center gap-4 bg-gradient-to-r from-secondary-light to-secondary-light/50 rounded-2xl p-5 shadow-sm shadow-black/30 hover:shadow-md hover:shadow-black/40 transition-all border border-white/10 hover:border-accent/40 card-hover"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <span className="w-10 h-10 bg-gradient-to-br from-accent to-orange-600 rounded-xl flex items-center justify-center text-white font-display text-lg flex-shrink-0 shadow-md">
+                    {index + 1}
+                  </span>
+                  <span className="text-white font-medium">{topic}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 

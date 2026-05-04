@@ -26,7 +26,7 @@ export const locations: Location[] = [
     name: 'Standort Grünbühl',
     address: 'Netzestraße 31',
     city: '71638 Ludwigsburg-Grünbühl',
-    phone: '0171 / 38 64 631',
+    phone: '0170 / 21 38 547',
     lessonDays: ['Dienstag', 'Donnerstag'],
     lessonTime: '19:00 – 20:30 Uhr',
     infoTime: 'Auskunft und Anmeldung: 18:00 – 19:00 Uhr',

@@ -213,7 +213,7 @@ export function Fahrschule() {
               {[
                 { icon: ShieldCheck, title: 'Geprüfte Ausbildung', desc: 'Verbandlich anerkannte Standards in Theorie und Praxis.' },
                 { icon: GraduationCap, title: 'Ständige Weiterbildung', desc: 'Regelmäßige Schulungen unserer Fahrlehrer.' },
-                { icon: BadgeCheck, title: 'Aktuelle Standards', desc: 'Immer auf dem neuesten Stand der StVO.' },
+                { icon: BadgeCheck, title: 'Aktuelle Standards', desc: 'Immer aktuell, modern und fortschrittlich.' },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
