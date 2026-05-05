@@ -58,10 +58,21 @@ if ($step === 'form' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$template) {
             $errors[] = 'Vorlage config.example.php nicht gefunden.';
         } else {
-            $newConfig = preg_replace(
-                ['/ADMIN_PASS_HASH\s*=\s*\'.*?\'\s*;/s', '/APP_SECRET\s*=\s*\'.*?\'\s*;/s'],
-                ["ADMIN_PASS_HASH = '" . addslashes($hash) . "';", "APP_SECRET = '" . $secret . "';"],
+            // preg_replace_callback statt preg_replace — sonst werden $1, $2, $12 etc.
+            // im bcrypt-Hash ($2y$12$...) als Backreferenzen interpretiert und entfernt.
+            $newConfig = preg_replace_callback(
+                '/ADMIN_PASS_HASH\s*=\s*\'.*?\'\s*;/s',
+                function () use ($hash) {
+                    return "ADMIN_PASS_HASH = '" . str_replace(['\\', "'"], ['\\\\', "\\'"], $hash) . "';";
+                },
                 $template
+            );
+            $newConfig = preg_replace_callback(
+                '/APP_SECRET\s*=\s*\'.*?\'\s*;/s',
+                function () use ($secret) {
+                    return "APP_SECRET = '" . $secret . "';";
+                },
+                $newConfig
             );
             if (file_put_contents($configFile, $newConfig) === false) {
                 $errors[] = 'config.php konnte nicht geschrieben werden. Bitte Schreibrechte prüfen.';
