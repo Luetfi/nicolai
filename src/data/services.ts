@@ -15,7 +15,7 @@ export const licenseClasses: LicenseClass[] = [
     id: 'b',
     name: 'B',
     title: 'PKW-Führerschein',
-    description: 'Der Klassiker: Kraftfahrzeuge bis 3,5 t zulässiger Gesamtmasse und nicht mehr als 8 Sitzplätze außer dem Führersitz.',
+    description: 'Der Klassiker: Kraftfahrzeuge bis 3,5 t zulässiger Gesamtmasse und nicht mehr als 8 Sitzplätze außer dem Fahrzeugführer.',
     requirements: [
       'Mindestalter 18 Jahre (17 Jahre bei BF17)',
       'Erste-Hilfe-Kurs',
