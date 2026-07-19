@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { PageHero } from '../components/common';
 import { useJsonData } from '../hooks/useJsonData';
 import type { NewsFile } from '../data/news';
+import { Seo } from '../seo/Seo';
+import { breadcrumbsSchema } from '../seo/schema';
 
 const categoryConfig = {
   news: {
@@ -43,6 +45,16 @@ export function Neuigkeiten() {
 
   return (
     <>
+      <Seo
+        title="Neuigkeiten — Fahrschule Nicolai Ludwigsburg"
+        description="Aktuelle Meldungen, Kurse und Informationen der Fahrschule Nicolai aus Ludwigsburg. Theorie-Termine, ASF-Kurse, Saison-Infos."
+        jsonLd={[
+          breadcrumbsSchema([
+            { name: 'Startseite', url: '/' },
+            { name: 'Neuigkeiten', url: '/neuigkeiten' },
+          ]),
+        ]}
+      />
       <PageHero
         crumb="Neuigkeiten"
         title={<span className="gradient-text">NEUIGKEITEN</span>}

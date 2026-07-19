@@ -1,10 +1,22 @@
 import { Mail, Phone, Printer, Smartphone, MapPin, Building2, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/common';
+import { Seo } from '../seo/Seo';
+import { breadcrumbsSchema } from '../seo/schema';
 
 export function Impressum() {
   return (
     <>
+      <Seo
+        title="Impressum — Fahrschule Nicolai"
+        description="Impressum und Anbieterkennzeichnung der Fahrschule Nicolai, Ludwigsburg. Inhaber: Ralf Nicolai."
+        jsonLd={[
+          breadcrumbsSchema([
+            { name: 'Startseite', url: '/' },
+            { name: 'Impressum', url: '/impressum' },
+          ]),
+        ]}
+      />
       <PageHero
         crumb="Impressum"
         title={<span className="gradient-text">IMPRESSUM</span>}
@@ -34,7 +46,7 @@ export function Impressum() {
 
             <div className="mt-8 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a
-                href="tel:0714137 8955"
+                href="tel:+497141378955"
                 className="flex items-center gap-3 text-gray-300 hover:text-primary transition-colors group"
               >
                 <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -47,7 +59,7 @@ export function Impressum() {
               </a>
 
               <a
-                href="tel:01702138547"
+                href="tel:+491702138547"
                 className="flex items-center gap-3 text-gray-300 hover:text-primary transition-colors group"
               >
                 <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">

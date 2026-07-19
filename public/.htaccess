@@ -1,24 +1,41 @@
 # =============================================================
-# Fahrschule Nicolai · Strato Webspace · Apache config
+# Fahrschule Nicolai · Strato Webspace · Minimal
 # =============================================================
 
-Options -Indexes -MultiViews
-AddDefaultCharset UTF-8
+# Verhindert Apache-Default-Redirect /leistungen -> /leistungen/
+# (würde sonst alle Sitemap-URLs zu 301 machen)
+<IfModule mod_dir.c>
+    DirectorySlash Off
+</IfModule>
 
-# -------------------------------------------------------------
-# HTTPS erzwingen (Strato + Let's Encrypt vorausgesetzt)
-# -------------------------------------------------------------
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Erzwinge HTTPS (Strato setzt HTTPS=on, alternativ X-Forwarded-Proto)
+    # HTTPS erzwingen
     RewriteCond %{HTTPS} !=on
-    RewriteCond %{HTTP:X-Forwarded-Proto} !=https
-    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # www -> non-www (kanonische Domain: fahrschule-nicolai.de)
+    RewriteCond %{HTTP_HOST} ^www\.fahrschule-nicolai\.de$ [NC]
+    RewriteRule ^ https://fahrschule-nicolai.de%{REQUEST_URI} [L,R=301]
+
+    # /admin -> /admin/ (Trailing-Slash erzwingen, sonst 404 wegen DirectorySlash Off)
+    RewriteRule ^admin$ /admin/ [L,R=301]
+
+    # /leistungen/ (mit Slash) -> /leistungen (ohne Slash, kanonisch)
+    RewriteCond %{REQUEST_URI} ^/(.+)/$
+    RewriteCond %{REQUEST_URI} !^/(admin|api|data|images|assets)(/|$)
+    RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+    # /leistungen -> internes Mapping auf /leistungen/index.html (200, kein Redirect)
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_FILENAME}/index.html -f
+    RewriteRule ^(.+?)/?$ /$1/index.html [L]
 
     # SPA-Fallback: alles, was keine Datei/Verzeichnis ist und nicht in
-    # /admin, /data, /images, /assets liegt, geht an index.html (React Router)
+    # /admin, /api, /data, /images, /assets liegt, geht an index.html (React Router)
     RewriteCond %{REQUEST_URI} !^/admin(/|$)
+    RewriteCond %{REQUEST_URI} !^/api(/|$)
     RewriteCond %{REQUEST_URI} !^/data(/|$)
     RewriteCond %{REQUEST_URI} !^/images(/|$)
     RewriteCond %{REQUEST_URI} !^/assets(/|$)
@@ -27,43 +44,37 @@ AddDefaultCharset UTF-8
     RewriteRule ^ /index.html [L]
 </IfModule>
 
-# -------------------------------------------------------------
-# Cache-Steuerung
-# -------------------------------------------------------------
+# Security-, Cache- und Kompressions-Header
 <IfModule mod_headers.c>
-    # JSON-Daten dürfen nicht gecached werden (Admin-Änderungen sofort sichtbar)
-    <FilesMatch "\.json$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "0"
-    </FilesMatch>
-
-    # Sicherheits-Header global
+    # Security
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
-    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+    # JSON-Daten dürfen nicht gecached werden (Admin-Änderungen sofort sichtbar)
+    <FilesMatch "\.json$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+    </FilesMatch>
+
+    # Statische Assets: lange Cache-Zeit (Vite-hashed Filenames sind immutable)
+    <FilesMatch "\.(js|css|woff2|woff|webp|jpg|jpeg|png|svg|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # HTML: kurze Cache-Zeit, damit Updates sichtbar werden
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
 </IfModule>
 
-# -------------------------------------------------------------
-# Statische Assets aggressiv cachen (Vite-Hashing schützt vor Stale-Bugs)
-# -------------------------------------------------------------
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType image/jpeg "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
-    ExpiresByType image/webp "access plus 1 month"
-    ExpiresByType image/svg+xml "access plus 1 month"
-    ExpiresByType font/woff2 "access plus 1 year"
-    ExpiresByType text/css "access plus 7 days"
-    ExpiresByType application/javascript "access plus 7 days"
-    ExpiresByType text/html "access plus 0 seconds"
-    ExpiresByType application/json "access plus 0 seconds"
-</IfModule>
-
-# -------------------------------------------------------------
-# Kompression
-# -------------------------------------------------------------
+# Gzip-Kompression
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Brotli-Kompression (falls vom Hoster aktiviert)
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
 </IfModule>

@@ -5,6 +5,8 @@ import { PageHero } from '../components/common';
 import { locations } from '../data/contact';
 import { useJsonData } from '../hooks/useJsonData';
 import type { TheoryScheduleFile } from '../data/theory';
+import { Seo } from '../seo/Seo';
+import { breadcrumbsSchema, courseSchema } from '../seo/schema';
 
 const WEEKDAYS_DE = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA'];
 const MONTHS_SHORT_DE = ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'];
@@ -69,6 +71,17 @@ export function Theorieunterricht() {
 
   return (
     <>
+      <Seo
+        title="Theorieunterricht Ludwigsburg — Termine & Themen"
+        description="Theorieunterricht in Ludwigsburg-Eglosheim und Ludwigsburg-Grünbühl. Aktuelle Termine, alle Pflichtthemen, Online lernen mit Fahren Lernen MAX."
+        jsonLd={[
+          breadcrumbsSchema([
+            { name: 'Startseite', url: '/' },
+            { name: 'Theorieunterricht', url: '/theorieunterricht' },
+          ]),
+          courseSchema(locations),
+        ]}
+      />
       <PageHero
         crumb="Theorie"
         title={<><span className="gradient-text">THEORIE</span>UNTERRICHT</>}

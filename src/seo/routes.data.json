@@ -1,0 +1,12 @@
+[
+  { "path": "/", "changefreq": "weekly", "priority": 1.0, "indexable": true, "llmsTitle": "Startseite" },
+  { "path": "/leistungen", "changefreq": "monthly", "priority": 0.9, "indexable": true, "llmsTitle": "Leistungen & Führerscheinklassen" },
+  { "path": "/fahrschule", "changefreq": "monthly", "priority": 0.8, "indexable": true, "llmsTitle": "Über uns & Team" },
+  { "path": "/theorieunterricht", "changefreq": "weekly", "priority": 0.9, "indexable": true, "llmsTitle": "Theorieunterricht" },
+  { "path": "/neuigkeiten", "changefreq": "weekly", "priority": 0.6, "indexable": true, "llmsTitle": "Neuigkeiten" },
+  { "path": "/kontakt", "changefreq": "monthly", "priority": 0.9, "indexable": true, "llmsTitle": "Kontakt & Standorte" },
+  { "path": "/fahrschule-ludwigsburg-eglosheim", "changefreq": "monthly", "priority": 0.9, "indexable": true, "llmsTitle": "Standort Eglosheim" },
+  { "path": "/fahrschule-ludwigsburg-gruenbuehl", "changefreq": "monthly", "priority": 0.9, "indexable": true, "llmsTitle": "Standort Grünbühl" },
+  { "path": "/impressum", "changefreq": "yearly", "priority": 0.2, "indexable": true },
+  { "path": "/datenschutz", "changefreq": "yearly", "priority": 0.1, "indexable": true }
+]

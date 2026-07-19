@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, ChevronRight, ClipboardCheck } from 'lucide-react';
+import { Picture } from '../common/Picture';
 
 const navLinks = [
   { path: '/', label: 'Startseite' },
@@ -60,9 +61,11 @@ export function Header() {
         <div className={`flex justify-between items-center transition-all duration-300 ${scrolled ? 'h-24 md:h-28' : 'h-36 md:h-44'}`}>
           {/* Logo */}
           <Link to="/" className="flex items-center group" aria-label="Fahrschule Nicolai - Startseite">
-            <img
+            <Picture
               src="/images/logo.png"
               alt="Fahrschule Nicolai"
+              loading="eager"
+              fetchPriority="high"
               className={`w-auto transform group-hover:scale-105 transition-all duration-300 ${scrolled ? 'h-20 md:h-24' : 'h-32 md:h-40'}`}
             />
           </Link>
@@ -94,7 +97,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-2">
             {/* Anrufen — ghost / secondary */}
             <a
-              href="tel:01702138547"
+              href="tel:+491702138547"
               className="flex items-center gap-2 px-3 xl:px-4 py-2.5 rounded-xl border border-white/15 hover:border-primary/50 text-white hover:text-primary font-semibold text-sm transition-all duration-300 group"
               aria-label="Jetzt anrufen"
               title="Jetzt anrufen"
@@ -180,7 +183,7 @@ export function Header() {
               Jetzt anmelden
             </Link>
             <a
-              href="tel:01702138547"
+              href="tel:+491702138547"
               className="flex items-center justify-center gap-2 btn-accent text-white px-6 py-3 rounded-xl font-bold text-base w-full"
             >
               <Phone className="w-4 h-4" />

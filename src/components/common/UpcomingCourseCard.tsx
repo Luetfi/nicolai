@@ -1,5 +1,6 @@
 import { Calendar, CheckCircle, Phone, Mail, Sparkles } from 'lucide-react';
 import type { UpcomingCourse } from '../../data/services';
+import { toTelHref } from '../../data/contact';
 
 interface UpcomingCourseCardProps {
   course: UpcomingCourse;
@@ -16,7 +17,7 @@ function formatDate(dateString: string): string {
 }
 
 export function UpcomingCourseCard({ course, variant = 'full' }: UpcomingCourseCardProps) {
-  const phoneHref = `tel:${course.contactPhone.replace(/\s+/g, '')}`;
+  const phoneHref = toTelHref(course.contactPhone);
   const whatsappHref = `https://wa.me/${course.contactPhone.replace(/\D/g, '').replace(/^0/, '49')}`;
 
   if (variant === 'compact') {

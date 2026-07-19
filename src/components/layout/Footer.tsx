@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Clock, Mail, ArrowUpRight, Cookie } from 'lucide-react';
+import { MapPin, Phone, Clock, Mail, ArrowUpRight, Cookie, Star } from 'lucide-react';
 import { locations, generalInfo } from '../../data/contact';
 import { useConsent } from '../../hooks/useConsent';
+import { Picture } from '../common/Picture';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,9 +30,10 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-flex items-center group" aria-label="Fahrschule Nicolai - Startseite">
-              <img
+              <Picture
                 src="/images/logo.png"
                 alt="Fahrschule Nicolai"
+                loading="lazy"
                 className="h-32 w-auto group-hover:scale-105 transition-transform"
               />
             </Link>
@@ -46,7 +48,11 @@ export function Footer() {
           {/* Locations */}
           {locations.map((location) => (
             <div key={location.id}>
-              <h3 className="font-display text-xl text-primary mb-6">{location.name.toUpperCase()}</h3>
+              <h3 className="font-display text-xl text-primary mb-6">
+                <Link to={location.landingPath} className="hover:text-primary-dark transition-colors">
+                  {location.name.toUpperCase()}
+                </Link>
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
@@ -59,13 +65,13 @@ export function Footer() {
                   <Phone className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div className="text-gray-400 text-sm flex flex-col gap-1">
                     <a
-                      href="tel:01702138547"
+                      href="tel:+491702138547"
                       className="hover:text-primary transition-colors"
                     >
                       0170 / 21 38 547
                     </a>
                     <a
-                      href="tel:01704925140"
+                      href="tel:+491704925140"
                       className="hover:text-primary transition-colors"
                     >
                       0170 / 49 25 140
@@ -79,6 +85,24 @@ export function Footer() {
                     <p>18:00 – 20:30 Uhr</p>
                   </div>
                 </div>
+                <Link
+                  to={location.landingPath}
+                  className="flex items-center gap-1.5 text-gray-400 text-sm hover:text-primary transition-colors"
+                >
+                  <ArrowUpRight className="w-4 h-4" />
+                  <span>Mehr zum Standort</span>
+                </Link>
+                {location.googleReviewUrl && (
+                  <a
+                    href={location.googleReviewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-gray-400 text-sm hover:text-primary transition-colors"
+                  >
+                    <Star className="w-4 h-4" />
+                    <span>Bewerte uns auf Google</span>
+                  </a>
+                )}
               </div>
             </div>
           ))}

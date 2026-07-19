@@ -54,7 +54,7 @@ export function CallToAction() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
-              href="tel:01702138547"
+              href="tel:+491702138547"
               className="group glass text-white px-10 py-5 rounded-2xl font-semibold text-lg inline-flex items-center justify-center gap-3 hover:bg-white/10 transition-all"
             >
               <Phone className="w-5 h-5 group-hover:animate-pulse" />

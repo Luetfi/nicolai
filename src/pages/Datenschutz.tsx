@@ -18,6 +18,8 @@ import {
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/common';
 import { useConsent } from '../hooks/useConsent';
+import { Seo } from '../seo/Seo';
+import { breadcrumbsSchema } from '../seo/schema';
 
 const STAND = 'April 2026';
 
@@ -80,6 +82,16 @@ export function Datenschutz() {
 
   return (
     <>
+      <Seo
+        title="Datenschutz — Fahrschule Nicolai"
+        description="Datenschutzerklärung der Fahrschule Nicolai: keine Werbe-Tracker, keine Profilbildung. Transparente Information zur Datenverarbeitung."
+        jsonLd={[
+          breadcrumbsSchema([
+            { name: 'Startseite', url: '/' },
+            { name: 'Datenschutz', url: '/datenschutz' },
+          ]),
+        ]}
+      />
       <PageHero
         crumb="Datenschutz"
         title={<span className="gradient-text">DATENSCHUTZ</span>}
@@ -156,7 +168,7 @@ export function Datenschutz() {
                 <p>
                   Telefon:{' '}
                   <a
-                    href="tel:0714137 89 55"
+                    href="tel:+497141378955"
                     className="text-accent hover:text-accent-dark transition-colors"
                   >
                     07141 – 37 89 55
@@ -165,7 +177,7 @@ export function Datenschutz() {
                 <p>
                   Mobil:{' '}
                   <a
-                    href="tel:01702138547"
+                    href="tel:+491702138547"
                     className="text-accent hover:text-accent-dark transition-colors"
                   >
                     0170 – 21 38 547

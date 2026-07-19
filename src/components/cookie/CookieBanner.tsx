@@ -16,7 +16,7 @@ export function CookieBanner() {
         role="region"
         aria-labelledby="cookie-banner-title"
         aria-describedby="cookie-banner-description"
-        className="pointer-events-auto mx-auto max-w-3xl relative animate-slide-in-up rounded-2xl shadow-2xl shadow-black/60 glass-dark"
+        className="pointer-events-auto mx-auto max-w-3xl relative animate-slide-in-up rounded-2xl shadow-2xl shadow-black/60 bg-secondary-light border border-white/10"
       >
         {/* Brand thread */}
         <div

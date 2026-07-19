@@ -3,6 +3,8 @@ import { Car, Bike, AlertTriangle, CheckCircle, ArrowRight, ChevronLeft, Chevron
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/common';
 import { licenseClasses, specialServices } from '../data/services';
+import { Seo } from '../seo/Seo';
+import { breadcrumbsSchema, servicesListSchema } from '../seo/schema';
 
 function useCarousel() {
   const ref = useRef<HTMLDivElement>(null);
@@ -48,6 +50,17 @@ export function Leistungen() {
 
   return (
     <>
+      <Seo
+        title="Führerscheinklassen in Ludwigsburg — PKW & Motorrad"
+        description="Alle Führerscheinklassen bei Fahrschule Nicolai: B, B196, BE, B96 für PKW, sowie A, A2, A1, AM für Motorrad. Plus ASF-Aufbauseminar und Sicherheitstraining."
+        jsonLd={[
+          breadcrumbsSchema([
+            { name: 'Startseite', url: '/' },
+            { name: 'Leistungen', url: '/leistungen' },
+          ]),
+          ...servicesListSchema(licenseClasses),
+        ]}
+      />
       <PageHero
         crumb="Leistungen"
         title={<>UNSERE <span className="gradient-text">LEISTUNGEN</span></>}

@@ -1,0 +1,10 @@
+export { organizationSchema } from './organization';
+export { websiteSchema } from './website';
+export { drivingSchoolSchema } from './drivingSchool';
+export { breadcrumbsSchema } from './breadcrumbs';
+export type { BreadcrumbItem } from './breadcrumbs';
+export { serviceSchema, servicesListSchema } from './service';
+export { courseSchema } from './course';
+export { personSchema } from './person';
+export { faqSchema } from './faq';
+export type { FaqItem } from './faq';

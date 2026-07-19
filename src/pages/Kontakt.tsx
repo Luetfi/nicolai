@@ -1,9 +1,11 @@
-import { Phone, Mail, Clock, MapPin, Send, ArrowRight, MessageSquare, ClipboardCheck } from 'lucide-react';
+import { Phone, Mail, Clock, MapPin, Send, ArrowRight, MessageSquare, ClipboardCheck, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { PageHero } from '../components/common';
 import { MapsConsent } from '../components/cookie';
 import { locations, generalInfo } from '../data/contact';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { Seo } from '../seo/Seo';
+import { breadcrumbsSchema, drivingSchoolSchema } from '../seo/schema';
 
 type FormMode = 'inquiry' | 'registration';
 
@@ -38,6 +40,11 @@ export function Kontakt() {
     notes: '',
   });
 
+  const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState<string>('');
+  const [mountedAt] = useState<number>(() => Date.now());
+  const [honeypot, setHoneypot] = useState<string>('');
+
   useEffect(() => {
     const params = new URLSearchParams(search);
     const klasse = params.get('klasse');
@@ -56,13 +63,32 @@ export function Kontakt() {
     }
   }, [hash, search]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = formData.subject.trim() || `Anfrage von ${formData.name}`;
-    const mailtoLink = `mailto:${generalInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nE-Mail: ${formData.email}\nTelefon: ${formData.phone}\nBetreff: ${subject}\n\nNachricht:\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
+    if (submitState === 'sending') return;
+    setSubmitState('sending');
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'inquiry',
+          website: honeypot,
+          t: mountedAt,
+          ...formData,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || 'Senden fehlgeschlagen. Bitte später erneut versuchen.');
+      }
+      setSubmitState('success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : 'Unbekannter Fehler');
+      setSubmitState('error');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -72,32 +98,47 @@ export function Kontakt() {
     });
   };
 
-  const handleRegSubmit = (e: React.FormEvent) => {
+  const handleRegSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const fullName = `${regData.firstName} ${regData.lastName}`.trim();
-    const lines = [
-      `Vorname: ${regData.firstName}`,
-      `Nachname: ${regData.lastName}`,
-      `Geburtsdatum: ${regData.birthDate}`,
-      `Geburtsort: ${regData.birthPlace}`,
-      ``,
-      `Adresse: ${regData.street}`,
-      `PLZ / Ort: ${regData.zip} ${regData.city}`,
-      ``,
-      `Telefon: ${regData.phone}`,
-      `E-Mail: ${regData.email}`,
-      ``,
-      `Gewünschte Führerscheinklasse: ${regData.licenseClass}`,
-      `Bevorzugter Standort: ${regData.location}`,
-      `Bestehender Führerschein: ${regData.hasLicense}${regData.hasLicense === 'ja' && regData.existingLicense ? ` (Klasse: ${regData.existingLicense})` : ''}`,
-      ``,
-      `Bemerkung:`,
-      regData.notes || '-',
-    ];
-    const mailtoLink = `mailto:${generalInfo.email}?subject=${encodeURIComponent(
-      `Anmeldung von ${fullName}`
-    )}&body=${encodeURIComponent(lines.join('\n'))}`;
-    window.location.href = mailtoLink;
+    if (submitState === 'sending') return;
+    setSubmitState('sending');
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'registration',
+          website: honeypot,
+          t: mountedAt,
+          ...regData,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || 'Senden fehlgeschlagen. Bitte später erneut versuchen.');
+      }
+      setSubmitState('success');
+      setRegData({
+        firstName: '',
+        lastName: '',
+        birthDate: '',
+        birthPlace: '',
+        street: '',
+        zip: '',
+        city: '',
+        phone: '',
+        email: '',
+        licenseClass: '',
+        location: '',
+        hasLicense: 'nein',
+        existingLicense: '',
+        notes: '',
+      });
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : 'Unbekannter Fehler');
+      setSubmitState('error');
+    }
   };
 
   const handleRegChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -113,6 +154,17 @@ export function Kontakt() {
 
   return (
     <>
+      <Seo
+        title="Kontakt & Anmeldung — Fahrschule Nicolai"
+        description="Anmeldung & Kontakt: Standorte Eglosheim (Monreposstraße 2) und Grünbühl (Netzestraße 31) in Ludwigsburg. Telefon, E-Mail, Online-Anmeldung."
+        jsonLd={[
+          breadcrumbsSchema([
+            { name: 'Startseite', url: '/' },
+            { name: 'Kontakt', url: '/kontakt' },
+          ]),
+          ...locations.map(drivingSchoolSchema),
+        ]}
+      />
       <PageHero
         crumb="Kontakt"
         title={<span className="gradient-text">KONTAKT</span>}
@@ -135,7 +187,11 @@ export function Kontakt() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
             <button
               type="button"
-              onClick={() => setFormMode('inquiry')}
+              onClick={() => {
+                setFormMode('inquiry');
+                setSubmitState('idle');
+                setErrorMsg('');
+              }}
               className={`group relative overflow-hidden rounded-2xl border-2 p-6 text-left transition-all duration-300 ${
                 formMode === 'inquiry'
                   ? 'border-primary bg-gradient-to-br from-primary/15 to-primary/5 shadow-lg shadow-primary/10'
@@ -164,7 +220,11 @@ export function Kontakt() {
 
             <button
               type="button"
-              onClick={() => setFormMode('registration')}
+              onClick={() => {
+                setFormMode('registration');
+                setSubmitState('idle');
+                setErrorMsg('');
+              }}
               className={`group relative overflow-hidden rounded-2xl border-2 p-6 text-left transition-all duration-300 ${
                 formMode === 'registration'
                   ? 'border-accent bg-gradient-to-br from-accent/15 to-accent/5 shadow-lg shadow-accent/10'
@@ -196,8 +256,56 @@ export function Kontakt() {
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 rounded-3xl blur-2xl" />
 
             <div className="relative bg-secondary-light rounded-3xl p-8 md:p-10 shadow-2xl shadow-black/50 border border-white/10">
+              {submitState === 'success' && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className="mb-6 flex items-start gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/30 animate-fade-in"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-white font-semibold">
+                      {formMode === 'registration'
+                        ? 'Vielen Dank für deine Anmeldung!'
+                        : 'Vielen Dank für deine Nachricht!'}
+                    </p>
+                    <p className="text-gray-300 text-sm mt-1">
+                      Wir haben deine Daten erhalten und melden uns zeitnah bei dir.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {submitState === 'error' && (
+                <div
+                  role="alert"
+                  aria-live="assertive"
+                  className="mb-6 flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30 animate-fade-in"
+                >
+                  <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-white font-semibold">Senden fehlgeschlagen</p>
+                    <p className="text-gray-300 text-sm mt-1">
+                      {errorMsg || 'Bitte versuche es erneut oder kontaktiere uns telefonisch.'}
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {formMode === 'inquiry' ? (
-                <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in">
+                <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in" noValidate>
+                  {/* Honeypot — bleibt für echte Nutzer unsichtbar */}
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    aria-hidden="true"
+                    style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                  />
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className={labelClass}>Name *</label>
@@ -226,15 +334,40 @@ export function Kontakt() {
                   </div>
 
                   <div className="text-center pt-4">
-                    <button type="submit" className="inline-flex items-center gap-3 btn-primary text-secondary px-10 py-5 rounded-2xl font-bold text-lg group">
-                      <Send className="w-5 h-5" />
-                      Nachricht senden
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <button
+                      type="submit"
+                      disabled={submitState === 'sending'}
+                      className="inline-flex items-center gap-3 btn-primary text-secondary px-10 py-5 rounded-2xl font-bold text-lg group disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {submitState === 'sending' ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Wird gesendet…
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5" />
+                          Nachricht senden
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>
               ) : (
-                <form onSubmit={handleRegSubmit} className="space-y-6 animate-fade-in">
+                <form onSubmit={handleRegSubmit} className="space-y-6 animate-fade-in" noValidate>
+                  {/* Honeypot — bleibt für echte Nutzer unsichtbar */}
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    aria-hidden="true"
+                    style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                  />
+
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-accent/10 border border-accent/20">
                     <ClipboardCheck className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                     <p className="text-gray-300 text-sm">
@@ -378,10 +511,23 @@ export function Kontakt() {
                   </div>
 
                   <div className="text-center pt-4">
-                    <button type="submit" className="inline-flex items-center gap-3 btn-accent text-white px-10 py-5 rounded-2xl font-bold text-lg group">
-                      <ClipboardCheck className="w-5 h-5" />
-                      Anmeldung absenden
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <button
+                      type="submit"
+                      disabled={submitState === 'sending'}
+                      className="inline-flex items-center gap-3 btn-accent text-white px-10 py-5 rounded-2xl font-bold text-lg group disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {submitState === 'sending' ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Wird gesendet…
+                        </>
+                      ) : (
+                        <>
+                          <ClipboardCheck className="w-5 h-5" />
+                          Anmeldung absenden
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
                     </button>
                     <p className="text-gray-500 text-xs mt-4">
                       * Pflichtfeld · Unverbindlich · Wir melden uns persönlich bei dir
@@ -408,7 +554,7 @@ export function Kontakt() {
                 {generalInfo.email}
               </a>
               <a
-                href="tel:01702138547"
+                href="tel:+491702138547"
                 className="inline-flex items-center gap-3 text-white font-semibold hover:text-accent transition-colors group"
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -444,6 +590,13 @@ export function Kontakt() {
                   <div className="relative bg-secondary-light rounded-3xl shadow-xl shadow-black/40 h-full card-hover border border-white/10 overflow-hidden flex flex-col">
                     <div className="p-10">
                       <h3 className="font-display text-3xl text-white mb-8">{location.name}</h3>
+                      <Link
+                        to={location.landingPath}
+                        className="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark transition-colors group/link -mt-6 mb-8"
+                      >
+                        Mehr zum Standort {location.district}
+                        <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                      </Link>
 
                       <div className="space-y-6">
                         <div className="flex items-start gap-4">
@@ -464,7 +617,7 @@ export function Kontakt() {
                           <div>
                             <p className="font-semibold text-white">Telefon</p>
                             <a
-                              href={`tel:${location.phone.replace(/\s/g, '')}`}
+                              href={`tel:${location.phoneTel}`}
                               className="text-accent text-xl font-bold hover:text-accent-dark transition-colors"
                             >
                               {location.phone}

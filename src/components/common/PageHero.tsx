@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Sparkles } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { Picture } from './Picture';
 
 type PageHeroProps = {
   crumb: string;
@@ -20,12 +21,19 @@ export function PageHero({
 }: PageHeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-secondary pt-40 md:pt-48 pb-20 md:pb-24 min-h-[26rem] md:min-h-[34rem] flex items-center">
-      <img
-        src="/images/hero/breadcrumb.jpg"
-        alt=""
+      <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-center scale-105 motion-safe:animate-[ken-burns_20s_ease-in-out_infinite_alternate]"
-      />
+        className="absolute inset-0 -z-10 h-full w-full overflow-hidden"
+      >
+        <Picture
+          src="/images/hero/breadcrumb.jpg"
+          alt=""
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="h-full w-full object-cover object-center scale-105 motion-safe:animate-[ken-burns_20s_ease-in-out_infinite_alternate]"
+        />
+      </div>
 
       <div className="absolute inset-0 -z-10 bg-secondary/40 mix-blend-multiply" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/95 via-secondary/55 to-secondary" />

@@ -1,0 +1,25 @@
+{
+  "name": "Fahrschule Nicolai",
+  "short_name": "Nicolai",
+  "description": "Fahrschule in Ludwigsburg — PKW und Motorrad, Standorte Eglosheim und Grünbühl.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#0f0f0f",
+  "theme_color": "#0f0f0f",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

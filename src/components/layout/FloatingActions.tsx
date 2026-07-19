@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, ClipboardCheck } from 'lucide-react';
-import { locations, generalInfo } from '../../data/contact';
+import { generalInfo, primaryPhoneTel } from '../../data/contact';
 
-const PRIMARY_PHONE_TEL = `tel:${locations[0].phone.replace(/[\s/]/g, '')}`;
+const PRIMARY_PHONE_TEL = `tel:${primaryPhoneTel}`;
 const EMAIL_HREF = `mailto:${generalInfo.email}`;
 const WHATSAPP_URL = 'https://wa.me/491702138547';
 const REGISTER_PATH = '/kontakt#anmeldung';

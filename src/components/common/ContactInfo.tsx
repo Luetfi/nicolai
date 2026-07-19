@@ -22,7 +22,7 @@ export function ContactInfo({ location }: ContactInfoProps) {
       <div className="flex items-center gap-3">
         <Phone className="w-5 h-5 text-accent flex-shrink-0" />
         <a
-          href={`tel:${location.phone.replace(/\s/g, '')}`}
+          href={`tel:${location.phoneTel}`}
           className="text-gray-700 hover:text-accent transition-colors"
         >
           {location.phone}

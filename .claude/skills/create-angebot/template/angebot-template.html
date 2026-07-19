@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angebot &mdash; {{PROJEKT_TITEL}}</title>
+<style>
+  /* ===== FONTS ===== */
+  @font-face {
+    font-family: 'Nordique Pro';
+    src: url('{{FONT_BASE_PATH}}/FontsFree-Net-Nordique-Pro-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  @font-face { font-family: 'Quicksand'; src: url('{{FONT_BASE_PATH}}/Quicksand/static/Quicksand-Regular.ttf') format('truetype'); font-weight: 400; }
+  @font-face { font-family: 'Quicksand'; src: url('{{FONT_BASE_PATH}}/Quicksand/static/Quicksand-Medium.ttf') format('truetype'); font-weight: 500; }
+  @font-face { font-family: 'Quicksand'; src: url('{{FONT_BASE_PATH}}/Quicksand/static/Quicksand-SemiBold.ttf') format('truetype'); font-weight: 600; }
+  @font-face { font-family: 'Quicksand'; src: url('{{FONT_BASE_PATH}}/Quicksand/static/Quicksand-Bold.ttf') format('truetype'); font-weight: 700; }
+
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary-cyan: #00C6FF;
+    --primary-blue: #0072FF;
+    --primary-dark: #0A1628;
+    --neutral-white: #FFFFFF;
+    --neutral-gray: #8899AA;
+    --metallic-silver: #A8B8C8;
+    --dark-navy: #1A3A5C;
+    --dark-blue: #2A4A6C;
+    --mid-blue: #5B8BA8;
+    --bg-light: #f0f4f8;
+  }
+
+  html { font-size: 11pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: 'Quicksand', 'Segoe UI', system-ui, sans-serif;
+    color: var(--primary-dark);
+    line-height: 1.6;
+    background: var(--neutral-white);
+  }
+
+  /* ===== PAGE SETUP ===== */
+  @page { size: A4; margin: 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 12mm 28mm 0 28mm;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+  .page-body { flex: 1; overflow: hidden; }
+
+  /* ===== PAGE DECORATIONS ===== */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 6mm; height: 100%;
+    background: linear-gradient(180deg, var(--primary-cyan) 0%, var(--primary-blue) 100%);
+  }
+
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8pt;
+    color: var(--mid-blue);
+    border-top: 0.5pt solid #e0e6ec;
+    padding: 3mm 0 8mm 0;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+  .page-footer .company { font-weight: 600; color: var(--dark-blue); }
+
+  /* ===== COVER PAGE ===== */
+  .cover {
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 35mm;
+    padding-right: 28mm;
+    background: var(--primary-dark);
+    color: var(--neutral-white);
+  }
+  .cover::before { background: var(--primary-cyan); opacity: 0.9; }
+  .cover .logo { height: 60px; margin-bottom: 20mm; }
+  .cover .label {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600; font-size: 11pt;
+    letter-spacing: 3pt; text-transform: uppercase;
+    color: var(--primary-cyan); margin-bottom: 6mm;
+  }
+  .cover h1 {
+    font-family: 'Nordique Pro', 'Quicksand', sans-serif;
+    font-size: 28pt; font-weight: 700; line-height: 1.2;
+    margin-bottom: 4mm; color: var(--neutral-white);
+  }
+  .cover .subtitle { font-size: 14pt; font-weight: 500; color: var(--primary-cyan); margin-bottom: 4mm; line-height: 1.4; }
+  .cover .subtitle-detail { font-size: 11pt; font-weight: 400; color: var(--mid-blue); font-style: italic; margin-bottom: 8mm; }
+  .cover .tags { font-size: 10pt; color: var(--mid-blue); margin-bottom: 16mm; letter-spacing: 0.5pt; }
+  .cover .meta { font-size: 9.5pt; color: var(--neutral-gray); line-height: 1.8; }
+  .cover .meta strong { color: var(--neutral-white); font-weight: 600; }
+  .cover .accent-line { width: 60px; height: 3px; background: linear-gradient(90deg, var(--primary-cyan), var(--primary-blue)); border-radius: 2px; margin-bottom: 8mm; }
+
+  /* ===== CONTENT PAGES ===== */
+  .content .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8mm;
+    flex-shrink: 0;
+  }
+  .content .header-bar .logo-small { height: 22px; }
+  .content .header-bar .doc-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 8pt; font-weight: 600;
+    color: var(--mid-blue);
+    letter-spacing: 0.8pt; text-transform: uppercase;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h2 {
+    font-family: 'Nordique Pro', 'Quicksand', sans-serif;
+    font-size: 16pt; font-weight: 700;
+    color: var(--primary-dark);
+    margin-top: 8mm; margin-bottom: 4mm;
+    padding-bottom: 2mm;
+    border-bottom: 2px solid var(--primary-cyan);
+  }
+  h2:first-child { margin-top: 0; }
+  h2 .section-num { color: var(--primary-cyan); margin-right: 3mm; }
+  h3 { font-family: 'Quicksand', sans-serif; font-size: 12pt; font-weight: 700; color: var(--dark-navy); margin-top: 6mm; margin-bottom: 2mm; }
+  p { margin-bottom: 3mm; text-align: justify; hyphens: auto; }
+  ul, ol { margin-bottom: 3mm; padding-left: 6mm; }
+  li { margin-bottom: 1.5mm; }
+  strong { font-weight: 600; color: var(--primary-dark); }
+
+  /* ===== TABLES ===== */
+  .data-table, .kalkulation-table, .timeline-table { width: 100%; border-collapse: collapse; margin-top: 4mm; margin-bottom: 4mm; font-size: 9pt; }
+  .data-table thead th, .kalkulation-table thead th, .timeline-table thead th { background: var(--primary-dark); color: var(--neutral-white); font-weight: 600; padding: 2mm 3mm; text-align: left; font-size: 8.5pt; letter-spacing: 0.3pt; }
+  .data-table tbody td, .kalkulation-table tbody td, .timeline-table tbody td { padding: 2mm 3mm; border-bottom: 0.5pt solid #e0e6ec; vertical-align: top; }
+  .data-table tbody tr:nth-child(even), .kalkulation-table tbody tr:nth-child(even), .timeline-table tbody tr:nth-child(even) { background: var(--bg-light); }
+
+  /* Kalkulation specifics — Festpreis-Spalte (4. Spalte) rechtsbuendig */
+  .kalkulation-table thead th:nth-child(4) { text-align: right; }
+  .kalkulation-table tbody td:nth-child(4) { text-align: right; white-space: nowrap; }
+  .kalkulation-table .subtotal td { border-top: 2px solid var(--dark-blue); font-weight: 600; padding-top: 2.5mm; background: transparent; }
+  .kalkulation-table .discount td { color: var(--primary-blue); font-weight: 600; background: transparent; }
+  .kalkulation-table .total td { background: var(--primary-dark); color: var(--neutral-white); font-weight: 700; padding: 2.5mm 3mm; font-size: 10pt; }
+  .kalkulation-note { font-size: 8.5pt; color: var(--mid-blue); font-style: italic; margin-top: 2mm; }
+
+  /* Timeline specifics */
+  .timeline-table tbody td:first-child { font-weight: 600; color: var(--dark-navy); white-space: nowrap; width: 22%; }
+  .timeline-table tbody td:nth-child(2) { font-weight: 600; color: var(--primary-dark); width: 28%; }
+
+  /* Direction arrows in mapping tables */
+  .direction { text-align: center; font-weight: 700; color: var(--primary-cyan); font-size: 12pt; }
+
+  /* ===== INFO BOXES ===== */
+  .info-box { background: var(--bg-light); border-left: 3px solid var(--primary-cyan); padding: 3mm 4mm; margin: 4mm 0; font-size: 9.5pt; }
+  .info-box.warning { border-left-color: var(--primary-blue); }
+
+  /* ===== SIGNATURE BLOCK ===== */
+  .signature-block { margin-top: 15mm; padding-top: 8mm; }
+  .signature-block .closing { margin-bottom: 6mm; }
+  .signature-line { width: 70mm; border-bottom: 1px solid var(--dark-blue); margin-top: 18mm; margin-bottom: 3mm; }
+  .signature-details { font-size: 9pt; color: var(--dark-blue); line-height: 1.6; }
+
+  .cyan { color: var(--primary-cyan); }
+  .blue { color: var(--primary-blue); }
+
+  @media print { body { margin: 0; } .page { margin: 0; } }
+</style>
+</head>
+<body>
+
+<!--
+  TEMPLATE ANLEITUNG:
+  - Jede Seite ist ein <div class="page"> mit exakt A4-Hoehe (297mm)
+  - Content innerhalb von <div class="page-body"> einschliessen
+  - Footer <div class="page-footer"> wird automatisch am Seitenende platziert (flexbox margin-top: auto)
+  - Inhalte die ueber die Seitenhoehe hinausgehen werden abgeschnitten (overflow: hidden)
+  - Deshalb: Inhalt pro Seite sorgfaeltig verteilen, max ~260mm Nutzhoehe (12mm top-padding + footer)
+  - Cover-Seite braucht kein page-body (verwendet Flexbox centering)
+  - Logo wird als base64-encoded PNG <img> Tag eingebettet (NICHT als SVG)
+  - Gleiches WEBIFY-Logo fuer Cover und Content-Seiten (transparenter Hintergrund)
+  - Logo-Quelle: C:\Users\luetf\Downloads\3D transparent background 1.png
+  - Firmenname ist "WEBIFY"
+-->
+
+<!-- ==================== COVER PAGE ==================== -->
+<div class="page cover">
+  <!-- Logo als base64-encoded PNG einbetten -->
+  <img class="logo" src="{{LOGO_BASE64}}" alt="WEBIFY">
+
+  <div class="label">Angebot</div>
+  <div class="accent-line"></div>
+
+  <h1>{{PROJEKT_TITEL}}</h1>
+  <div class="subtitle">{{PROJEKT_UNTERTITEL}}</div>
+  <!-- Optional: <div class="subtitle-detail">{{ZUSATZINFO}}</div> -->
+  <div class="tags">{{TAGS}}</div>
+
+  <div class="meta">
+    <strong>Kunde:</strong> {{KUNDE}}<br>
+    <strong>Datum:</strong> {{DATUM}}<br>
+    <strong>Version:</strong> {{VERSION}}
+  </div>
+</div>
+
+<!-- ==================== CONTENT PAGE (wiederholen) ==================== -->
+<!-- Beispiel Content-Seite: -->
+<div class="page content">
+  <div class="header-bar">
+    <!-- Logo als base64-encoded PNG einbetten -->
+    <img class="logo-small" src="{{LOGO_BASE64}}" alt="WEBIFY">
+    <span class="doc-title">Angebot &mdash; {{KUNDE}}</span>
+  </div>
+  <div class="page-body">
+    <h2><span class="section-num">1.</span> Einleitung &amp; Zielsetzung</h2>
+    <p>{{EINLEITUNG_TEXT}}</p>
+
+    <!-- Weitere Abschnitte nach Bedarf -->
+  </div>
+  <div class="page-footer">
+    <span class="company">WEBIFY</span>
+    <span>Seite 2</span>
+  </div>
+</div>
+
+<!-- Weitere Seiten nach gleichem Muster erstellen -->
+
+</body>
+</html>

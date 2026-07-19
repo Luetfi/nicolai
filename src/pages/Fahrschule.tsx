@@ -2,6 +2,10 @@ import { Users, Award, Heart, Target, Phone, ShieldCheck, GraduationCap, BadgeCh
 import { PageHero } from '../components/common';
 import { useJsonData } from '../hooks/useJsonData';
 import type { TeamFile } from '../data/team';
+import { Seo } from '../seo/Seo';
+import { breadcrumbsSchema, personSchema } from '../seo/schema';
+import { toTelHref } from '../data/contact';
+import { Picture } from '../components/common/Picture';
 
 export function Fahrschule() {
   const { data: teamData } = useJsonData<TeamFile>('/data/team.json');
@@ -36,6 +40,17 @@ export function Fahrschule() {
 
   return (
     <>
+      <Seo
+        title="Fahrschule Nicolai — 55+ Jahre, Team & Werte"
+        description="Über uns: Familienbetrieb seit 1969 in Ludwigsburg. Erfahrene Fahrlehrer, Mitglied im Fahrlehrerverband Baden-Württemberg. Lerne unser Team kennen."
+        jsonLd={[
+          breadcrumbsSchema([
+            { name: 'Startseite', url: '/' },
+            { name: 'Fahrschule', url: '/fahrschule' },
+          ]),
+          ...teamMembers.map(personSchema),
+        ]}
+      />
       <PageHero
         crumb="Fahrschule"
         title={<>ÜBER <span className="gradient-text">UNS</span></>}
@@ -130,9 +145,10 @@ export function Fahrschule() {
                   {/* Image */}
                   <div className="aspect-square bg-gradient-to-br from-secondary-light to-secondary relative overflow-hidden flex-shrink-0">
                     {member.image ? (
-                      <img
+                      <Picture
                         src={member.image}
                         alt={member.name}
+                        loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     ) : (
@@ -156,7 +172,7 @@ export function Fahrschule() {
                     )}
                     {member.phone && (
                       <a
-                        href={`tel:${member.phone.replace(/\s/g, '')}`}
+                        href={toTelHref(member.phone)}
                         className="inline-flex items-center gap-2 text-white text-sm font-medium hover:text-primary transition-colors mt-auto pt-2"
                       >
                         <Phone className="w-4 h-4 text-primary" />
