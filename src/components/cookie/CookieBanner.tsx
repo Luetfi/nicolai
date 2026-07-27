@@ -40,8 +40,9 @@ export function CookieBanner() {
                 id="cookie-banner-description"
                 className="text-sm text-gray-300 leading-relaxed"
               >
-                Wir nutzen ausschließlich technisch notwendige Speicher­zugriffe. Für die eingebetteten Karten von{' '}
-                <span className="text-primary font-medium">Google Maps</span> brauchen wir deine Einwilligung – dabei wird deine IP-Adresse an Google übertragen.{' '}
+                Technisch notwendige Speicher­zugriffe nutzen wir immer. Für die anonyme{' '}
+                <span className="text-primary font-medium">Statistik</span> (Google Analytics) und die eingebetteten Karten von{' '}
+                <span className="text-primary font-medium">Google Maps</span> brauchen wir deine Einwilligung – dabei werden Daten an Google übertragen.{' '}
                 <Link
                   to="/datenschutz"
                   className="text-accent hover:text-accent-dark underline underline-offset-2 transition-colors"

@@ -10,7 +10,7 @@ interface MapsConsentProps {
 }
 
 export function MapsConsent({ query, locationName, address, city }: MapsConsentProps) {
-  const { maps, saveSelection } = useConsent();
+  const { maps, analytics, saveSelection } = useConsent();
   const [oneTime, setOneTime] = useState(false);
   const encodedQuery = encodeURIComponent(query);
   const shouldLoad = maps || oneTime;
@@ -100,7 +100,7 @@ export function MapsConsent({ query, locationName, address, city }: MapsConsentP
         <div className="flex flex-col gap-2 w-full max-w-xs">
           <button
             type="button"
-            onClick={() => saveSelection({ maps: true })}
+            onClick={() => saveSelection({ maps: true, analytics })}
             className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl btn-primary text-secondary text-sm font-bold tracking-wide"
           >
             <MapPin className="w-4 h-4" />

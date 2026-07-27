@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Deployt den Frontend-Build (/dist) zur Strato-Webspace per WinSCP.
 

@@ -14,6 +14,7 @@ import {
   CalendarClock,
   Settings,
   ExternalLink,
+  BarChart3,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/common';
@@ -31,12 +32,13 @@ const sections = [
   { id: 'cookies', label: '5. Cookies & lokale Speicherung', icon: Cookie },
   { id: 'schriftarten', label: '6. Schriftarten', icon: Type },
   { id: 'maps', label: '7. Google Maps', icon: MapPin },
-  { id: 'ssl', label: '8. SSL/TLS-Verschlüsselung', icon: Lock },
-  { id: 'rechte', label: '9. Ihre Rechte', icon: Shield },
-  { id: 'widerruf', label: '10. Widerruf der Einwilligung', icon: RefreshCw },
-  { id: 'beschwerde', label: '11. Beschwerderecht', icon: Scale },
-  { id: 'links', label: '12. Externe Links', icon: Link2 },
-  { id: 'aktualitaet', label: '13. Aktualität', icon: CalendarClock },
+  { id: 'analytics', label: '8. Google Analytics', icon: BarChart3 },
+  { id: 'ssl', label: '9. SSL/TLS-Verschlüsselung', icon: Lock },
+  { id: 'rechte', label: '10. Ihre Rechte', icon: Shield },
+  { id: 'widerruf', label: '11. Widerruf der Einwilligung', icon: RefreshCw },
+  { id: 'beschwerde', label: '12. Beschwerderecht', icon: Scale },
+  { id: 'links', label: '13. Externe Links', icon: Link2 },
+  { id: 'aktualitaet', label: '14. Aktualität', icon: CalendarClock },
 ];
 
 function Bullet({ children }: { children: React.ReactNode }) {
@@ -125,8 +127,10 @@ export function Datenschutz() {
               wenn du unsere Webseite besuchst.
             </p>
             <p className="text-gray-400 leading-relaxed text-sm">
-              Was wir <span className="text-primary font-medium">nicht</span> tun: Wir nutzen kein Google Analytics,
-              keine Werbe-Pixel von Facebook oder Instagram, kein Conversion-Tracking, keine Profilbildung.
+              Zur anonymen Reichweiten­messung setzen wir Google Analytics ein – aber{' '}
+              <span className="text-primary font-medium">ausschließlich mit deiner Einwilligung</span>. Was wir{' '}
+              <span className="text-primary font-medium">nicht</span> tun: keine Werbe-Pixel von Facebook oder
+              Instagram, kein seitenübergreifendes Conversion-Tracking, keine Profilbildung zu Werbezwecken.
             </p>
           </div>
 
@@ -304,8 +308,9 @@ export function Datenschutz() {
           {/* 5. Cookies & lokale Speicherung */}
           <SectionCard id="cookies" icon={Cookie} title="5. Cookies & lokale Speicherung">
             <p>
-              Diese Webseite setzt keine Tracking- oder Werbe-Cookies. Wir verwenden ausschließlich
-              folgende technisch notwendige Speicher­zugriffe:
+              Ohne deine Einwilligung setzen wir keine Tracking- oder Werbe-Cookies. Technisch notwendig
+              sind ausschließlich die folgenden Speicher­zugriffe. Statistik-Cookies von Google Analytics
+              werden nur gesetzt, wenn du der Kategorie „Statistik" zustimmst (siehe Abschnitt 8):
             </p>
             <div className="space-y-3 not-prose">
               <div className="p-5 rounded-2xl bg-secondary border border-white/10">
@@ -409,8 +414,61 @@ export function Datenschutz() {
             </p>
           </SectionCard>
 
-          {/* 8. SSL */}
-          <SectionCard id="ssl" icon={Lock} title="8. SSL/TLS-Verschlüsselung">
+          {/* 8. Google Analytics */}
+          <SectionCard id="analytics" icon={BarChart3} title="8. Reichweitenmessung mit Google Analytics">
+            <p>
+              Zur anonymen statistischen Auswertung der Nutzung unserer Webseite verwenden wir{' '}
+              <span className="text-white font-medium">Google Analytics 4</span>, einen Dienst der{' '}
+              Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+            </p>
+            <p>
+              <span className="text-white font-medium">Wichtig:</span> Google Analytics wird{' '}
+              <span className="text-primary font-medium">erst geladen und aktiv, wenn du der Kategorie „Statistik" ausdrücklich zustimmst</span>
+              . Ohne deine Einwilligung werden keine Analyse-Cookies gesetzt und keine Daten an Google
+              übertragen.
+            </p>
+            <p>Mit deiner Einwilligung verarbeitet Google Analytics insbesondere:</p>
+            <ul className="space-y-2">
+              <Bullet>Gekürzte IP-Adresse (IP-Anonymisierung ist in GA4 standardmäßig aktiv)</Bullet>
+              <Bullet>Besuchte Seiten, Verweildauer und Herkunft des Besuchs (Referrer)</Bullet>
+              <Bullet>Ungefährer Standort (Land/Region), Geräte- und Browsertyp</Bullet>
+              <Bullet>Eine pseudonyme Kennung in Cookies (z. B. <code className="px-1.5 py-0.5 rounded bg-secondary-light text-accent text-xs">_ga</code>)</Bullet>
+            </ul>
+            <p>
+              Wir werten diese Daten ausschließlich pseudonym aus, um zu verstehen, welche Inhalte
+              genutzt werden und unser Angebot zu verbessern. Eine Zusammenführung mit deiner Person
+              findet nicht statt. Google kann Daten in Server in den USA übertragen und stützt solche
+              Übermittlungen auf die EU-Standardvertragsklauseln. Details in der{' '}
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-accent hover:text-accent-dark transition-colors"
+              >
+                Datenschutzerklärung von Google
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+              .
+            </p>
+            <p>
+              <span className="text-white font-medium">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. a DSGVO
+              sowie § 25 Abs. 1 TDDDG (Einwilligung). Du kannst deine Einwilligung jederzeit mit Wirkung
+              für die Zukunft{' '}
+              <button
+                type="button"
+                onClick={openSettings}
+                className="inline-flex items-center gap-1 text-accent hover:text-accent-dark underline underline-offset-2 transition-colors"
+              >
+                <Settings className="w-3.5 h-3.5" />
+                über die Cookie-Einstellungen
+              </button>{' '}
+              widerrufen. Bei Widerruf wird das Tracking sofort gestoppt und gesetzte Analyse-Cookies
+              werden entfernt.
+            </p>
+          </SectionCard>
+
+          {/* 9. SSL */}
+          <SectionCard id="ssl" icon={Lock} title="9. SSL/TLS-Verschlüsselung">
             <p>
               Diese Seite nutzt aus Gründen der Sicherheit und zum Schutz der Übertragung
               vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung
@@ -421,7 +479,7 @@ export function Datenschutz() {
           </SectionCard>
 
           {/* 9. Rechte */}
-          <SectionCard id="rechte" icon={Shield} title="9. Deine Rechte als betroffene Person">
+          <SectionCard id="rechte" icon={Shield} title="10. Deine Rechte als betroffene Person">
             <p>Hinsichtlich der dich betreffenden Daten stehen dir folgende Rechte zu:</p>
             <ul className="space-y-2">
               <Bullet>
@@ -465,7 +523,7 @@ export function Datenschutz() {
           <SectionCard
             id="widerruf"
             icon={RefreshCw}
-            title="10. Widerruf der Einwilligung"
+            title="11. Widerruf der Einwilligung"
           >
             <p>
               Sofern du eine Einwilligung erteilt hast (z. B. zum Laden der Google-Maps-Karten),
@@ -485,7 +543,7 @@ export function Datenschutz() {
           </SectionCard>
 
           {/* 11. Beschwerde */}
-          <SectionCard id="beschwerde" icon={Scale} title="11. Beschwerderecht bei der Aufsichtsbehörde">
+          <SectionCard id="beschwerde" icon={Scale} title="12. Beschwerderecht bei der Aufsichtsbehörde">
             <p>
               Unbeschadet eines anderweitigen verwaltungsrechtlichen oder gerichtlichen Rechtsbehelfs
               steht dir das Recht auf Beschwerde bei einer Aufsichtsbehörde zu, wenn du der Ansicht
@@ -522,7 +580,7 @@ export function Datenschutz() {
           </SectionCard>
 
           {/* 12. Externe Links */}
-          <SectionCard id="links" icon={Link2} title="12. Externe Links">
+          <SectionCard id="links" icon={Link2} title="13. Externe Links">
             <p>
               Unsere Webseite kann Links zu externen Webseiten enthalten (z. B. zum Fahrlehrerverband
               Baden-Württemberg, Shutterstock oder Google Maps). Auf den Inhalt und die
@@ -533,7 +591,7 @@ export function Datenschutz() {
           </SectionCard>
 
           {/* 13. Aktualität */}
-          <SectionCard id="aktualitaet" icon={CalendarClock} title="13. Aktualität & Änderungen">
+          <SectionCard id="aktualitaet" icon={CalendarClock} title="14. Aktualität & Änderungen">
             <p>
               Durch die Weiterentwicklung unseres Internetauftritts oder geänderte gesetzliche
               Vorgaben kann es notwendig werden, diese Datenschutzerklärung anzupassen. Die jeweils

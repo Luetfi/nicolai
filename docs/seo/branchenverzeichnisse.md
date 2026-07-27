@@ -6,18 +6,17 @@ Status: ☐ offen · 🕓 eingereicht/wartet · ✅ live & geprüft
 | # | Verzeichnis | URL | Eglosheim | Grünbühl | Notizen |
 |---|---|---|---|---|---|
 | 1 | Google Business Profile | business.google.com | ✅ | ✅ | Übernommen (Juli 2026). Landingpages als Website-Link eintragen! |
-| 2 | Bing Places | bingplaces.com | ☐ | ☐ | Import aus GBP möglich — schnellster Weg |
+| 2 | Bing Places | bingplaces.com | ✅ | ✅ | Import aus GBP möglich — schnellster Weg |
 | 3 | Apple Business Connect | businessconnect.apple.com | ☐ | ☐ | Apple-ID nötig; wichtig für iPhone-Nutzer/Apple Maps |
-| 4 | Das Örtliche | dasoertliche.de | ☐ | ☐ | Kostenloser Basiseintrag |
-| 5 | Gelbe Seiten | gelbeseiten.de | ☐ | ☐ | Kostenloser Basiseintrag |
-| 6 | 11880 | 11880.com | ☐ | ☐ | Kostenloser Basiseintrag |
-| 7 | GoLocal | golocal.de | ☐ | ☐ | Bewertungsportal, gehört zu Das Örtliche |
-| 8 | Cylex | cylex.de | ☐ | ☐ | |
-| 9 | meinestadt.de | meinestadt.de | ☐ | ☐ | Lokal stark für „Ludwigsburg"-Suchen |
+| 4 | Das Örtliche | dasoertliche.de | ☐ | ✅ | Kostenloser Basiseintrag |
+| 5 | Gelbe Seiten | gelbeseiten.de | ☐ | ✅ | Kostenloser Basiseintrag |
+| 6 | 11880 | 11880.com | ☐ | ✅ | Kostenloser Basiseintrag |
+| 7 | GoLocal | golocal.de | ☐ | ✅ | Bewertungsportal, gehört zu Das Örtliche |
+| 8 | Cylex | cylex.de | ✅ | ✅ | |
 | 10 | werkenntdenbesten | werkenntdenbesten.de | ☐ | ☐ | Aggregiert Bewertungen — Profil beanspruchen |
 | 11 | Yelp | yelp.de | ☐ | ☐ | Geringere Priorität in DE, aber KI-Dienste zitieren Yelp |
-| 12 | Fahrschulen-Portale | fahrschulen.de, fahrschule-123.de | ☐ | ☐ | Branchenspezifisch — starke Relevanzsignale |
-| 13 | Fahrlehrerverband BW | flvbw.de | 🕓 | 🕓 | Mitglied — prüfen, ob Eintrag mit Weblink möglich |
+| 12 | Fahrschulen-Portale | fahrschulen.de, fahrschule-123.de | ☐ | ✅ | Branchenspezifisch — starke Relevanzsignale |
+| 13 | Fahrlehrerverband BW | flvbw.de/home/fahrschulsuche.php | ☐ | ☐ | **Geprüft 19.07.2026: Nicolai fehlt, Konkurrenz (Lettmann, Campos, Rumi, Männer) ist mit Weblink gelistet!** Eintrag nur für Mitglieder mit Veröffentlichungs-Zustimmung — Ralf muss beim Verband die Listung + Homepage-Link (fahrschule-nicolai.de) beauftragen, ideal mit beiden Standorten (Haupt-/Zweigstelle) |
 
 ## Nach jedem Eintrag prüfen
 

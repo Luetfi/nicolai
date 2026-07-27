@@ -13,11 +13,12 @@ const HOST = '127.0.0.1';
 const PORT = 5050;
 
 const STORAGE_KEY = 'nicolai_consent_v1';
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2; // muss zu src/hooks/useConsent.ts passen
 const CONSENT_RECORD = JSON.stringify({
   v: SCHEMA_VERSION,
   decidedAt: '2026-01-01T00:00:00.000Z',
   maps: false,
+  analytics: false,
 });
 
 // Single Source of Truth für Routen — siehe src/seo/routes.ts

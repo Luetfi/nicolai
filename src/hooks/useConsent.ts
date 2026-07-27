@@ -1,21 +1,28 @@
 import { createContext, useContext } from 'react';
 
 export const STORAGE_KEY = 'nicolai_consent_v1';
-export const SCHEMA_VERSION = 1 as const;
+// v2: neue Kategorie "analytics" (Google Analytics). Alte v1-Datensätze werden
+// verworfen → Nutzer entscheiden erneut (DSGVO-konform bei neuer Kategorie).
+export const SCHEMA_VERSION = 2 as const;
 
-export type ConsentRecord = {
+export type ConsentSelection = {
+  maps: boolean;
+  analytics: boolean;
+};
+
+export type ConsentRecord = ConsentSelection & {
   v: typeof SCHEMA_VERSION;
   decidedAt: string;
-  maps: boolean;
 };
 
 export type ConsentContextValue = {
   ready: boolean;
   decided: boolean;
   maps: boolean;
+  analytics: boolean;
   acceptAll: () => void;
   rejectAll: () => void;
-  saveSelection: (next: { maps: boolean }) => void;
+  saveSelection: (next: ConsentSelection) => void;
   openSettings: () => void;
   closeSettings: () => void;
   settingsOpen: boolean;

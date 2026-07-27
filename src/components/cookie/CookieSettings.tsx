@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Cookie, Lock, MapPin, X, Check, Save } from 'lucide-react';
+import { Cookie, Lock, MapPin, BarChart3, X, Check, Save } from 'lucide-react';
 import { useConsent } from '../../hooks/useConsent';
 
 interface ToggleProps {
@@ -43,8 +43,9 @@ export function CookieSettings() {
 }
 
 function CookieSettingsDialog() {
-  const { closeSettings, maps, saveSelection, acceptAll, rejectAll } = useConsent();
+  const { closeSettings, maps, analytics, saveSelection, acceptAll, rejectAll } = useConsent();
   const [draftMaps, setDraftMaps] = useState(maps);
+  const [draftAnalytics, setDraftAnalytics] = useState(analytics);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -198,6 +199,30 @@ function CookieSettingsDialog() {
                 />
               </div>
             </div>
+
+            {/* Statistik / Google Analytics */}
+            <div className="rounded-2xl bg-secondary border border-white/10 p-5">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start gap-3 flex-1 min-w-0">
+                  <div className="w-10 h-10 bg-gradient-to-br from-accent/20 to-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <BarChart3 className="w-5 h-5 text-accent" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-display text-lg text-white tracking-wide uppercase">
+                      Statistik
+                    </h3>
+                    <p className="text-sm text-gray-400 mt-1.5 leading-relaxed">
+                      Anonyme Reichweiten­messung mit <span className="text-white font-medium">Google Analytics 4</span>, damit wir sehen, welche Seiten genutzt werden und unser Angebot verbessern können. Dabei werden Cookies gesetzt und Daten an Google Ireland Ltd. (Server ggf. in den USA) übertragen. Erst mit deiner Einwilligung.
+                    </p>
+                  </div>
+                </div>
+                <Toggle
+                  checked={draftAnalytics}
+                  onChange={setDraftAnalytics}
+                  label="Statistik mit Google Analytics zulassen"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Actions */}
@@ -213,7 +238,7 @@ function CookieSettingsDialog() {
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 type="button"
-                onClick={() => saveSelection({ maps: draftMaps })}
+                onClick={() => saveSelection({ maps: draftMaps, analytics: draftAnalytics })}
                 className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-sm font-semibold border border-white/15 transition-colors"
               >
                 <Save className="w-4 h-4" />
