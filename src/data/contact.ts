@@ -64,9 +64,7 @@ export const locations: Location[] = [
     infoTime: 'Auskunft und Anmeldung: 18:00 – 19:00 Uhr',
     geo: { lat: 48.9124, lng: 9.1695 },
     landingPath: '/fahrschule-ludwigsburg-eglosheim',
-    // TODO: Review-Link aus dem GBP-Profil eintragen, sobald vorhanden:
-    // googleReviewUrl: 'https://search.google.com/local/writereview?placeid=<PLACE_ID_EGLOSHEIM>',
-    // googleMapsProfileUrl: 'https://maps.google.com/?cid=<CID_EGLOSHEIM>',
+    googleReviewUrl: 'https://g.page/r/CeRekbQEjYPEECE/review',
   },
   {
     id: 'gruenbuehl',
@@ -83,9 +81,7 @@ export const locations: Location[] = [
     mapQuery: 'Netzestraße 31, 71638 Ludwigsburg, Deutschland',
     geo: { lat: 48.8794, lng: 9.2181 },
     landingPath: '/fahrschule-ludwigsburg-gruenbuehl',
-    // TODO: Review-Link aus dem GBP-Profil eintragen, sobald vorhanden:
-    // googleReviewUrl: 'https://search.google.com/local/writereview?placeid=<PLACE_ID_GRUENBUEHL>',
-    // googleMapsProfileUrl: 'https://maps.google.com/?cid=<CID_GRUENBUEHL>',
+    googleReviewUrl: 'https://g.page/r/CeIHnI9IsCRfEAE/review',
   },
 ];
 
