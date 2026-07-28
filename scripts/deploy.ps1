@@ -117,9 +117,13 @@ if ($Admin -and -not $Initial) {
     $AdminDir = Join-Path $RepoRoot "admin"
     if (-not (Test-Path $AdminDir)) { throw "/admin fehlt im Repo." }
 
-    # config.php enthält Passwort-Hash + APP_SECRET der Produktion und ist
-    # lokal gar nicht vorhanden — niemals überschreiben.
-    $lines += "synchronize remote -delete=off -filemask=`"|*/includes/config.php`" `"$AdminDir`" `"${RemotePath}admin/`""
+    # Zwei Dateien bleiben ausgeschlossen:
+    #   includes/config.php — Passwort-Hash + APP_SECRET der Produktion
+    #   setup.php           — erlaubt mit ?force=1 ein neues Admin-Passwort ohne
+    #                         Login und wird nach der Einrichtung bewusst vom
+    #                         Server gelöscht (siehe README-ADMIN.txt).
+    $adminExcludes = "*/includes/config.php; */setup.php"
+    $lines += "synchronize remote -delete=off -filemask=`"|$adminExcludes`" `"$AdminDir`" `"${RemotePath}admin/`""
 }
 
 if ($Initial) {
