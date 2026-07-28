@@ -10,6 +10,10 @@ export function Footer() {
 
   const quickLinks = [
     { path: '/', label: 'Startseite' },
+    { path: '/fuehrerschein-ludwigsburg', label: 'Führerschein in Ludwigsburg' },
+    { path: '/fuehrerschein-klasse-b-ludwigsburg', label: 'Klasse B — Auto' },
+    { path: '/motorradfuehrerschein-ludwigsburg', label: 'Motorradführerschein' },
+    { path: '/asf-aufbauseminar-ludwigsburg', label: 'ASF-Aufbauseminar' },
     { path: '/leistungen', label: 'Führerscheinklassen' },
     { path: '/fahrschule', label: 'Über uns' },
     { path: '/theorieunterricht', label: 'Theorieunterricht' },

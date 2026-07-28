@@ -1,5 +1,9 @@
 [
   { "path": "/", "changefreq": "weekly", "priority": 1.0, "indexable": true, "llmsTitle": "Startseite" },
+  { "path": "/fuehrerschein-ludwigsburg", "changefreq": "monthly", "priority": 0.9, "indexable": true, "llmsTitle": "Führerschein machen in Ludwigsburg – Ablauf, Dauer, Anmeldung" },
+  { "path": "/fuehrerschein-klasse-b-ludwigsburg", "changefreq": "monthly", "priority": 0.9, "indexable": true, "llmsTitle": "Autoführerschein Klasse B in Ludwigsburg" },
+  { "path": "/motorradfuehrerschein-ludwigsburg", "changefreq": "monthly", "priority": 0.9, "indexable": true, "llmsTitle": "Motorradführerschein in Ludwigsburg (AM, A1, A2, A)" },
+  { "path": "/asf-aufbauseminar-ludwigsburg", "changefreq": "monthly", "priority": 0.8, "indexable": true, "llmsTitle": "ASF-Aufbauseminar in Ludwigsburg" },
   { "path": "/leistungen", "changefreq": "monthly", "priority": 0.9, "indexable": true, "llmsTitle": "Leistungen & Führerscheinklassen" },
   { "path": "/fahrschule", "changefreq": "monthly", "priority": 0.8, "indexable": true, "llmsTitle": "Über uns & Team" },
   { "path": "/theorieunterricht", "changefreq": "weekly", "priority": 0.9, "indexable": true, "llmsTitle": "Theorieunterricht" },

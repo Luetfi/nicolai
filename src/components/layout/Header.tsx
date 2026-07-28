@@ -1,19 +1,44 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, ChevronRight, ChevronDown, ClipboardCheck, MapPin } from 'lucide-react';
+import {
+  Phone,
+  ChevronRight,
+  ChevronDown,
+  ClipboardCheck,
+  MapPin,
+  Compass,
+  Car,
+  Bike,
+  AlertTriangle,
+  ListChecks,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Picture } from '../common/Picture';
 import { locations } from '../../data/contact';
 
+type NavChild = { path: string; label: string; icon?: LucideIcon };
+
 type NavLink =
   | { path: string; label: string }
-  | { label: string; children: { path: string; label: string }[] };
+  | { label: string; childIcon: LucideIcon; children: NavChild[] };
 
 const navLinks: NavLink[] = [
   { path: '/', label: 'Startseite' },
-  { path: '/leistungen', label: 'Leistungen' },
+  {
+    label: 'Führerschein',
+    childIcon: ListChecks,
+    children: [
+      { path: '/fuehrerschein-ludwigsburg', label: 'Führerschein in Ludwigsburg', icon: Compass },
+      { path: '/fuehrerschein-klasse-b-ludwigsburg', label: 'Klasse B — Auto', icon: Car },
+      { path: '/motorradfuehrerschein-ludwigsburg', label: 'Motorrad — A, A2, A1', icon: Bike },
+      { path: '/asf-aufbauseminar-ludwigsburg', label: 'ASF-Aufbauseminar', icon: AlertTriangle },
+      { path: '/leistungen', label: 'Alle Leistungen', icon: ListChecks },
+    ],
+  },
   { path: '/fahrschule', label: 'Fahrschule' },
   {
     label: 'Standorte',
+    childIcon: MapPin,
     children: locations.map((l) => ({ path: l.landingPath, label: l.district })),
   },
   { path: '/theorieunterricht', label: 'Theorie' },
@@ -23,7 +48,8 @@ const navLinks: NavLink[] = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileLocOpen, setMobileLocOpen] = useState(false);
+  /** Label der im Mobilmenü aufgeklappten Gruppe — es kann immer nur eine offen sein. */
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -37,7 +63,7 @@ export function Header() {
 
   useEffect(() => {
     setMobileMenuOpen(false);
-    setMobileLocOpen(false);
+    setOpenGroup(null);
   }, [location]);
 
   useEffect(() => {
@@ -108,23 +134,26 @@ export function Header() {
                     </button>
                     {/* Dropdown panel (pt-3 bridges the gap so hover stays alive) */}
                     <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0">
-                      <div className="min-w-[220px] bg-secondary-light rounded-2xl border border-white/10 shadow-2xl shadow-black/40 p-2">
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.path}
-                            to={child.path}
-                            className={`
-                              flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors
-                              ${isActive(child.path)
-                                ? 'bg-primary/15 text-primary'
-                                : 'text-gray-300 hover:bg-white/5 hover:text-white'
-                              }
-                            `}
-                          >
-                            <MapPin className="w-4 h-4 flex-shrink-0 text-primary" />
-                            {child.label}
-                          </Link>
-                        ))}
+                      <div className="min-w-[250px] bg-secondary-light rounded-2xl border border-white/10 shadow-2xl shadow-black/40 p-2">
+                        {link.children.map((child) => {
+                          const ChildIcon = child.icon ?? link.childIcon;
+                          return (
+                            <Link
+                              key={child.path}
+                              to={child.path}
+                              className={`
+                                flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors whitespace-nowrap
+                                ${isActive(child.path)
+                                  ? 'bg-primary/15 text-primary'
+                                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                                }
+                              `}
+                            >
+                              <ChildIcon className="w-4 h-4 flex-shrink-0 text-primary" />
+                              {child.label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -215,6 +244,7 @@ export function Header() {
             {navLinks.map((link, index) => {
               if ('children' in link) {
                 const groupActive = link.children.some((c) => isActive(c.path));
+                const groupOpen = openGroup === link.label;
                 return (
                   <div
                     key={link.label}
@@ -223,8 +253,8 @@ export function Header() {
                   >
                     <button
                       type="button"
-                      onClick={() => setMobileLocOpen((v) => !v)}
-                      aria-expanded={mobileLocOpen}
+                      onClick={() => setOpenGroup((current) => (current === link.label ? null : link.label))}
+                      aria-expanded={groupOpen}
                       className={`
                         w-full flex items-center justify-between px-5 py-2.5 rounded-xl font-display text-lg tracking-wide
                         transition-all duration-300
@@ -237,30 +267,36 @@ export function Header() {
                       {link.label}
                       <ChevronDown
                         className={`w-5 h-5 transition-transform duration-300 ${
-                          mobileLocOpen ? 'rotate-180 text-primary' : 'text-gray-500'
+                          groupOpen ? 'rotate-180 text-primary' : 'text-gray-500'
                         }`}
                       />
                     </button>
-                    {mobileLocOpen && (
+                    {groupOpen && (
                       <div className="mt-1 ml-4 flex flex-col gap-1 border-l border-white/10 pl-3">
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.path}
-                            to={child.path}
-                            className={`
-                              flex items-center justify-between px-5 py-2 rounded-xl text-base transition-all duration-300
-                              ${isActive(child.path)
-                                ? 'text-primary'
-                                : 'text-gray-300 hover:bg-white/5 hover:text-white'
-                              }
-                            `}
-                          >
-                            {child.label}
-                            <ChevronRight
-                              className={`w-4 h-4 ${isActive(child.path) ? 'text-primary' : 'text-gray-600'}`}
-                            />
-                          </Link>
-                        ))}
+                        {link.children.map((child) => {
+                          const ChildIcon = child.icon ?? link.childIcon;
+                          return (
+                            <Link
+                              key={child.path}
+                              to={child.path}
+                              className={`
+                                flex items-center justify-between gap-3 px-5 py-2 rounded-xl text-base transition-all duration-300
+                                ${isActive(child.path)
+                                  ? 'text-primary'
+                                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                                }
+                              `}
+                            >
+                              <span className="flex items-center gap-2.5">
+                                <ChildIcon className="w-4 h-4 flex-shrink-0 text-primary" />
+                                {child.label}
+                              </span>
+                              <ChevronRight
+                                className={`w-4 h-4 flex-shrink-0 ${isActive(child.path) ? 'text-primary' : 'text-gray-600'}`}
+                              />
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

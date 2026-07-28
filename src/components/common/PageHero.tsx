@@ -59,7 +59,9 @@ export function PageHero({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
         <nav aria-label="Breadcrumb" className="mb-8 animate-fade-in">
-          <ol className="flex items-center justify-center gap-2 text-sm font-medium tracking-[0.15em] uppercase">
+          {/* flex-wrap: lange Crumbs („Motorradführerschein") sollen auf schmalen
+              Displays umbrechen statt aus dem Viewport zu laufen. */}
+          <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm font-medium tracking-[0.15em] uppercase">
             <li>
               <Link
                 to="/"

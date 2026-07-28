@@ -79,6 +79,13 @@ export function Leistungen() {
             <div>
               <h2 className="display-md text-white">PKW-FÜHRERSCHEINE</h2>
               <p className="text-gray-300">Dein Einstieg in die Mobilität</p>
+              <Link
+                to="/fuehrerschein-klasse-b-ludwigsburg"
+                className="inline-flex items-center gap-2 mt-2 text-blue-300 font-semibold text-sm hover:text-blue-200 transition-colors group"
+              >
+                Ablauf, Sonderfahrten und BF17 zur Klasse B
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
 
@@ -186,6 +193,13 @@ export function Leistungen() {
             <div>
               <h2 className="display-md text-white">MOTORRAD-FÜHRERSCHEINE</h2>
               <p className="text-gray-300">Freiheit auf zwei Rädern</p>
+              <Link
+                to="/motorradfuehrerschein-ludwigsburg"
+                className="inline-flex items-center gap-2 mt-2 text-accent font-semibold text-sm hover:text-accent-light transition-colors group"
+              >
+                Klassenvergleich, Stufenaufstieg und B196
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
 
@@ -291,6 +305,13 @@ export function Leistungen() {
             <div>
               <h2 className="display-md text-white">ZUSATZANGEBOTE</h2>
               <p className="text-gray-300">Seminare und Spezialtraining</p>
+              <Link
+                to="/asf-aufbauseminar-ludwigsburg"
+                className="inline-flex items-center gap-2 mt-2 text-green-400 font-semibold text-sm hover:text-green-300 transition-colors group"
+              >
+                Ablauf und Fristen des ASF-Aufbauseminars
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
 
@@ -338,6 +359,16 @@ export function Leistungen() {
             Jetzt Kontakt aufnehmen
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
+
+          <p className="mt-6 text-secondary/80">
+            Erst mal einlesen?{' '}
+            <Link
+              to="/fuehrerschein-ludwigsburg"
+              className="font-bold underline decoration-2 underline-offset-4 hover:text-secondary transition-colors"
+            >
+              So läuft dein Führerschein in Ludwigsburg ab
+            </Link>
+          </p>
         </div>
       </section>
     </>
