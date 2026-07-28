@@ -32,4 +32,7 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://fahrschule-nicolai.de/sitemap.xml
