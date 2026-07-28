@@ -107,7 +107,63 @@ C) NEUIGKEITEN
 
 
 ----------------------------------------------------------------
-4. SICHERHEIT
+4. ANFRAGEN AUSWERTEN
+----------------------------------------------------------------
+
+Im Menü oben findest du den Punkt "Anfragen". Dort siehst du,
+wie viele Leute über die Website Kontakt aufgenommen haben.
+
+GEZÄHLT WIRD:
+
+  - Anfragen         = abgesendete Formulare "Allgemeine Anfrage"
+  - Anmeldungen      = abgesendete Formulare "Anmeldung"
+  - Telefon-Klicks   = Klicks auf eine Telefonnummer
+  - WhatsApp-Klicks  = Klicks auf den WhatsApp-Button
+  - E-Mail-Klicks    = Klicks auf eine E-Mail-Adresse
+
+Bei den Anmeldungen siehst du zusätzlich, welche Führerschein-
+klasse und welcher Standort gewünscht wurde.
+
+WICHTIG ZUM VERSTÄNDNIS:
+
+  - Anfragen und Anmeldungen entsprechen genau den Mails in
+    deinem Postfach. Erkannter Spam wird nicht mitgezählt.
+  - Ein Telefon-Klick ist KEIN garantiertes Telefonat — gezählt
+    wird der Klick auf die Nummer, nicht das Gespräch. Die Zahl
+    der echten Anrufe über Google Maps findest du in deinem
+    Google-Unternehmensprofil.
+  - Es werden nur Summen gespeichert: keine Namen, E-Mail-
+    Adressen, Telefonnummern oder IP-Adressen. Deshalb ist das
+    Ganze datenschutzrechtlich unproblematisch.
+
+MONATE UND VERGLEICH:
+
+Gezählt wird immer vom 1. bis zum letzten Tag eines Monats
+(deutsche Zeit). Am 1. des neuen Monats beginnt die Zählung
+wieder bei 0 — der alte Monat bleibt aber dauerhaft erhalten.
+
+Über das Auswahlfeld "Monat" oben rufst du jeden vergangenen
+Monat auf, z.B. den kompletten Mai. Zu jeder Zahl steht der
+Vergleich zum Vormonat (grün = mehr, rot = weniger).
+
+Der "Tagesverlauf" zeigt, an welchen Tagen des Monats etwas
+passiert ist.
+
+EXPORT FÜR EXCEL:
+
+  - "CSV: <Monat>"      → eine Zeile pro Tag des Monats
+  - "CSV: alle Monate"  → eine Zeile pro Monat, für den
+                          Jahresvergleich
+
+Die Dateien öffnen sich per Doppelklick direkt in Excel.
+
+Die Zahlen liegen auf dem Server unter /data/.stats/ (eine Datei
+pro Monat) und sind von außen nicht abrufbar. Bei Webseiten-
+Updates werden sie nicht angetastet.
+
+
+----------------------------------------------------------------
+5. SICHERHEIT
 ----------------------------------------------------------------
 
 - Logge dich aus, wenn du fertig bist (Button oben rechts).
@@ -118,7 +174,7 @@ C) NEUIGKEITEN
 
 
 ----------------------------------------------------------------
-5. BACKUPS
+6. BACKUPS
 ----------------------------------------------------------------
 
 Vor jeder Speicherung legt das System automatisch ein Backup an.
@@ -130,15 +186,16 @@ kann ein Backup einspielen.
 
 
 ----------------------------------------------------------------
-6. WAS PASSIERT BEI EINEM WEBSEITEN-UPDATE
+7. WAS PASSIERT BEI EINEM WEBSEITEN-UPDATE
 ----------------------------------------------------------------
 
 Wenn dein Webentwickler an der Webseite arbeitet (z.B. neues
 Design, neue Seite), wird er nur den Frontend-Code aktualisieren.
-Deine Inhalte (ASF, Team, Neuigkeiten, Fotos) bleiben unverändert.
+Deine Inhalte (ASF, Team, Neuigkeiten, Fotos) und die gezählten
+Anfragen bleiben unverändert.
 
 Das Deploy-Skript ist bewusst so gebaut, dass es niemals deine
-gepflegten Inhalte überschreibt.
+gepflegten Inhalte oder die Anfrage-Zahlen überschreibt.
 
 
 ----------------------------------------------------------------

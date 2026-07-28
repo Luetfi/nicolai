@@ -11,6 +11,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Interne Datenordner sind nicht öffentlich: /data/.stats (anonyme
+    # Anfrage-Zähler) und /data/.backups (JSON-Backups des Admin-Bereichs).
+    RewriteRule ^data/\.(stats|backups)(/|$) - [F,L]
+
     # HTTPS erzwingen
     RewriteCond %{HTTPS} !=on
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

@@ -10,6 +10,7 @@ import {
 import { CookieBanner } from './CookieBanner';
 import { CookieSettings } from './CookieSettings';
 import { Analytics } from '../../analytics/Analytics';
+import { ContactClickTracker } from '../../analytics/ContactClickTracker';
 
 function readStored(): ConsentRecord | null {
   if (typeof window === 'undefined') return null;
@@ -118,6 +119,8 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
       <CookieBanner />
       <CookieSettings />
       <Analytics />
+      {/* Anonymer Klickzähler — ohne Cookies/Speicherzugriff, daher einwilligungsfrei */}
+      <ContactClickTracker />
     </ConsentContext.Provider>
   );
 }

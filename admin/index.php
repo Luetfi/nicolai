@@ -22,6 +22,7 @@ require_once __DIR__ . '/includes/csrf.php';
 require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/json_store.php';
 require_once __DIR__ . '/includes/upload.php';
+require_once __DIR__ . '/includes/stats.php';
 require_once __DIR__ . '/includes/layout.php';
 
 if (ADMIN_PASS_HASH === '' || APP_SECRET === '') {
@@ -82,7 +83,32 @@ switch ($route) {
         $team = readJson('team');
         $news = readJson('news');
         $theory = readJson('theory-schedule');
+        $statsCurrent = statsReadMonth(statsCurrentMonth());
+        $statsPrevious = statsReadMonth(statsPrevMonth(statsCurrentMonth()));
         require __DIR__ . '/views/dashboard.php';
+        break;
+
+    case 'stats':
+        $month = (string)($_GET['m'] ?? '');
+        if (!statsIsValidMonth($month)) {
+            $month = statsCurrentMonth();
+        }
+        // Laufender und angezeigter Monat gehören immer in die Auswahl, auch ohne Daten
+        $months = statsAvailableMonths();
+        foreach ([statsCurrentMonth(), $month] as $extra) {
+            if (!in_array($extra, $months, true)) {
+                $months[] = $extra;
+            }
+        }
+        rsort($months);
+        $stats = statsReadMonth($month);
+        $prevMonth = statsPrevMonth($month);
+        $prevStats = statsReadMonth($prevMonth);
+        require __DIR__ . '/views/stats.php';
+        break;
+
+    case 'stats_csv':
+        handleStatsCsv();
         break;
 
     case 'asf':
@@ -330,6 +356,74 @@ switch ($route) {
         echo '<div class="admin-empty"><h1>Seite nicht gefunden</h1><p>Diese Admin-Seite existiert nicht.</p></div>';
         layoutFooter();
         break;
+}
+
+// ----- CSV-Export -----
+
+/**
+ * Liefert die Statistik als CSV zum Download.
+ *   ?p=stats_csv&m=2026-07  → eine Zeile pro Tag dieses Monats
+ *   ?p=stats_csv&all=1      → eine Zeile pro Monat (Gesamtübersicht)
+ * Semikolon + UTF-8-BOM, damit Excel die Datei auf Anhieb korrekt öffnet.
+ */
+function handleStatsCsv(): void {
+    $all = !empty($_GET['all']);
+    $month = (string)($_GET['m'] ?? '');
+    if (!$all && !statsIsValidMonth($month)) {
+        $month = statsCurrentMonth();
+    }
+
+    $filename = $all ? 'anfragen-alle-monate.csv' : 'anfragen-' . $month . '.csv';
+
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    header('Cache-Control: no-store');
+
+    $out = fopen('php://output', 'w');
+    if ($out === false) {
+        return;
+    }
+    fwrite($out, "\xEF\xBB\xBF"); // BOM für Excel
+
+    $labels = statsEventLabels();
+
+    if ($all) {
+        fputcsv($out, array_merge(
+            ['Monat'],
+            array_values($labels),
+            ['Kontaktaufnahmen gesamt']
+        ), ';');
+
+        foreach (array_reverse(statsAvailableMonths()) as $m) {
+            $stats = statsReadMonth($m);
+            $row = [statsMonthLabel($m)];
+            foreach (array_keys($labels) as $event) {
+                $row[] = $stats['totals'][$event];
+            }
+            $row[] = statsContactTotal($stats);
+            fputcsv($out, $row, ';');
+        }
+    } else {
+        fputcsv($out, array_merge(
+            ['Datum'],
+            array_values($labels),
+            ['Gesamt']
+        ), ';');
+
+        $stats = statsReadMonth($month);
+        foreach (statsDailySeries($stats) as $day) {
+            $events = $stats['byDay'][$day['date']] ?? [];
+            $row = [date('d.m.Y', (int) strtotime($day['date']))];
+            foreach (array_keys($labels) as $event) {
+                $row[] = (int) ($events[$event] ?? 0);
+            }
+            $row[] = $day['total'];
+            fputcsv($out, $row, ';');
+        }
+    }
+
+    fclose($out);
+    exit;
 }
 
 // ----- POST handlers -----

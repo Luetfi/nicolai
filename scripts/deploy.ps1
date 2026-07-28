@@ -11,13 +11,20 @@
     First-time deploy: lädt zusätzlich /admin und /data hoch.
     Nur einmal beim allerersten Deployment verwenden.
 
+.PARAMETER Admin
+    Lädt zusätzlich den /admin-Ordner hoch (für Updates am Admin-Bereich).
+    Die Produktions-Konfiguration /admin/includes/config.php bleibt unberührt,
+    /data wird nicht angefasst.
+
 .EXAMPLE
     ./scripts/deploy.ps1            # Regulärer Deploy (Frontend-Update)
+    ./scripts/deploy.ps1 -Admin     # Frontend + Admin-Bereich aktualisieren
     ./scripts/deploy.ps1 -Initial   # Erste Einrichtung
 #>
 
 param(
     [switch]$Initial,
+    [switch]$Admin,
     [switch]$SkipBuild,
     [string]$WinSCPPath = ""
 )
@@ -105,6 +112,16 @@ $lines += "option transfer binary"
 $excludes = "*/admin/; */data/; */images/team/; */images/team/*"
 $lines += "synchronize remote -delete=off -filemask=`"|$excludes`" `"$DistDir`" `"$RemotePath`""
 
+if ($Admin -and -not $Initial) {
+    Write-Host "==> Admin-Update: lade /admin zusätzlich hoch (ohne config.php)" -ForegroundColor Yellow
+    $AdminDir = Join-Path $RepoRoot "admin"
+    if (-not (Test-Path $AdminDir)) { throw "/admin fehlt im Repo." }
+
+    # config.php enthält Passwort-Hash + APP_SECRET der Produktion und ist
+    # lokal gar nicht vorhanden — niemals überschreiben.
+    $lines += "synchronize remote -delete=off -filemask=`"|*/includes/config.php`" `"$AdminDir`" `"${RemotePath}admin/`""
+}
+
 if ($Initial) {
     Write-Host "==> Initial deploy: lade /admin und /data zusätzlich hoch" -ForegroundColor Yellow
     $AdminDir = Join-Path $RepoRoot "admin"
@@ -113,8 +130,12 @@ if ($Initial) {
     if (-not (Test-Path $PublicDataDir)) { throw "/public/data fehlt im Repo." }
 
     $lines += "option transfer binary"
-    $lines += "synchronize remote -delete=off `"$AdminDir`" `"${RemotePath}admin/`""
-    $lines += "synchronize remote -delete=off `"$PublicDataDir`" `"${RemotePath}data/`""
+    # config.php nie hochladen — sie wird auf dem Server via setup.php erzeugt.
+    $lines += "synchronize remote -delete=off -filemask=`"|*/includes/config.php`" `"$AdminDir`" `"${RemotePath}admin/`""
+    # Interne Laufzeitordner ausschließen: .stats (Anfrage-Zähler) und .backups
+    # entstehen auf dem Server — lokale Testdaten dürfen sie nie überschreiben.
+    $dataExcludes = "*/.stats/; */.stats/*; */.backups/; */.backups/*"
+    $lines += "synchronize remote -delete=off -filemask=`"|$dataExcludes`" `"$PublicDataDir`" `"${RemotePath}data/`""
 
     # Team-Bilder initial mit hochladen
     $TeamImagesDir = Join-Path $RepoRoot "public\images\team"

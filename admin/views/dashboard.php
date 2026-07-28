@@ -3,9 +3,14 @@
 /** @var array $team */
 /** @var array $news */
 /** @var array $theory */
+/** @var array $statsCurrent */
+/** @var array $statsPrevious */
 $teamCount = count($team['members'] ?? []);
 $newsCount = count($news['items'] ?? []);
 $today = date('Y-m-d');
+$statsTotal = statsContactTotal($statsCurrent);
+$statsForms = statsFormTotal($statsCurrent);
+$statsDelta = statsDelta($statsTotal, statsContactTotal($statsPrevious));
 $upcomingTheoryCount = 0;
 foreach (($theory['items'] ?? []) as $t) {
     if (($t['date'] ?? '') >= $today) {
@@ -18,11 +23,29 @@ layoutHeader('Übersicht', 'dashboard');
     <div class="admin-section__head">
         <h1 class="admin-h1">Übersicht</h1>
         <p class="admin-section__lead">
-            Verwalte hier die drei Inhaltsbereiche, die regelmäßig aktualisiert werden.
+            Verwalte hier die Inhaltsbereiche, die regelmäßig aktualisiert werden — und sieh nach,
+            wie viele Anfragen über die Website kommen.
         </p>
     </div>
 
     <div class="admin-tiles">
+        <a class="admin-tile admin-tile--stats" href="<?= e(adminUrl('stats')) ?>">
+            <div class="admin-tile__head">
+                <span class="admin-tile__eyebrow">Anfragen</span>
+                <span class="admin-tile__pill"><?= e(statsMonthLabel(statsCurrentMonth())) ?></span>
+            </div>
+            <h2 class="admin-tile__title"><?= $statsTotal ?> Kontaktaufnahmen</h2>
+            <dl class="admin-tile__meta">
+                <div><dt>Formulare</dt><dd><?= $statsForms ?></dd></div>
+                <div><dt>Klicks</dt><dd><?= $statsTotal - $statsForms ?></dd></div>
+                <div><dt>Vormonat</dt><dd><?= e($statsDelta['label']) ?></dd></div>
+            </dl>
+            <div class="admin-tile__foot">
+                <span class="admin-tile__time">Läuft seit dem 1. dieses Monats</span>
+                <span class="admin-tile__cta">Auswerten →</span>
+            </div>
+        </a>
+
         <a class="admin-tile" href="<?= e(adminUrl('asf')) ?>">
             <div class="admin-tile__head">
                 <span class="admin-tile__eyebrow">Aufbauseminar</span>

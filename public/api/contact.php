@@ -13,6 +13,9 @@
 
 declare(strict_types=1);
 
+// Anonymer Monatszähler — zählt nur erfolgreich versendete Formulare.
+require_once __DIR__ . '/stats.php';
+
 // -------------------------------------------------------------
 // Konfiguration  →  ggf. an die tatsächlichen STRATO-Mailboxen anpassen
 // -------------------------------------------------------------
@@ -310,5 +313,13 @@ if (!$ok) {
     ]);
     exit;
 }
+
+// Nur echte, erfolgreich versendete Einsendungen zählen — Spam-Treffer (Honeypot,
+// zu schnelles Absenden) und fehlgeschlagene mail()-Aufrufe bleiben außen vor.
+// So entspricht die Zahl im Admin genau der Zahl der Mails im Postfach.
+statsRecord($formType, [
+    'class'    => $licenseClass ?? '',
+    'location' => $location ?? '',
+]);
 
 echo json_encode(['ok' => true]);

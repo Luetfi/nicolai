@@ -1072,6 +1072,277 @@ textarea.admin-field__input {
 }
 
 /* ============================================================
+   Anfragen-Auswertung
+   ============================================================ */
+
+.admin-tile--stats .admin-tile__eyebrow { color: var(--color-accent); }
+.admin-tile--stats::before {
+    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(255, 107, 0, 0.18), transparent 60%);
+}
+
+.admin-stats__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.admin-stats__toolbar-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-faint);
+}
+.admin-stats__select { width: auto; min-width: 180px; }
+.admin-stats__toolbar-spacer { flex: 1 1 auto; }
+
+.admin-stats__empty { margin-bottom: 24px; color: var(--color-text-muted); }
+.admin-stats__empty-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+/* Kennzahl des Monats */
+.admin-stats__hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    justify-content: space-between;
+    padding: 28px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(255, 209, 0, 0.10) 0%, var(--color-surface) 45%, var(--color-bg-elevated) 100%);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+}
+.admin-stats__hero-main { display: flex; flex-direction: column; gap: 6px; }
+.admin-stats__hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-primary);
+}
+.admin-stats__hero-value {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
+}
+.admin-stats__hero-note { font-size: 13px; color: var(--color-text-muted); }
+.admin-stats__hero-side {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+    min-width: 200px;
+}
+.admin-stats__hero-side > div { display: flex; flex-direction: column; gap: 2px; }
+.admin-stats__hero-side dt {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-faint);
+}
+.admin-stats__hero-side dd {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Vergleichs-Chip */
+.admin-stats__delta {
+    align-self: flex-start;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.06);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    font-variant-numeric: tabular-nums;
+}
+.admin-stats__delta--up {
+    color: var(--color-success);
+    background: var(--color-success-bg);
+    border-color: var(--color-success-border);
+}
+.admin-stats__delta--down {
+    color: var(--color-error);
+    background: var(--color-error-bg);
+    border-color: var(--color-error-border);
+}
+
+/* Kennzahlen-Karten */
+.admin-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.admin-stats__card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px;
+    background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg-elevated) 100%);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-border-strong);
+    border-radius: var(--radius-lg);
+}
+.admin-stats__card--form { border-left-color: var(--color-primary); }
+.admin-stats__card-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+}
+.admin-stats__card-value {
+    font-family: var(--font-display);
+    font-size: 40px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+.admin-stats__card-prev { font-size: 12px; color: var(--color-text-faint); }
+
+/* Aufschlüsselungen */
+.admin-stats__breakdown {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+@media (min-width: 900px) {
+    .admin-stats__breakdown { grid-template-columns: repeat(2, 1fr); }
+}
+.admin-stats__panel { margin-bottom: 24px; }
+.admin-stats__breakdown .admin-stats__panel { margin-bottom: 0; }
+.admin-stats__panel-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+.admin-stats__panel-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    margin-bottom: 18px;
+}
+.admin-stats__panel-head .admin-stats__panel-title { margin-bottom: 0; }
+
+.admin-stats__rows { display: flex; flex-direction: column; gap: 10px; }
+.admin-stats__row {
+    display: grid;
+    grid-template-columns: 90px 1fr 40px;
+    align-items: center;
+    gap: 12px;
+}
+.admin-stats__row-key { font-size: 14px; font-weight: 600; }
+.admin-stats__row-track {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+}
+.admin-stats__row-bar {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary));
+    border-radius: var(--radius-pill);
+}
+.admin-stats__row-value {
+    text-align: right;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Tagesverlauf */
+.admin-stats__legend { display: flex; gap: 16px; }
+.admin-stats__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+.admin-stats__legend-item::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+.admin-stats__legend-item--forms::before { background: var(--color-primary); }
+.admin-stats__legend-item--clicks::before { background: var(--color-accent); }
+
+.admin-stats__days {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+.admin-stats__day {
+    flex: 1 1 0;
+    min-width: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+.admin-stats__day-track {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.admin-stats__day-bar { display: block; width: 100%; min-height: 2px; }
+.admin-stats__day-bar--forms { background: linear-gradient(180deg, var(--color-primary-light), var(--color-primary-dark)); }
+.admin-stats__day-bar--clicks { background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent-dark)); }
+.admin-stats__day-label {
+    font-size: 10px;
+    color: var(--color-text-faint);
+    font-variant-numeric: tabular-nums;
+}
+.admin-stats__day.is-empty .admin-stats__day-label { opacity: 0.45; }
+
+.admin-stats__note { color: var(--color-text-secondary); }
+.admin-stats__notes { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.admin-stats__notes li { padding-left: 16px; position: relative; }
+.admin-stats__notes li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: var(--color-primary);
+}
+.admin-stats__notes strong { color: var(--color-text); }
+
+@media (max-width: 600px) {
+    .admin-stats__hero { padding: 22px; }
+    .admin-stats__hero-value { font-size: 48px; }
+    .admin-stats__row { grid-template-columns: 70px 1fr 34px; }
+}
+
+/* ============================================================
    Print
    ============================================================ */
 

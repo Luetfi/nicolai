@@ -42,6 +42,7 @@ function layoutHeader(string $title, string $route = ''): void {
                 <a href="<?= e(adminUrl('team')) ?>" class="admin-nav__link<?= str_starts_with($route, 'team') ? ' is-active' : '' ?>">Team</a>
                 <a href="<?= e(adminUrl('theory')) ?>" class="admin-nav__link<?= str_starts_with($route, 'theory') ? ' is-active' : '' ?>">Theorie</a>
                 <a href="<?= e(adminUrl('news')) ?>" class="admin-nav__link<?= str_starts_with($route, 'news') ? ' is-active' : '' ?>">Neuigkeiten</a>
+                <a href="<?= e(adminUrl('stats')) ?>" class="admin-nav__link<?= str_starts_with($route, 'stats') ? ' is-active' : '' ?>">Anfragen</a>
             </nav>
             <form method="post" action="<?= e(adminUrl('logout')) ?>" class="admin-nav__logout">
                 <?= csrfField() ?>

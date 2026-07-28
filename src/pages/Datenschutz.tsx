@@ -261,11 +261,10 @@ export function Datenschutz() {
                 Kontaktseite
               </Link>{' '}
               findest du zwei Formulare: ein allgemeines Kontaktformular und ein Anmeldeformular für
-              die Fahrschule. <span className="text-white font-medium">Wichtig:</span> Diese Formulare
-              senden keine Daten an einen Server. Beim Klick auf „Absenden" wird lediglich eine
-              vorausgefüllte E-Mail in deinem lokalen E-Mail-Programm geöffnet, die du{' '}
-              <span className="text-white font-medium">selbst</span> an unsere E-Mail-Adresse
-              versendest.
+              die Fahrschule. Beim Klick auf „Absenden" werden die von dir eingegebenen Daten an
+              unseren Server bei der Strato AG in Deutschland übertragen und von dort per E-Mail an
+              unser Postfach weitergeleitet. Auf dem Server werden die Formulardaten{' '}
+              <span className="text-white font-medium">nicht dauerhaft gespeichert</span>.
             </p>
             <p>
               Folgende Felder können dabei je nach Formular ausgefüllt werden:
@@ -302,6 +301,23 @@ export function Datenschutz() {
               <span className="text-white font-medium">Speicherdauer:</span> Wir speichern deine
               E-Mail-Korrespondenz, solange sie für die Bearbeitung deines Anliegens erforderlich ist.
               Bei Vertragsabschluss gelten die gesetzlichen Aufbewahrungsfristen.
+            </p>
+            <p>
+              <span className="text-white font-medium">Spam-Schutz:</span> Zur Abwehr automatisierter
+              Einsendungen enthält das Formular ein für dich unsichtbares Feld und prüft die Zeit bis
+              zum Absenden. In der an uns versendeten E-Mail wird deine IP-Adresse verkürzt (letztes
+              Segment entfernt) vermerkt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+            </p>
+            <p>
+              <span className="text-white font-medium">Anonyme Zählung:</span> Damit wir wissen, wie
+              stark unsere Kontaktmöglichkeiten genutzt werden, zählt unser Server monatlich, wie oft
+              ein Formular abgesendet und wie oft auf eine Telefonnummer, den WhatsApp-Button oder
+              eine E-Mail-Adresse geklickt wurde. Dabei werden{' '}
+              <span className="text-white font-medium">ausschließlich Summen</span> gespeichert — keine
+              Namen, Kontaktdaten, IP-Adressen oder Kennungen, aus denen sich ein Bezug zu dir
+              herstellen ließe. Es werden dafür keine Cookies gesetzt und keine Daten auf deinem Gerät
+              gespeichert oder ausgelesen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
+              (berechtigtes Interesse an der Auswertung der eigenen Reichweite).
             </p>
           </SectionCard>
 

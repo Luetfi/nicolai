@@ -35,3 +35,10 @@ dist-ssr
 # JSON-Backups vom Admin-Panel
 /data/.backups/
 
+# Anfrage-Zähler: entsteht zur Laufzeit auf dem Server (bzw. lokal beim Testen)
+# und gehört nie ins Repo — sonst würden Produktionszahlen überschrieben.
+/public/data/.stats/
+
+# Lokaler Testordner: der Admin-Bereich sucht /data im Webroot-Elternverzeichnis
+/data/
+
